@@ -80,5 +80,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LampParameters\LampParameters.csproj">
+      <Project>{518770ba-b8e4-4c6f-a442-7b2f25883e09}</Project>
+      <Name>LampParameters</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

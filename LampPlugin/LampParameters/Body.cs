@@ -57,7 +57,7 @@ namespace LampParameters
                 }
                 else
                 {
-                    throw new ArgumentException($"Parametr Height" +
+                    throw new ArgumentException($"Parametr Body Height" +
                                                 $"should be more then {minHeight}" +
                                                 $"and less then {maxHeight}");
                 }
@@ -72,22 +72,22 @@ namespace LampParameters
             get { return _diametrBody; }
             set
             {
-                const int maxDiametr = 90;
-                const int minDiametr = 100;
-                if (value <= maxDiametr && minDiametr >= value)
+                const int maxDiametr = 180;
+                const int minDiametr = 90;
+                if ( value >= minDiametr && value <= maxDiametr  )
                 {
-                    _heightBody = value;
+                    _diametrBody = value;
                 }
                 else
                 {
-                    throw new ArgumentException($"Parametr Diametr" +
-                                                $"should be more then {minDiametr}" +
+                    throw new ArgumentException($"Parametr Body Diametr " +
+                                                $"should be more then {minDiametr} " +
                                                 $"and less then {maxDiametr}");
                 }
             }
         }
 
-
+        //public Body () { }
 
     }
 }

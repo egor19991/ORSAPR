@@ -30,8 +30,8 @@ namespace LampPluginUI
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.DiametrBodyTextBox = new System.Windows.Forms.TextBox();
+            this.HeightBodyTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,21 +55,22 @@ namespace LampPluginUI
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Lamp Body";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // textBox1
+            // DiametrBodyTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(141, 16);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(45, 20);
-            this.textBox1.TabIndex = 1;
+            this.DiametrBodyTextBox.Location = new System.Drawing.Point(141, 16);
+            this.DiametrBodyTextBox.Name = "DiametrBodyTextBox";
+            this.DiametrBodyTextBox.Size = new System.Drawing.Size(45, 20);
+            this.DiametrBodyTextBox.TabIndex = 1;
+            this.DiametrBodyTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DiametrBodyTextBox_KeyPress);
+            this.DiametrBodyTextBox.Leave += new System.EventHandler(this.DiametrBodyTextBox_Leave);
             // 
-            // textBox2
+            // HeightBodyTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(214, 16);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(47, 20);
-            this.textBox2.TabIndex = 2;
+            this.HeightBodyTextBox.Location = new System.Drawing.Point(214, 16);
+            this.HeightBodyTextBox.Name = "HeightBodyTextBox";
+            this.HeightBodyTextBox.Size = new System.Drawing.Size(47, 20);
+            this.HeightBodyTextBox.TabIndex = 2;
             // 
             // label2
             // 
@@ -88,7 +89,6 @@ namespace LampPluginUI
             this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Lamp Tube";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -199,14 +199,14 @@ namespace LampPluginUI
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.HeightBodyTextBox);
+            this.Controls.Add(this.DiametrBodyTextBox);
             this.Controls.Add(this.label1);
             this.MaximumSize = new System.Drawing.Size(310, 200);
             this.MinimumSize = new System.Drawing.Size(310, 200);
             this.Name = "MainForm";
             this.Text = "Lamp Plugin";
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,8 +215,8 @@ namespace LampPluginUI
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox DiametrBodyTextBox;
+        private System.Windows.Forms.TextBox HeightBodyTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
