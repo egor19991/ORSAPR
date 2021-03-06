@@ -46,7 +46,8 @@ namespace LampParameters
 
         public Lamp()
         {
-            this._body2 = new Body();
+            this._body2 = new Body{};
+
         }
 
 

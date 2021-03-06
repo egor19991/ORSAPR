@@ -41,6 +41,10 @@ namespace LampParameters
         /// </summary>
         public const int HeightCable = 4;
 
+        //нужно спросить можно ли так
+        private const int maxHeight = 100;
+        private const int minHeight = 50;
+
         /// <summary>
         /// Свойство, задающее выстоу корпуса
         /// </summary>
@@ -49,8 +53,7 @@ namespace LampParameters
             get { return _heightBody;}
             set
             {
-                const int maxHeight = 100;
-                const int minHeight = 50;
+                
                 if (value <= maxHeight  && minHeight >= value)
                 {
                     _heightBody = value;
@@ -64,6 +67,10 @@ namespace LampParameters
             }
         }
 
+        //нужно спросить можно ли так
+        private const int maxDiametr = 180;
+        private const int minDiametr = 90;
+
         /// <summary>
         /// Свойство, задающее диамеир корпуса
         /// </summary>
@@ -72,9 +79,8 @@ namespace LampParameters
             get { return _diametrBody; }
             set
             {
-                const int maxDiametr = 180;
-                const int minDiametr = 90;
-                if ( value >= minDiametr && value <= maxDiametr  )
+                
+                if  (value >= minDiametr   && value <= maxDiametr  )
                 {
                     _diametrBody = value;
                 }
@@ -87,7 +93,26 @@ namespace LampParameters
             }
         }
 
-        //public Body () { }
+        
+        public Body() { }
+
+        public void AvgValue()
+        {
+            _diametrBody = (minDiametr + maxDiametr) / 2;
+            _heightBody = (minHeight + maxHeight) / 2;
+        }
+
+        public void MaxValue()
+        {
+            _diametrBody =  maxDiametr;
+            _heightBody =  maxHeight;
+        }
+
+        public void MinValue()
+        {
+            _diametrBody = minDiametr;
+            _heightBody = minHeight;
+        }
 
     }
 }

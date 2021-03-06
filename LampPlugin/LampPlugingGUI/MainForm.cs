@@ -9,10 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using LampParameters;
-using KompasAPI7;
-using Kompas6API5;
-using Kompas6Constants;
-using KAPITypes;
 
 namespace LampPluginUI
 {
@@ -26,8 +22,7 @@ namespace LampPluginUI
         private Body _body = new Body();
         private Lamp _lamp = new Lamp{};
 
-        KompasObject kompas;
-       
+
         /// <summary>
         /// Метод при смене текстбокса присваивает значение
         /// </summary>
@@ -38,12 +33,15 @@ namespace LampPluginUI
              
             if ( DiametrBodyTextBox.Text != String.Empty)
             {
+
                 try
                 {
+                   // _lamp.Body.AvgValue();
                     //_body.Diametr = Int32.Parse(DiametrBodyTextBox.Text);
-
+                    
                     _lamp.Body.Diametr = Int32.Parse(DiametrBodyTextBox.Text);
                     DiametrBodyTextBox.BackColor = Color.White;
+                    MessageBox.Show(_lamp.Body.Diametr.ToString());
                 }
                 catch (Exception exception) //по идее должно быть ArgumentException, но Exception- защита от букв и точек!
                 {
@@ -64,6 +62,11 @@ namespace LampPluginUI
         /// <param name="e"></param>
         private void DiametrBodyTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+           Number(e);
+        }
+
+        private void Number(KeyPressEventArgs e)
+        {
             char number = e.KeyChar;
             if (!Char.IsDigit(number) && number != 8) // цифры и клавиша BackSpace
             {
@@ -83,22 +86,7 @@ namespace LampPluginUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (kompas == null)
-            {
-                 #if __LIGHT_VERSION__
-					Type t = Type.GetTypeFromProgID("KOMPASLT.Application.5");
-                #else
-                Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
-                #endif
-
-                kompas = (KompasObject)Activator.CreateInstance(t);
-            }
-
-            if (kompas != null)
-            {
-                kompas.Visible = true;
-                kompas.ActivateControllerAPI();
-            }
+           
         }
     }
 }
