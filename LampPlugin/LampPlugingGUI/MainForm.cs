@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using LampParameters;
+using KompasAPI7;
+using Kompas6API5;
+using Kompas6Constants;
+using KAPITypes;
 
 namespace LampPluginUI
 {
@@ -22,6 +26,8 @@ namespace LampPluginUI
         private Body _body = new Body();
         private Lamp _lamp = new Lamp{};
 
+        KompasObject kompas;
+       
         /// <summary>
         /// Метод при смене текстбокса присваивает значение
         /// </summary>
@@ -73,6 +79,26 @@ namespace LampPluginUI
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (kompas == null)
+            {
+                 #if __LIGHT_VERSION__
+					Type t = Type.GetTypeFromProgID("KOMPASLT.Application.5");
+                #else
+                Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
+                #endif
+
+                kompas = (KompasObject)Activator.CreateInstance(t);
+            }
+
+            if (kompas != null)
+            {
+                kompas.Visible = true;
+                kompas.ActivateControllerAPI();
+            }
         }
     }
 }
