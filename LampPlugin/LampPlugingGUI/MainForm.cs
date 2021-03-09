@@ -18,23 +18,14 @@ namespace LampPluginUI
     {
 
         private readonly Dictionary<TextBox, Action<Lamp, string>> _textBoxDictionary;
+        private Lamp _lamp = new Lamp{};
 
         public MainForm()
         {
             InitializeComponent();
             //_lamp.Avg();
             //Спросить 1
-            _lamp.Tube.Height = 180;
-            try
-            {
-                MessageBox.Show(_lamp.HoleLength().ToString());
-            }
-            catch (ArgumentException e)
-            {
-                Console.WriteLine(e);
-                MessageBox.Show(e.Message);
-                //throw;
-            }
+            //_lamp.Tube.Height = 10;
             _textBoxDictionary = new Dictionary<TextBox, Action<Lamp, string>>()
             {
                 {
@@ -42,28 +33,37 @@ namespace LampPluginUI
                     (Lamp lamp, string text) => {lamp.Body.Diametr = Int32.Parse(text);}
                 },
                 {
-                    textBox3, 
+                    HeightBodyTextBox, 
                     (Lamp lamp, string text) => {lamp.Body.Height = Int32.Parse(text);}
+                },
+                {
+                    DiametrTubeTextBox,
+                    (Lamp lamp, string text) => {lamp.Tube.Diametr = Int32.Parse(text);}
+                },
+                {
+                    HeightTubeTextBox,
+                    (Lamp lamp, string text) => {lamp.Tube.Height = Int32.Parse(text);}
+                },
+                {
+                    DiametrSocketPlatformTextBox,
+                    (Lamp lamp, string text) => {lamp.SocketPlatform.Diametr = Int32.Parse(text);}
+                },
+                {
+                    HeightSocketPlatformTextBox,
+                    (Lamp lamp, string text) => {lamp.SocketPlatform.Height = Int32.Parse(text);}
                 }
             }; 
         }
 
-        private Lamp _lamp = new Lamp{};
-        // Тест PropertyInfo  propertyInfo = typeof(Lamp).GetProperty("Body");
-
-        
-
         /// <summary>
-        /// Метод при смене текстбокса присваивает значение
+        /// Обработчик для присваивания значений из TextBox 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DiametrBodyTextBox_Leave(object sender, EventArgs e)
+        private void TextBoxLeave(object sender, EventArgs e)
         {
             var currentTextBox = (TextBox)sender;
             var currentAction = _textBoxDictionary[currentTextBox];
-
-            //Svin(DiametrBodyTextBox,  _lamp.Body.Diametr);
             if (currentTextBox.Text != String.Empty)
             {
                 try
@@ -71,7 +71,7 @@ namespace LampPluginUI
                     currentAction.Invoke(_lamp, currentTextBox.Text);
                     currentTextBox.BackColor = Color.White;
                 }
-                catch (ArgumentException exception) //по идее должно быть ArgumentException, но Exception- защита от букв и точек!
+                catch (ArgumentException exception)
                 {
                     currentTextBox.BackColor = Color.LightCoral;
                     MessageBox.Show(exception.Message);
@@ -79,42 +79,12 @@ namespace LampPluginUI
             }
         }
 
-        //!!!!!!! Tessstt !!!!!! Спросить 2
-        public void Svin(TextBox svin1, int svin2)
-        {
-            if (svin1.Text != String.Empty)
-            {
-                try
-                {
-                    svin2 = Int32.Parse(svin1.Text);
-                    svin1.BackColor = Color.White;
-                    MessageBox.Show(svin2.ToString());
-                }
-                catch (ArgumentException exception) //по идее должно быть ArgumentException, но Exception- защита от букв и точек!
-                {
-
-                    // Console.WriteLine(exception.Message);
-                    //throw;
-                    svin1.BackColor = Color.LightCoral;
-                    MessageBox.Show(exception.Message);
-                }
-            }
-        }
-
-
-
-        private void DiametrBodyTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-           Number(e);
-        }
-
-
         /// <summary>
-        /// Метод, отображающий в TextBox только цифры
+        /// Обработчик, который позволяет вводить только цифры в TextBox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Number(KeyPressEventArgs e)
+        private void TextBoxAllowOnlyNumbers(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
             if (!Char.IsDigit(number) && number != 8) // цифры и клавиша BackSpace
@@ -137,5 +107,7 @@ namespace LampPluginUI
         {
             LampBuild.SvinRT();
         }
+
+       
     }
 }

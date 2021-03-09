@@ -32,7 +32,6 @@ namespace LampParameters
             get { return _heightTube; }
             set
             {
-                
                 if (value <= maxHeight && value >= minHeight)
                 {
                     _heightTube = value;

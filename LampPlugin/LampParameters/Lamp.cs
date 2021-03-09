@@ -12,8 +12,6 @@ namespace LampParameters
     /// </summary>
     public class Lamp
     {
-        
-
         // Неправильно !!!!!! Но работает
         // private Body _body = new Body();
 
@@ -69,10 +67,9 @@ namespace LampParameters
             }
             else
             {
-                throw new ArgumentException("Empty Body or SocketPlatform or Tube");
+                throw new ArgumentException("Empty value Body or SocketPlatform or Tube");
             }
         }
-
 
         public void Avg()
         {
@@ -81,8 +78,19 @@ namespace LampParameters
             _tube.AvgValue();
         }
 
+        public void MaxValue()
+        {
+            _body.MaxValue();
+            _socketPlatform.MaxValue();
+            _tube.MaxValue();
+        }
 
-
+        public void MinValue()
+        {
+            _body.MinValue();
+            _socketPlatform.MinValue();
+            _tube.MinValue();
+        }
 
         public Lamp()
         {
@@ -90,8 +98,6 @@ namespace LampParameters
             this._socketPlatform = new SocketPlatform();
             this._tube = new Tube();
         }
-
-
     }
 
     

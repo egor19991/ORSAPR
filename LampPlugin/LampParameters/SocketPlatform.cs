@@ -66,7 +66,6 @@ namespace LampParameters
             get { return _diametrSocketPlatform; }
             set
             {
-                
                 if (value >= minDiametr && value <= maxDiametr)
                 {
                     _diametrSocketPlatform = value;

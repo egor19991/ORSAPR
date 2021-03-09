@@ -29,34 +29,34 @@ namespace LampPluginUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.LampBodyLabel = new System.Windows.Forms.Label();
             this.DiametrBodyTextBox = new System.Windows.Forms.TextBox();
             this.HeightBodyTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.LampTubeLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.DiametrTubeTextBox = new System.Windows.Forms.TextBox();
+            this.HeightTubeTextBox = new System.Windows.Forms.TextBox();
+            this.SocketPlatformLabel = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.HeightSocketPlatformTextBox = new System.Windows.Forms.TextBox();
+            this.DiametrSocketPlatformTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.BuildButton = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.SizeLabel = new System.Windows.Forms.Label();
+            this.SizeComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // label1
+            // LampBodyLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Lamp Body";
+            this.LampBodyLabel.AutoSize = true;
+            this.LampBodyLabel.Location = new System.Drawing.Point(15, 39);
+            this.LampBodyLabel.Name = "LampBodyLabel";
+            this.LampBodyLabel.Size = new System.Drawing.Size(60, 13);
+            this.LampBodyLabel.TabIndex = 0;
+            this.LampBodyLabel.Text = "Lamp Body";
             // 
             // DiametrBodyTextBox
             // 
@@ -64,8 +64,8 @@ namespace LampPluginUI
             this.DiametrBodyTextBox.Name = "DiametrBodyTextBox";
             this.DiametrBodyTextBox.Size = new System.Drawing.Size(45, 20);
             this.DiametrBodyTextBox.TabIndex = 1;
-            this.DiametrBodyTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DiametrBodyTextBox_KeyPress);
-            this.DiametrBodyTextBox.Leave += new System.EventHandler(this.DiametrBodyTextBox_Leave);
+            this.DiametrBodyTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxAllowOnlyNumbers);
+            this.DiametrBodyTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // HeightBodyTextBox
             // 
@@ -73,6 +73,8 @@ namespace LampPluginUI
             this.HeightBodyTextBox.Name = "HeightBodyTextBox";
             this.HeightBodyTextBox.Size = new System.Drawing.Size(47, 20);
             this.HeightBodyTextBox.TabIndex = 2;
+            this.HeightBodyTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxAllowOnlyNumbers);
+            this.HeightBodyTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // label2
             // 
@@ -83,14 +85,14 @@ namespace LampPluginUI
             this.label2.TabIndex = 3;
             this.label2.Text = "H";
             // 
-            // label3
+            // LampTubeLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Lamp Tube";
+            this.LampTubeLabel.AutoSize = true;
+            this.LampTubeLabel.Location = new System.Drawing.Point(15, 69);
+            this.LampTubeLabel.Name = "LampTubeLabel";
+            this.LampTubeLabel.Size = new System.Drawing.Size(61, 13);
+            this.LampTubeLabel.TabIndex = 4;
+            this.LampTubeLabel.Text = "Lamp Tube";
             // 
             // label4
             // 
@@ -110,29 +112,32 @@ namespace LampPluginUI
             this.label5.TabIndex = 6;
             this.label5.Text = "H";
             // 
-            // textBox3
+            // DiametrTubeTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(141, 66);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(45, 20);
-            this.textBox3.TabIndex = 7;            
-            this.textBox3.Leave += new System.EventHandler(this.DiametrBodyTextBox_Leave);
+            this.DiametrTubeTextBox.Location = new System.Drawing.Point(141, 66);
+            this.DiametrTubeTextBox.Name = "DiametrTubeTextBox";
+            this.DiametrTubeTextBox.Size = new System.Drawing.Size(45, 20);
+            this.DiametrTubeTextBox.TabIndex = 7;
+            this.DiametrTubeTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxAllowOnlyNumbers);
+            this.DiametrTubeTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
-            // textBox4
+            // HeightTubeTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(214, 66);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(47, 20);
-            this.textBox4.TabIndex = 8;
+            this.HeightTubeTextBox.Location = new System.Drawing.Point(214, 66);
+            this.HeightTubeTextBox.Name = "HeightTubeTextBox";
+            this.HeightTubeTextBox.Size = new System.Drawing.Size(47, 20);
+            this.HeightTubeTextBox.TabIndex = 8;
+            this.HeightTubeTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxAllowOnlyNumbers);
+            this.HeightTubeTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
-            // label6
+            // SocketPlatformLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 102);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Socket Platform";
+            this.SocketPlatformLabel.AutoSize = true;
+            this.SocketPlatformLabel.Location = new System.Drawing.Point(15, 102);
+            this.SocketPlatformLabel.Name = "SocketPlatformLabel";
+            this.SocketPlatformLabel.Size = new System.Drawing.Size(82, 13);
+            this.SocketPlatformLabel.TabIndex = 9;
+            this.SocketPlatformLabel.Text = "Socket Platform";
             // 
             // label7
             // 
@@ -143,19 +148,23 @@ namespace LampPluginUI
             this.label7.TabIndex = 10;
             this.label7.Text = "D";
             // 
-            // textBox5
+            // HeightSocketPlatformTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(214, 99);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(47, 20);
-            this.textBox5.TabIndex = 14;
+            this.HeightSocketPlatformTextBox.Location = new System.Drawing.Point(214, 99);
+            this.HeightSocketPlatformTextBox.Name = "HeightSocketPlatformTextBox";
+            this.HeightSocketPlatformTextBox.Size = new System.Drawing.Size(47, 20);
+            this.HeightSocketPlatformTextBox.TabIndex = 14;
+            this.HeightSocketPlatformTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxAllowOnlyNumbers);
+            this.HeightSocketPlatformTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
-            // textBox6
+            // DiametrSocketPlatformTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(141, 99);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(45, 20);
-            this.textBox6.TabIndex = 13;
+            this.DiametrSocketPlatformTextBox.Location = new System.Drawing.Point(141, 99);
+            this.DiametrSocketPlatformTextBox.Name = "DiametrSocketPlatformTextBox";
+            this.DiametrSocketPlatformTextBox.Size = new System.Drawing.Size(45, 20);
+            this.DiametrSocketPlatformTextBox.TabIndex = 13;
+            this.DiametrSocketPlatformTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxAllowOnlyNumbers);
+            this.DiametrSocketPlatformTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
             // 
             // label8
             // 
@@ -185,46 +194,46 @@ namespace LampPluginUI
             this.BuildButton.UseVisualStyleBackColor = true;
             this.BuildButton.Click += new System.EventHandler(this.BuildButton_Click);
             // 
-            // label10
+            // SizeLabel
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(15, 9);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(27, 13);
-            this.label10.TabIndex = 16;
-            this.label10.Text = "Size";
+            this.SizeLabel.AutoSize = true;
+            this.SizeLabel.Location = new System.Drawing.Point(15, 9);
+            this.SizeLabel.Name = "SizeLabel";
+            this.SizeLabel.Size = new System.Drawing.Size(27, 13);
+            this.SizeLabel.TabIndex = 16;
+            this.SizeLabel.Text = "Size";
             // 
-            // comboBox1
+            // SizeComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(123, 5);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(138, 21);
-            this.comboBox1.TabIndex = 17;
+            this.SizeComboBox.FormattingEnabled = true;
+            this.SizeComboBox.Location = new System.Drawing.Point(123, 5);
+            this.SizeComboBox.Name = "SizeComboBox";
+            this.SizeComboBox.Size = new System.Drawing.Size(138, 21);
+            this.SizeComboBox.TabIndex = 17;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(294, 161);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.SizeComboBox);
+            this.Controls.Add(this.SizeLabel);
             this.Controls.Add(this.BuildButton);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.HeightSocketPlatformTextBox);
+            this.Controls.Add(this.DiametrSocketPlatformTextBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.SocketPlatformLabel);
+            this.Controls.Add(this.HeightTubeTextBox);
+            this.Controls.Add(this.DiametrTubeTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.LampTubeLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.HeightBodyTextBox);
             this.Controls.Add(this.DiametrBodyTextBox);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LampBodyLabel);
             this.MaximumSize = new System.Drawing.Size(310, 200);
             this.MinimumSize = new System.Drawing.Size(310, 200);
             this.Name = "MainForm";
@@ -237,24 +246,24 @@ namespace LampPluginUI
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LampBodyLabel;
         private System.Windows.Forms.TextBox DiametrBodyTextBox;
         private System.Windows.Forms.TextBox HeightBodyTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label LampTubeLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox DiametrTubeTextBox;
+        private System.Windows.Forms.TextBox HeightTubeTextBox;
+        private System.Windows.Forms.Label SocketPlatformLabel;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox HeightSocketPlatformTextBox;
+        private System.Windows.Forms.TextBox DiametrSocketPlatformTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button BuildButton;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label SizeLabel;
+        private System.Windows.Forms.ComboBox SizeComboBox;
     }
 }
 

@@ -53,7 +53,6 @@ namespace LampParameters
             get { return _heightBody;}
             set
             {
-                
                 if (value <= maxHeight  && value >= minHeight  )
                 {
                     _heightBody = value;
