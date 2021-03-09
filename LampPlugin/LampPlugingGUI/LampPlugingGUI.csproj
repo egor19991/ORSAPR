@@ -81,6 +81,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LampBuilder\LampBuilder.csproj">
+      <Project>{65c489b5-3056-4f06-841f-982813b5fc1e}</Project>
+      <Name>LampBuilder</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LampParameters\LampParameters.csproj">
       <Project>{518770ba-b8e4-4c6f-a442-7b2f25883e09}</Project>
       <Name>LampParameters</Name>

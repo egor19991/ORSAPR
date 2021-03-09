@@ -9,12 +9,12 @@ using Kompas6Constants;
 using KAPITypes;
 
 namespace Kompas3DConnector
-{
-    public class Class1
+{ 
+    public static class KompasConnector
     {
-        private KompasObject kompas;
+        private static KompasObject kompas;
 
-        public void OpenKompas()
+        public static void OpenKompas()
         {
             if (kompas == null)
             {

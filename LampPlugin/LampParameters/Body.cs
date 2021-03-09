@@ -54,7 +54,7 @@ namespace LampParameters
             set
             {
                 
-                if (value <= maxHeight  && minHeight >= value)
+                if (value <= maxHeight  && value >= minHeight  )
                 {
                     _heightBody = value;
                 }
@@ -77,7 +77,7 @@ namespace LampParameters
         public int Diametr
         {
             get { return _diametrBody; }
-            set
+            set 
             {
                 
                 if  (value >= minDiametr   && value <= maxDiametr  )

@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using LampParameters;
+using LampBuilder;
 
 namespace LampPluginUI
 {
@@ -17,11 +19,25 @@ namespace LampPluginUI
         public MainForm()
         {
             InitializeComponent();
+            //_lamp.Avg();
+            //Спросить 1
+            _lamp.Tube.Height = 180;
+            try
+            {
+                MessageBox.Show(_lamp.HoleLength().ToString());
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e);
+                MessageBox.Show(e.Message);
+                //throw;
+            }
         }
 
-        private Body _body = new Body();
         private Lamp _lamp = new Lamp{};
+        // Тест PropertyInfo  propertyInfo = typeof(Lamp).GetProperty("Body");
 
+        
 
         /// <summary>
         /// Метод при смене текстбокса присваивает значение
@@ -30,41 +46,57 @@ namespace LampPluginUI
         /// <param name="e"></param>
         private void DiametrBodyTextBox_Leave(object sender, EventArgs e)
         {
-             
-            if ( DiametrBodyTextBox.Text != String.Empty)
+            //Svin(DiametrBodyTextBox,  _lamp.Body.Diametr);
+            if (DiametrBodyTextBox.Text != String.Empty)
             {
-
                 try
                 {
-                   // _lamp.Body.AvgValue();
-                    //_body.Diametr = Int32.Parse(DiametrBodyTextBox.Text);
-                    
                     _lamp.Body.Diametr = Int32.Parse(DiametrBodyTextBox.Text);
                     DiametrBodyTextBox.BackColor = Color.White;
-                    MessageBox.Show(_lamp.Body.Diametr.ToString());
                 }
-                catch (Exception exception) //по идее должно быть ArgumentException, но Exception- защита от букв и точек!
+                catch (ArgumentException exception) //по идее должно быть ArgumentException, но Exception- защита от букв и точек!
                 {
-
-                    // Console.WriteLine(exception.Message);
-                    //throw;
                     DiametrBodyTextBox.BackColor = Color.LightCoral;
                     MessageBox.Show(exception.Message);
                 }
-               
             }
         }
 
-        /// <summary>
-        /// Ввод только цифр в поле
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        //!!!!!!! Tessstt !!!!!! Спросить 2
+        //public void Svin(TextBox svin1, int svin2)
+        //{
+        //    if (svin1.Text != String.Empty)
+        //    {
+        //        try
+        //        {
+        //            svin2 = Int32.Parse(svin1.Text);
+        //            svin1.BackColor = Color.White;
+        //            MessageBox.Show(svin2.ToString());
+        //        }
+        //        catch (ArgumentException exception) //по идее должно быть ArgumentException, но Exception- защита от букв и точек!
+        //        {
+
+        //            // Console.WriteLine(exception.Message);
+        //            //throw;
+        //            svin1.BackColor = Color.LightCoral;
+        //            MessageBox.Show(exception.Message);
+        //        }
+        //    }
+        //}
+
+
+
         private void DiametrBodyTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
            Number(e);
         }
 
+
+        /// <summary>
+        /// Метод, отображающий в TextBox только цифры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Number(KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -84,9 +116,9 @@ namespace LampPluginUI
             Environment.Exit(0);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BuildButton_Click(object sender, EventArgs e)
         {
-           
+            LampBuild.SvinRT();
         }
     }
 }
