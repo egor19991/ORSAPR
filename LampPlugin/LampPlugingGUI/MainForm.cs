@@ -23,7 +23,8 @@ namespace LampPluginUI
         public MainForm()
         {
             InitializeComponent();
-            //_lamp.Avg();
+            _lamp.Avg();
+            UpdateFormFields();
             //Спросить 1
             //_lamp.Tube.Height = 10;
             _textBoxDictionary = new Dictionary<TextBox, Action<Lamp, string>>()
@@ -91,6 +92,19 @@ namespace LampPluginUI
             {
                 e.Handled = true;
             }
+        }
+
+        /// <summary>
+        /// Метод, присваивающий значение TextBox
+        /// </summary>
+        private void UpdateFormFields()
+        {
+            DiametrBodyTextBox.Text = _lamp.Body.Diametr.ToString();
+            HeightBodyTextBox.Text = _lamp.Body.Height.ToString();
+            DiametrTubeTextBox.Text = _lamp.Tube.Diametr.ToString();
+            HeightTubeTextBox.Text = _lamp.Tube.Height.ToString();
+            DiametrSocketPlatformTextBox.Text = _lamp.SocketPlatform.Diametr.ToString();
+            HeightSocketPlatformTextBox.Text = _lamp.SocketPlatform.Height.ToString();
         }
 
         /// <summary>
