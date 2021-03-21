@@ -16,8 +16,14 @@ namespace LampPluginUI
 {
     public partial class MainForm : Form
     {
-
+        /// <summary>
+        /// Словарь, хранящий сведения о TextBox
+        /// </summary>
         private readonly Dictionary<TextBox, Action<Lamp, string>> _textBoxDictionary;
+
+        /// <summary>
+        /// Поле хранящее данные о лампе
+        /// </summary>
         private Lamp _lamp = new Lamp{};
 
         public MainForm()
@@ -25,8 +31,6 @@ namespace LampPluginUI
             InitializeComponent();
             _lamp.Avg();
             UpdateFormFields();
-            //Спросить 1
-            //_lamp.Tube.Height = 10;
             _textBoxDictionary = new Dictionary<TextBox, Action<Lamp, string>>()
             {
                 {
@@ -117,10 +121,10 @@ namespace LampPluginUI
             Environment.Exit(0);
         }
 
+        private LampBuild _build = new LampBuild();
         private void BuildButton_Click(object sender, EventArgs e)
         {
-            LampBuild.SvinRT();
-            
+            _build.SvinRT(_lamp);
         }
 
        

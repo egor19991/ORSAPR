@@ -12,9 +12,6 @@ namespace LampParameters
     /// </summary>
     public class Lamp
     {
-        // Неправильно !!!!!! Но работает
-        // private Body _body = new Body();
-
         // Что-то вроде как похоже на агрегацию, но это не точно !!
         private Body _body;
 
@@ -59,7 +56,7 @@ namespace LampParameters
             }
         }
 
-        public int HoleLength()
+        public double HoleLength()
         {
             if (_body.Height >0 && _socketPlatform.Height >0 && _tube.Height >0 )
             {

@@ -8,14 +8,15 @@ using KompasAPI7;
 using Kompas6API5;
 using Kompas6Constants3D;
 using KAPITypes;
+using LampParameters;
 
 namespace LampBuilder
 {
     public class LampBuild
     {
-        public static void SvinRT()
+        public void SvinRT(Lamp lamp)
         {
-            KompasConnector.Instance.InitializationKompas();
+            //KompasConnector.Instance.InitializationKompas();
             //KompasConnector.Instance.Document2D.ksCircle(2, 3, 4, 1);
 
             ksEntity currentPlane = (ksEntity)KompasConnector.Instance.KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
@@ -27,7 +28,7 @@ namespace LampBuilder
             ksDocument2D document2D = (ksDocument2D)SketchDef1.BeginEdit();
             var xc = 0;
             var yc = 0;
-            var rad = 12.5;
+            var rad = lamp.Body.Diametr/2;
 
             document2D.ksCircle(xc, yc, rad, 1);
             SketchDef1.EndEdit();

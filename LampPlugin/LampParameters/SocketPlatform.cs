@@ -14,30 +14,30 @@ namespace LampParameters
         /// <summary>
         /// Поле, хронящее высоту платформы под патрон
         /// </summary>
-        private int _heightSocketPlatform;
+        private double _heightSocketPlatform;
 
         /// <summary>
         /// Поле, хронящее высоту платформы под патрон
         /// </summary>
-        private int _diametrSocketPlatform;
+        private double _diametrSocketPlatform;
 
         /// <summary>
         /// Расстояние между отверстиями
         /// </summary>
-        public const int DistanceHole = 57;
+        public const double DistanceHole = 57;
 
         /// <summary>
         /// Диаметр отверстия
         /// </summary>
-        public const int DiametrHole = 3;
+        public const double DiametrHole = 3;
 
-        private const int maxHeight = 6;
-        private const int minHeight = 2;
+        private const double maxHeight = 6;
+        private const double minHeight = 2;
 
         /// <summary>
         /// Свойство, задающее выстоу платформы под патрон
         /// </summary>
-        public int Height
+        public double Height
         {
             get { return _heightSocketPlatform; }
             set
@@ -55,13 +55,13 @@ namespace LampParameters
             }
         }
 
-        private const int maxDiametr = 100;
-        private const int minDiametr = 70;
+        private const double maxDiametr = 100;
+        private const double minDiametr = 70;
 
         /// <summary>
         /// Свойство, задающее диамеир платформы под патрон
         /// </summary>
-        public int Diametr
+        public double Diametr
         {
             get { return _diametrSocketPlatform; }
             set

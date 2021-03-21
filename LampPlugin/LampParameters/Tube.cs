@@ -14,20 +14,20 @@ namespace LampParameters
         /// <summary>
         /// Поле, хронящее высоту стойки
         /// </summary>
-        private int _heightTube;
+        private double _heightTube;
 
         /// <summary>
         /// Поле, хронящее высоту стойки
         /// </summary>
-        private int _diametrTube;
+        private double _diametrTube;
 
-        private const int maxHeight = 200;
-        private const int minHeight = 150;
+        private const double maxHeight = 200;
+        private const double minHeight = 150;
 
         /// <summary>
         /// Свойство, задающее выстоу стойки
         /// </summary>
-        public int Height
+        public double Height
         {
             get { return _heightTube; }
             set
@@ -45,13 +45,13 @@ namespace LampParameters
             }
         }
 
-        private const int maxDiametr = 60;
-        private const int minDiametr = 30;
+        private const double maxDiametr = 60;
+        private const double minDiametr = 30;
 
         /// <summary>
         /// Свойство, задающее диамеир стойки
         /// </summary>
-        public int Diametr
+        public double Diametr
         {
             get { return _diametrTube; }
             set

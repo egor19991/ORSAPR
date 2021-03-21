@@ -14,41 +14,41 @@ namespace LampParameters
         /// <summary>
         /// Поле, хронящее высоту корпуса
         /// </summary>
-        private int _heightBody;
-
+        private double _heightBody;
+        
         /// <summary>
         /// Поле, хронящее высоту корпуса
         /// </summary>
-        private int _diametrBody;
+        private double _diametrBody;
 
         /// <summary>
         /// Высота выключателя
         /// </summary>
-        public const int HeightSwitch = 22;
+        public const double HeightSwitch = 22;
 
         /// <summary>
         /// Ширина выключателя
         /// </summary>
-        public const int WightSwitch = 28;
+        public const double WightSwitch = 28;
 
         /// <summary>
         /// Ширина провода
         /// </summary>
-        public const int WightCable = 6;
+        public const double WightCable = 6;
 
         /// <summary>
         /// Высота провода
         /// </summary>
-        public const int HeightCable = 4;
+        public const double HeightCable = 4;
 
         //нужно спросить можно ли так
-        private const int maxHeight = 100;
-        private const int minHeight = 50;
+        private const double maxHeight = 100;
+        private const double minHeight = 50;
 
         /// <summary>
         /// Свойство, задающее выстоу корпуса
         /// </summary>
-        public int Height
+        public double Height
         {
             get { return _heightBody;}
             set
@@ -67,13 +67,13 @@ namespace LampParameters
         }
 
         //нужно спросить можно ли так
-        private const int maxDiametr = 180;
-        private const int minDiametr = 90;
+        private const double maxDiametr = 180;
+        private const double minDiametr = 90;
 
         /// <summary>
         /// Свойство, задающее диамеир корпуса
         /// </summary>
-        public int Diametr
+        public double Diametr
         {
             get { return _diametrBody; }
             set 
