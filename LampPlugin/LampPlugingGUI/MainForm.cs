@@ -120,6 +120,7 @@ namespace LampPluginUI
         private void BuildButton_Click(object sender, EventArgs e)
         {
             LampBuild.SvinRT();
+            
         }
 
        

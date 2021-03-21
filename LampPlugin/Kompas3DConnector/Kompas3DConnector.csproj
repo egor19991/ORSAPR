@@ -45,6 +45,11 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>Lib\Kompas6Constants.dll</HintPath>
     </Reference>
+    <Reference Include="Kompas6Constants3D, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>Lib\Kompas6Constants3D.dll</HintPath>
+    </Reference>
     <Reference Include="KompasAPI7, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -63,11 +68,14 @@
     <Compile Include="KompasConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="Lib\Kompas6Constants3D.dll" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\KAPITypes.dll" />
     <Content Include="Lib\Kompas6API5.dll" />
     <Content Include="Lib\Kompas6Constants.dll" />
+    <Content Include="Lib\Kompas6Constants3D.dll" />
     <Content Include="Lib\KompasAPI7.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
