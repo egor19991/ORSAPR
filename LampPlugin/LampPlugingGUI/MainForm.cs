@@ -29,33 +29,33 @@ namespace LampPluginUI
         public MainForm()
         {
             InitializeComponent();
-            _lamp.Avg();
+            _lamp.MaxValue();
             UpdateFormFields();
             _textBoxDictionary = new Dictionary<TextBox, Action<Lamp, string>>()
             {
                 {
                     DiametrBodyTextBox, 
-                    (Lamp lamp, string text) => {lamp.Body.Diametr = Int32.Parse(text);}
+                    (Lamp lamp, string text) => {lamp.BodyDiametr = Double.Parse(text);}
                 },
                 {
                     HeightBodyTextBox, 
-                    (Lamp lamp, string text) => {lamp.Body.Height = Int32.Parse(text);}
+                    (Lamp lamp, string text) => {lamp.BodyHeight = Double.Parse(text);}
                 },
                 {
                     DiametrTubeTextBox,
-                    (Lamp lamp, string text) => {lamp.Tube.Diametr = Int32.Parse(text);}
+                    (Lamp lamp, string text) => {lamp.TubeDiametr = Double.Parse(text);}
                 },
                 {
                     HeightTubeTextBox,
-                    (Lamp lamp, string text) => {lamp.Tube.Height = Int32.Parse(text);}
+                    (Lamp lamp, string text) => {lamp.TubeHeight = Double.Parse(text);}
                 },
                 {
                     DiametrSocketPlatformTextBox,
-                    (Lamp lamp, string text) => {lamp.SocketPlatform.Diametr = Int32.Parse(text);}
+                    (Lamp lamp, string text) => {lamp.SocketPlatformDiametr = Double.Parse(text);}
                 },
                 {
                     HeightSocketPlatformTextBox,
-                    (Lamp lamp, string text) => {lamp.SocketPlatform.Height = Int32.Parse(text);}
+                    (Lamp lamp, string text) => {lamp.SocketPlatformHeight = Double.Parse(text);}
                 }
             }; 
         }
@@ -85,16 +85,27 @@ namespace LampPluginUI
         }
 
         /// <summary>
-        /// Обработчик, который позволяет вводить только цифры в TextBox
+        /// Обработчик, который позволяет вводить только цифры и запятую в TextBox
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TextBoxAllowOnlyNumbers(object sender, KeyPressEventArgs e)
         {
-            char number = e.KeyChar;
-            if (!Char.IsDigit(number) && number != 8) // цифры и клавиша BackSpace
+            if (e.KeyChar == ',')
             {
-                e.Handled = true;
+                TextBox txt = (TextBox)sender;
+                if (txt.Text.Contains(","))
+                {
+                    e.Handled = true;
+                }
+                return;
+            }
+            if (!(Char.IsDigit(e.KeyChar)))
+            {
+                if ((e.KeyChar != (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
             }
         }
 
@@ -103,12 +114,12 @@ namespace LampPluginUI
         /// </summary>
         private void UpdateFormFields()
         {
-            DiametrBodyTextBox.Text = _lamp.Body.Diametr.ToString();
-            HeightBodyTextBox.Text = _lamp.Body.Height.ToString();
-            DiametrTubeTextBox.Text = _lamp.Tube.Diametr.ToString();
-            HeightTubeTextBox.Text = _lamp.Tube.Height.ToString();
-            DiametrSocketPlatformTextBox.Text = _lamp.SocketPlatform.Diametr.ToString();
-            HeightSocketPlatformTextBox.Text = _lamp.SocketPlatform.Height.ToString();
+            DiametrBodyTextBox.Text = _lamp.BodyDiametr.ToString();
+            HeightBodyTextBox.Text = _lamp.BodyHeight.ToString();
+            DiametrTubeTextBox.Text = _lamp.TubeDiametr.ToString();
+            HeightTubeTextBox.Text = _lamp.TubeHeight.ToString();
+            DiametrSocketPlatformTextBox.Text = _lamp.SocketPlatformDiametr.ToString();
+            HeightSocketPlatformTextBox.Text = _lamp.SocketPlatformHeight.ToString();
         }
 
         /// <summary>
@@ -127,6 +138,5 @@ namespace LampPluginUI
             _build.SvinRT(_lamp);
         }
 
-       
     }
 }

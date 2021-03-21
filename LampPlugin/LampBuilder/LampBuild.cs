@@ -28,7 +28,7 @@ namespace LampBuilder
             ksDocument2D document2D = (ksDocument2D)SketchDef1.BeginEdit();
             var xc = 0;
             var yc = 0;
-            var rad = lamp.Body.Diametr/2;
+            var rad = lamp.BodyDiametr/2;
 
             document2D.ksCircle(xc, yc, rad, 1);
             SketchDef1.EndEdit();
