@@ -308,6 +308,24 @@ namespace LampParameters
         }
 
         /// <summary>
+        /// Свойство, возращающее длину отверстия в корусе, ножке, платформе
+        /// </summary>
+        public double HightHole
+        {
+            get
+            {
+                if (_heightBody > 0 && _heightTube > 0 && _heightSocketPlatform >0 )
+                {
+                    return _heightBody + _heightTube + _heightSocketPlatform;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        /// <summary>
         /// Свойство, задающее среднее значение для зависимых параметров
         /// </summary>
         public void AvgValue()

@@ -85,7 +85,7 @@ namespace Kompas3DConnector
                 #endif
                 _kompasObject = (KompasObject)Activator.CreateInstance(t);
                 _document3d = (Document3D)_kompasObject.Document3D();
-                _document3d.Create(false, false);
+                _document3d.Create(false, true);
                 _kompasPart = (ksPart)_document3d.GetPart((short)Part_Type.pTop_Part);
             }
             if (_kompasObject != null)

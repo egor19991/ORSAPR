@@ -31,8 +31,6 @@ namespace LampPluginUI
         public MainForm()
         {
             InitializeComponent();
-            _lamp.MaxValue();
-            UpdateFormFields();
             _textBoxDictionary = new Dictionary<TextBox, Action<Lamp, string>>()
             {
                 {
@@ -59,7 +57,12 @@ namespace LampPluginUI
                     HeightSocketPlatformTextBox,
                     (Lamp lamp, string text) => {lamp.SocketPlatformHeight = Double.Parse(text);}
                 }
-            }; 
+            };
+            SizeComboBox.Items.Add("Max value");
+            SizeComboBox.Items.Add("Avg value");
+            SizeComboBox.Items.Add("Min value");
+            SizeComboBox.SelectedItem = "Avg value";
+            UpdateFormFields();
         }
 
         /// <summary>
@@ -125,6 +128,34 @@ namespace LampPluginUI
         }
 
         /// <summary>
+        /// Обработчик для выбора предустановленных значений
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SizeComboBox.SelectedIndex == -1)
+            {
+                return;
+            }
+            if (SizeComboBox.SelectedItem.ToString() == "Max value")
+            {
+                _lamp.MaxValue();
+                UpdateFormFields();
+            }
+            if (SizeComboBox.SelectedItem.ToString() == "Avg value")
+            {
+                _lamp.AvgValue();
+                UpdateFormFields();
+            }
+            if (SizeComboBox.SelectedItem.ToString() == "Min value")
+            {
+                _lamp.MinValue();
+                UpdateFormFields();
+            }
+        }
+
+        /// <summary>
         /// Закрытие плагина
         /// </summary>
         /// <param name="sender"></param>
@@ -135,14 +166,10 @@ namespace LampPluginUI
             Environment.Exit(0);
         }
 
-        
         private void BuildButton_Click(object sender, EventArgs e)
         {
             _build.BuildLamp(_lamp);
         }
 
-        private void SizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
     }
 }

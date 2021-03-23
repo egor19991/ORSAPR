@@ -205,7 +205,9 @@ namespace LampPluginUI
             // 
             // SizeComboBox
             // 
+            this.SizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SizeComboBox.FormattingEnabled = true;
+            this.SizeComboBox.IntegralHeight = false;
             this.SizeComboBox.Location = new System.Drawing.Point(123, 5);
             this.SizeComboBox.Name = "SizeComboBox";
             this.SizeComboBox.Size = new System.Drawing.Size(138, 21);
