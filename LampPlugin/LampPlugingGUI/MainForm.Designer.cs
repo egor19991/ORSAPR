@@ -210,6 +210,7 @@ namespace LampPluginUI
             this.SizeComboBox.Name = "SizeComboBox";
             this.SizeComboBox.Size = new System.Drawing.Size(138, 21);
             this.SizeComboBox.TabIndex = 17;
+            this.SizeComboBox.SelectedIndexChanged += new System.EventHandler(this.SizeComboBox_SelectedIndexChanged);
             // 
             // MainForm
             // 

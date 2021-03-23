@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KompasAPI7;
-using Kompas6API5;
+﻿using Kompas6API5;
 using Kompas6Constants3D;
-using KAPITypes;
+using System;
+using System.Runtime.InteropServices;
 
 namespace Kompas3DConnector
 {
@@ -44,7 +39,7 @@ namespace Kompas3DConnector
             {
                 if (_instance == null)
                     _instance = new KompasConnector();
-                    _instance.InitializationKompas();
+                //_instance.InitializationKompas();
                 return _instance;
             }
         }
@@ -79,7 +74,7 @@ namespace Kompas3DConnector
         /// <summary>
         /// Метод запуска Компас в режиме детали, инициализации свойств Document3D, KompasPart и KompasObject
         /// </summary>
-        private void InitializationKompas()
+        public void InitializationKompas()
         {
             if (_kompasObject == null)
             {
@@ -97,6 +92,18 @@ namespace Kompas3DConnector
             {
                 _kompasObject.Visible = true;
                 _kompasObject.ActivateControllerAPI();
+            }
+        }
+
+        /// <summary>
+        /// Метод для выгрузки и выхода и компаса
+        /// </summary>
+        public void UnloadKompas()
+        {
+            if (_kompasObject != null)
+            {
+                _kompasObject.Quit();
+                Marshal.ReleaseComObject(_kompasObject);
             }
         }
 

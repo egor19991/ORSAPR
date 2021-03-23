@@ -26,6 +26,8 @@ namespace LampPluginUI
         /// </summary>
         private Lamp _lamp = new Lamp{};
 
+        private LampBuild _build = new LampBuild();
+
         public MainForm()
         {
             InitializeComponent();
@@ -129,14 +131,18 @@ namespace LampPluginUI
         /// <param name="e"></param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            _build.Exit();
             Environment.Exit(0);
         }
 
-        private LampBuild _build = new LampBuild();
+        
         private void BuildButton_Click(object sender, EventArgs e)
         {
-            _build.SvinRT(_lamp);
+            _build.BuildLamp(_lamp);
         }
 
+        private void SizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
     }
 }
