@@ -115,12 +115,12 @@ namespace LampParameters
         /// <summary>
         /// Максимальная высота платформы 
         /// </summary>
-        private const double maxSocketPlatformHeight = 6;
+        private const double _maxSocketPlatformHeight = 6;
 
         /// <summary>
         /// Минимальная высота платформы 
         /// </summary>
-        private const double minSocketPlatformHeight = 2;
+        private const double _minSocketPlatformHeight = 2;
 
         /// <summary>
         /// Максимальная диаметр платформы 
@@ -225,15 +225,15 @@ namespace LampParameters
             get { return _heightSocketPlatform; }
             set
             {
-                if (value <= maxSocketPlatformHeight && value >= minSocketPlatformHeight)
+                if (value <= _maxSocketPlatformHeight && value >= _minSocketPlatformHeight)
                 {
                     _heightSocketPlatform = value;
                 }
                 else
                 {
                     throw new ArgumentException($"Parametr Body Height" +
-                                                $"should be more then {minSocketPlatformHeight}" +
-                                                $"and less then {maxSocketPlatformHeight}");
+                                                $"should be more then {_minSocketPlatformHeight}" +
+                                                $"and less then {_maxSocketPlatformHeight}");
                 }
             }
         }
@@ -333,7 +333,7 @@ namespace LampParameters
             _diametrBody = (_minBodyDiametr + _maxBodyDiametr) / 2;
             _heightBody = (_minBodyHeight + _maxBodyHeight) / 2;
             _diametrSocketPlatform = (_minSocketPlatformDiametr + _maxSocketPlatformDiametr) / 2;
-            _heightSocketPlatform = (minSocketPlatformHeight + maxSocketPlatformHeight) / 2;
+            _heightSocketPlatform = (_minSocketPlatformHeight + _maxSocketPlatformHeight) / 2;
             _diametrTube = (_minTubeDiametr + _maxTubeDiametr) / 2;
             _heightTube = (_minTubeHeight + _maxTubeHeight) / 2;
         }
@@ -346,7 +346,7 @@ namespace LampParameters
             _diametrBody = _maxBodyDiametr;
             _heightBody = _maxBodyHeight;
             _diametrSocketPlatform = _maxSocketPlatformDiametr;
-            _heightSocketPlatform = maxSocketPlatformHeight;
+            _heightSocketPlatform = _maxSocketPlatformHeight;
             _diametrTube = _maxTubeDiametr;
             _heightTube = _maxTubeHeight;
         }
@@ -359,7 +359,7 @@ namespace LampParameters
             _diametrBody = _minBodyDiametr;
             _heightBody = _minBodyHeight;
             _diametrSocketPlatform = _minSocketPlatformDiametr;
-            _heightSocketPlatform = minSocketPlatformHeight;
+            _heightSocketPlatform = _minSocketPlatformHeight;
             _diametrTube = _minTubeDiametr;
             _heightTube = _minTubeHeight;
         }
