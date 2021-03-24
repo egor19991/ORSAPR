@@ -35,36 +35,34 @@ namespace LampPluginUI
             {
                 {
                     DiametrBodyTextBox, 
-                    (Lamp lamp, string text) => {lamp.BodyDiametr = Double.Parse(text);}
+                    (Lamp lamp, string text) => {lamp.BodyDiametr.Value = Double.Parse(text);}
                 },
                 {
                     HeightBodyTextBox, 
-                    (Lamp lamp, string text) => {lamp.BodyHeight = Double.Parse(text);}
+                    (Lamp lamp, string text) => {lamp.BodyHeight.Value = Double.Parse(text);}
                 },
                 {
                     DiametrTubeTextBox,
-                    (Lamp lamp, string text) => {lamp.TubeDiametr = Double.Parse(text);}
+                    (Lamp lamp, string text) => {lamp.TubeDiametr.Value = Double.Parse(text);}
                 },
                 {
                     HeightTubeTextBox,
-                    (Lamp lamp, string text) => {lamp.TubeHeight = Double.Parse(text);}
+                    (Lamp lamp, string text) => {lamp.TubeHeight.Value = Double.Parse(text);}
                 },
                 {
                     DiametrSocketPlatformTextBox,
-                    (Lamp lamp, string text) => {lamp.SocketPlatformDiametr = Double.Parse(text);}
+                    (Lamp lamp, string text) => {lamp.SocketPlatformDiametr.Value = Double.Parse(text);}
                 },
                 {
                     HeightSocketPlatformTextBox,
-                    (Lamp lamp, string text) => {lamp.SocketPlatformHeight = Double.Parse(text);}
+                    (Lamp lamp, string text) => {lamp.SocketPlatformHeight.Value = Double.Parse(text);}
                 }
             };
-            SizeComboBox.Items.Add("Max value");
-            SizeComboBox.Items.Add("Avg value");
-            SizeComboBox.Items.Add("Min value");
-            SizeComboBox.SelectedItem = "Avg value";
+            SizeComboBox.Items.Add("Maximum value");
+            SizeComboBox.Items.Add("Average value");
+            SizeComboBox.Items.Add("Minimum value");
+            SizeComboBox.SelectedItem = "Average value";
             UpdateFormFields();
-            _lamp.Svin.Value = 20;
-            MessageBox.Show($"{_lamp.Svin.Value}");
         }
 
         /// <summary>
@@ -121,12 +119,12 @@ namespace LampPluginUI
         /// </summary>
         private void UpdateFormFields()
         {
-            DiametrBodyTextBox.Text = _lamp.BodyDiametr.ToString();
-            HeightBodyTextBox.Text = _lamp.BodyHeight.ToString();
-            DiametrTubeTextBox.Text = _lamp.TubeDiametr.ToString();
-            HeightTubeTextBox.Text = _lamp.TubeHeight.ToString();
-            DiametrSocketPlatformTextBox.Text = _lamp.SocketPlatformDiametr.ToString();
-            HeightSocketPlatformTextBox.Text = _lamp.SocketPlatformHeight.ToString();
+            DiametrBodyTextBox.Text = _lamp.BodyDiametr.Value.ToString();
+            HeightBodyTextBox.Text = _lamp.BodyHeight.Value.ToString();
+            DiametrTubeTextBox.Text = _lamp.TubeDiametr.Value.ToString();
+            HeightTubeTextBox.Text = _lamp.TubeHeight.Value.ToString();
+            DiametrSocketPlatformTextBox.Text = _lamp.SocketPlatformDiametr.Value.ToString();
+            HeightSocketPlatformTextBox.Text = _lamp.SocketPlatformHeight.Value.ToString();
         }
 
         /// <summary>
@@ -140,17 +138,17 @@ namespace LampPluginUI
             {
                 return;
             }
-            if (SizeComboBox.SelectedItem.ToString() == "Max value")
+            if (SizeComboBox.SelectedItem.ToString() == "Maximum value")
             {
                 _lamp.MaxValue();
                 UpdateFormFields();
             }
-            if (SizeComboBox.SelectedItem.ToString() == "Avg value")
+            if (SizeComboBox.SelectedItem.ToString() == "Average value")
             {
                 _lamp.AvgValue();
                 UpdateFormFields();
             }
-            if (SizeComboBox.SelectedItem.ToString() == "Min value")
+            if (SizeComboBox.SelectedItem.ToString() == "Minimum value")
             {
                 _lamp.MinValue();
                 UpdateFormFields();

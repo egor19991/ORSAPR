@@ -20,14 +20,14 @@ namespace LampBuilder
             KompasConnector.Instance.InitializationKompas();
             //KompasConnector.Instance.Document2D.ksCircle(2, 3, 4, 1);
 
-            CreateСylinder(lamp.BodyHeight,lamp.BodyDiametr,0);
-            CreateСylinder(lamp.TubeHeight,lamp.TubeDiametr,lamp.BodyHeight);
-            CreateСylinder(lamp.SocketPlatformHeight, lamp.SocketPlatformDiametr, lamp.BodyHeight+lamp.TubeHeight);
-            CreateRecess(lamp.HeightSwitch, lamp.WightSwitch, lamp.BodyDiametr, true);
-            CreateRecess(lamp.HeightCable, lamp.WightCable, lamp.BodyDiametr, false);
+            CreateСylinder(lamp.BodyHeight.Value,lamp.BodyDiametr.Value,0);
+            CreateСylinder(lamp.TubeHeight.Value,lamp.TubeDiametr.Value,lamp.BodyHeight.Value);
+            CreateСylinder(lamp.SocketPlatformHeight.Value, lamp.SocketPlatformDiametr.Value, lamp.BodyHeight.Value+lamp.TubeHeight.Value);
+            CreateRecess(lamp.HeightSwitch, lamp.WightSwitch, lamp.BodyDiametr.Value, true);
+            CreateRecess(lamp.HeightCable, lamp.WightCable, lamp.BodyDiametr.Value, false);
             CreateHole(0,0, lamp.WightCable,lamp.HightHole, 0 );
-            CreateHole(0, lamp.DistanceHole/2, lamp.DiametrHole, lamp.HightHole, lamp.BodyHeight + lamp.TubeHeight);
-            CreateHole(0, -lamp.DistanceHole / 2, lamp.DiametrHole, lamp.HightHole, lamp.BodyHeight + lamp.TubeHeight);
+            CreateHole(0, lamp.DistanceHole/2, lamp.DiametrHole, lamp.HightHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
+            CreateHole(0, -lamp.DistanceHole / 2, lamp.DiametrHole, lamp.HightHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
         }
 
         /// <summary>

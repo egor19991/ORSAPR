@@ -8,19 +8,49 @@ using System.Threading.Tasks;
 namespace LampParameters
 {
     /// <summary>
-    /// В теории класс должен содержать данные лампы и объединить все части лампы !!Прототип
+    /// Класс содержит данные лампы
     /// </summary>
     public class Lamp
     {
         /// <summary>
         /// Поле, хронящее высоту корпуса
         /// </summary>
-        private double _heightBody;
+        private Parameter _heightBody;
 
         /// <summary>
         /// Поле, хронящее высоту корпуса
         /// </summary>
-        private double _diametrBody;
+        private Parameter _diametrBody;
+
+        /// <summary>
+        /// Поле, хронящее высоту стойки
+        /// </summary>
+        private Parameter _heightTube;
+
+        /// <summary>
+        /// Поле, хронящее высоту стойки
+        /// </summary>
+        private Parameter _diametrTube;
+
+        /// <summary>
+        /// Поле, хронящее высоту платформы под патрон
+        /// </summary>
+        private Parameter _heightSocketPlatform;
+
+        /// <summary>
+        /// Поле, хронящее высоту платформы под патрон
+        /// </summary>
+        private Parameter _diametrSocketPlatform;
+
+        /// <summary>
+        /// Расстояние между отверстиями
+        /// </summary>
+        private const double _distanceHole = 57;
+
+        /// <summary>
+        /// Диаметр отверстия на площадке под патрон для саморезов
+        /// </summary>
+        private const double _diametrHole = 3;
 
         /// <summary>
         /// Высота выключателя
@@ -43,219 +73,74 @@ namespace LampParameters
         private const double _heightCable = 4;
 
         /// <summary>
-        /// Поле, хронящее высоту стойки
-        /// </summary>
-        private double _heightTube;
-
-        /// <summary>
-        /// Поле, хронящее высоту стойки
-        /// </summary>
-        private double _diametrTube;
-
-        /// <summary>
-        /// Поле, хронящее высоту платформы под патрон
-        /// </summary>
-        private double _heightSocketPlatform;
-
-        /// <summary>
-        /// Поле, хронящее высоту платформы под патрон
-        /// </summary>
-        private double _diametrSocketPlatform;
-
-        /// <summary>
-        /// Расстояние между отверстиями
-        /// </summary>
-        private const double _distanceHole = 57;
-
-        /// <summary>
-        /// Диаметр отверстия на площадке под патрон для саморезов
-        /// </summary>
-        private const double _diametrHole = 3;
-
-        /// <summary>
-        /// Максимальная высота корпуса лампы
-        /// </summary>
-        private const double _maxBodyHeight = 100;
-
-        /// <summary>
-        /// Минимальная высота корпуса лампы
-        /// </summary>
-        private const double _minBodyHeight = 50;
-
-        /// <summary>
-        /// Максимальный диаметр корпуса лампы
-        /// </summary>
-        private const double _maxBodyDiametr = 180;
-
-        /// <summary>
-        /// Минимальный диаметр корпуса лампы
-        /// </summary>
-        private const double _minBodyDiametr = 90;
-
-        /// <summary>
-        /// Максимальная высота стойки
-        /// </summary>
-        private const double _maxTubeHeight = 200;
-
-        /// <summary>
-        /// Минимальная высота стойки
-        /// </summary>
-        private const double _minTubeHeight = 150;
-
-        /// <summary>
-        /// Максимальный диаметр стойки
-        /// </summary>
-        private const double _maxTubeDiametr = 60;
-
-        /// <summary>
-        /// Минимальный диаметр стойки
-        /// </summary>
-        private const double _minTubeDiametr = 30;
-
-        /// <summary>
-        /// Максимальная высота платформы 
-        /// </summary>
-        private const double _maxSocketPlatformHeight = 6;
-
-        /// <summary>
-        /// Минимальная высота платформы 
-        /// </summary>
-        private const double _minSocketPlatformHeight = 2;
-
-        /// <summary>
-        /// Максимальная диаметр платформы 
-        /// </summary>
-        private const double _maxSocketPlatformDiametr = 100;
-
-        /// <summary>
-        /// Минимальная диаметр платформы 
-        /// </summary>
-        private const double _minSocketPlatformDiametr = 70;
-
-        /// <summary>
         /// Свойство, задающее выстоу корпуса
         /// </summary>
-        public double BodyHeight
+        public Parameter BodyHeight
         {
-            get { return _heightBody; }
+            get => _heightBody;
             set
             {
-                if (value <= _maxBodyHeight && value >= _minBodyHeight)
-                {
-                    _heightBody = value;
-                }
-                else
-                {
-                    throw new ArgumentException($"Parametr Body Height" +
-                                                $"should be more then {_minBodyHeight}" +
-                                                $"and less then {_maxBodyHeight}");
-                }
+                _heightBody = value;
             }
         }
 
         /// <summary>
         /// Свойство, задающее диамеир корпуса
         /// </summary>
-        public double BodyDiametr
+        public Parameter BodyDiametr
         {
-            get { return _diametrBody; }
+            get => _diametrBody;
             set
             {
-
-                if (value >= _minBodyDiametr && value <= _maxBodyDiametr)
-                {
-                    _diametrBody = value;
-                }
-                else
-                {
-                    throw new ArgumentException($"Parametr Body Diametr " +
-                                                $"should be more then {_minBodyDiametr} " +
-                                                $"and less then {_maxBodyDiametr}");
-                }
+                _diametrBody = value;
             }
         }
         
         /// <summary>
         /// Свойство, задающее выстоу стойки
         /// </summary>
-        public double TubeHeight
+        public Parameter TubeHeight
         {
-            get { return _heightTube; }
+            get => _heightTube;
             set
             {
-                if (value <= _maxTubeHeight && value >= _minTubeHeight)
-                {
-                    _heightTube = value;
-                }
-                else
-                {
-                    throw new ArgumentException($"Parametr Tube Height" +
-                                                $"should be more then {_minTubeHeight}" +
-                                                $"and less then {_maxTubeHeight}");
-                }
+                _heightTube = value;
             }
         }
 
         /// <summary>
         /// Свойство, задающее диамеир стойки
         /// </summary>
-        public double TubeDiametr
+        public Parameter TubeDiametr
         {
-            get { return _diametrTube; }
+            get => _diametrTube;
             set
             {
-                if (value >= _minTubeDiametr && value <= _maxTubeDiametr)
-                {
-                    _diametrTube = value;
-                }
-                else
-                {
-                    throw new ArgumentException($"Parametr Tube Diametr " +
-                                                $"should be more then {_minTubeDiametr} " +
-                                                $"and less then {_maxTubeDiametr}");
-                }
+                _diametrTube = value;
             }
         }
 
         /// <summary>
         /// Свойство, задающее выстоу платформы под патрон
         /// </summary>
-        public double SocketPlatformHeight
+        public Parameter SocketPlatformHeight
         {
-            get { return _heightSocketPlatform; }
+            get => _heightSocketPlatform;
             set
             {
-                if (value <= _maxSocketPlatformHeight && value >= _minSocketPlatformHeight)
-                {
-                    _heightSocketPlatform = value;
-                }
-                else
-                {
-                    throw new ArgumentException($"Parametr Body Height" +
-                                                $"should be more then {_minSocketPlatformHeight}" +
-                                                $"and less then {_maxSocketPlatformHeight}");
-                }
+                _heightSocketPlatform = value;
             }
         }
         
         /// <summary>
         /// Свойство, задающее диамеир платформы под патрон
         /// </summary>
-        public double SocketPlatformDiametr
+        public Parameter SocketPlatformDiametr
         {
-            get { return _diametrSocketPlatform; }
+            get => _diametrSocketPlatform;
             set
             {
-                if (value >= _minSocketPlatformDiametr && value <= _maxSocketPlatformDiametr)
-                {
-                    _diametrSocketPlatform = value;
-                }
-                else
-                {
-                    throw new ArgumentException($"Parametr Body Diametr " +
-                                                $"should be more then {_minSocketPlatformDiametr} " +
-                                                $"and less then {_maxSocketPlatformDiametr}");
-                }
+                _diametrSocketPlatform = value;
             }
         }
 
@@ -314,9 +199,9 @@ namespace LampParameters
         {
             get
             {
-                if (_heightBody > 0 && _heightTube > 0 && _heightSocketPlatform >0 )
+                if (_heightBody.Value > 0 && _heightTube.Value > 0 && _heightSocketPlatform.Value >0 )
                 {
-                    return _heightBody + _heightTube + _heightSocketPlatform;
+                    return _heightBody.Value + _heightTube.Value + _heightSocketPlatform.Value;
                 }
                 else
                 {
@@ -325,28 +210,17 @@ namespace LampParameters
             }
         }
 
-        private Parameter _svin;
-
-        public Parameter Svin
-        {
-            get => _svin;
-            set
-            {
-                _svin = value;
-            }
-        }
-
         /// <summary>
         /// Свойство, задающее среднее значение для зависимых параметров
         /// </summary>
         public void AvgValue()
         {
-            _diametrBody = (_minBodyDiametr + _maxBodyDiametr) / 2;
-            _heightBody = (_minBodyHeight + _maxBodyHeight) / 2;
-            _diametrSocketPlatform = (_minSocketPlatformDiametr + _maxSocketPlatformDiametr) / 2;
-            _heightSocketPlatform = (_minSocketPlatformHeight + _maxSocketPlatformHeight) / 2;
-            _diametrTube = (_minTubeDiametr + _maxTubeDiametr) / 2;
-            _heightTube = (_minTubeHeight + _maxTubeHeight) / 2;
+            _diametrBody.Value = _diametrBody.Average();
+            _heightBody.Value = _heightBody.Average();
+            _diametrSocketPlatform.Value = _diametrSocketPlatform.Average();
+            _heightSocketPlatform.Value = _heightSocketPlatform.Average();
+            _diametrTube.Value = _diametrTube.Average();
+            _heightTube.Value = _heightTube.Average();
         }
 
         /// <summary>
@@ -354,12 +228,12 @@ namespace LampParameters
         /// </summary>
         public void MaxValue()
         {
-            _diametrBody = _maxBodyDiametr;
-            _heightBody = _maxBodyHeight;
-            _diametrSocketPlatform = _maxSocketPlatformDiametr;
-            _heightSocketPlatform = _maxSocketPlatformHeight;
-            _diametrTube = _maxTubeDiametr;
-            _heightTube = _maxTubeHeight;
+            _diametrBody.Value = _diametrBody.MaximumValue;
+            _heightBody.Value = _heightBody.MaximumValue;
+            _diametrSocketPlatform.Value = _diametrSocketPlatform.MaximumValue;
+            _heightSocketPlatform.Value = _heightSocketPlatform.MaximumValue;
+            _diametrTube.Value = _diametrTube.MaximumValue;
+            _heightTube.Value = _heightTube.MaximumValue;
         }
 
         /// <summary>
@@ -367,17 +241,22 @@ namespace LampParameters
         /// </summary>
         public void MinValue()
         {
-            _diametrBody = _minBodyDiametr;
-            _heightBody = _minBodyHeight;
-            _diametrSocketPlatform = _minSocketPlatformDiametr;
-            _heightSocketPlatform = _minSocketPlatformHeight;
-            _diametrTube = _minTubeDiametr;
-            _heightTube = _minTubeHeight;
+            _diametrBody.Value = _diametrBody.MinimumValue;
+            _heightBody.Value = _heightBody.MinimumValue;
+            _diametrSocketPlatform.Value = _diametrSocketPlatform.MinimumValue;
+            _heightSocketPlatform.Value = _heightSocketPlatform.MinimumValue;
+            _diametrTube.Value = _diametrTube.MinimumValue;
+            _heightTube.Value = _heightTube.MinimumValue;
         }
 
         public Lamp()
         {
-            this._svin = new Parameter(25, 50);
+            this._diametrBody = new Parameter(90, 180);
+            this._diametrSocketPlatform = new Parameter(70, 100);
+            this._diametrTube = new Parameter(30, 60);
+            this._heightBody = new Parameter(50, 100);
+            this._heightSocketPlatform = new Parameter(2, 6);
+            this._heightTube = new Parameter(150, 200);
         }
     }
 }
