@@ -12,7 +12,7 @@ using LampParameters;
 
 namespace LampBuilder
 {
-    public class LampBuild
+    public class LampBuilder
     {
         public void BuildLamp(Lamp lamp)
         {

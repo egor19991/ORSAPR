@@ -26,7 +26,7 @@ namespace LampPluginUI
         /// </summary>
         private Lamp _lamp = new Lamp{};
 
-        private LampBuild _build = new LampBuild();
+        private LampBuilder.LampBuilder _build = new LampBuilder.LampBuilder();
 
         public MainForm()
         {
@@ -63,6 +63,8 @@ namespace LampPluginUI
             SizeComboBox.Items.Add("Min value");
             SizeComboBox.SelectedItem = "Avg value";
             UpdateFormFields();
+            _lamp.Svin.Value = 20;
+            MessageBox.Show($"{_lamp.Svin.Value}");
         }
 
         /// <summary>

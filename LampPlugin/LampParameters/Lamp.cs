@@ -325,6 +325,17 @@ namespace LampParameters
             }
         }
 
+        private Parameter _svin;
+
+        public Parameter Svin
+        {
+            get => _svin;
+            set
+            {
+                _svin = value;
+            }
+        }
+
         /// <summary>
         /// Свойство, задающее среднее значение для зависимых параметров
         /// </summary>
@@ -362,6 +373,11 @@ namespace LampParameters
             _heightSocketPlatform = _minSocketPlatformHeight;
             _diametrTube = _minTubeDiametr;
             _heightTube = _minTubeHeight;
+        }
+
+        public Lamp()
+        {
+            this._svin = new Parameter(25, 50);
         }
     }
 }
