@@ -43,36 +43,6 @@ namespace LampParameters
         private Parameter _diametrSocketPlatform;
 
         /// <summary>
-        /// Расстояние между отверстиями
-        /// </summary>
-        private const double _distanceHole = 57;
-
-        /// <summary>
-        /// Диаметр отверстия на площадке под патрон для саморезов
-        /// </summary>
-        private const double _diametrHole = 3;
-
-        /// <summary>
-        /// Высота выключателя
-        /// </summary>
-        private const double _heightSwitch = 22;
-
-        /// <summary>
-        /// Ширина выключателя
-        /// </summary>
-        private const double _wightSwitch = 28;
-
-        /// <summary>
-        /// Ширина провода
-        /// </summary>
-        private const double _wightCable = 6;
-
-        /// <summary>
-        /// Высота провода
-        /// </summary>
-        private const double _heightCable = 4;
-
-        /// <summary>
         /// Свойство, задающее выстоу корпуса
         /// </summary>
         public Parameter BodyHeight
@@ -147,50 +117,32 @@ namespace LampParameters
         /// <summary>
         /// Свойство, возращающее диаметр отверстия на площадке под патрон для саморезов
         /// </summary>
-        public double DiametrHole
-        {
-            get { return _diametrHole; }
-        }
+        public double DiametrHole { get; } = 3;
 
         /// <summary>
         /// Свойство, возращающее расстояние между отверстиями на площадке под патрон для саморезов
         /// </summary>
-        public double DistanceHole
-        {
-            get { return _distanceHole; }
-        }
+        public double DistanceHole { get; } = 57;
 
         /// <summary>
         /// Свойство, возращающее высоту кабеля провода
         /// </summary>
-        public double HeightCable
-        {
-            get { return _heightCable; }
-        }
+        public double HeightCable { get; } = 4;
 
         /// <summary>
         /// Свойство, возращающее ширину кабеля провода
         /// </summary>
-        public double WightCable
-        {
-            get { return _wightCable; }
-        }
+        public double WightCable { get; } = 6;
 
         /// <summary>
         /// Свойство, возращающее ширину кнопки
         /// </summary>
-        public double WightSwitch
-        {
-            get { return _wightSwitch; }
-        }
+        public double WightSwitch { get; } = 28;
 
         /// <summary>
         /// Свойство, возращающее высоту кнопки
         /// </summary>
-        public double HeightSwitch
-        {
-            get { return _heightSwitch; }
-        }
+        public double HeightSwitch { get; } = 22;
 
         /// <summary>
         /// Свойство, возращающее длину отверстия в корусе, ножке, платформе
