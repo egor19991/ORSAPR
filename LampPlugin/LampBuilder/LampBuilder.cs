@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Kompas3DConnector;
-using KompasAPI7;
 using Kompas6API5;
 using Kompas6Constants3D;
-using KAPITypes;
 using LampParameters;
 
 namespace LampBuilder
@@ -18,8 +16,6 @@ namespace LampBuilder
         {
            
             KompasConnector.Instance.InitializationKompas();
-            //KompasConnector.Instance.Document2D.ksCircle(2, 3, 4, 1);
-
             CreateСylinder(lamp.BodyHeight.Value,lamp.BodyDiametr.Value,0);
             CreateСylinder(lamp.TubeHeight.Value,lamp.TubeDiametr.Value,lamp.BodyHeight.Value);
             CreateСylinder(lamp.SocketPlatformHeight.Value, lamp.SocketPlatformDiametr.Value, lamp.BodyHeight.Value+lamp.TubeHeight.Value);
@@ -153,7 +149,7 @@ namespace LampBuilder
         }
 
 
-        public void Exit()
+        public void CloseKompas()
         {
             KompasConnector.Instance.UnloadKompas();
         }

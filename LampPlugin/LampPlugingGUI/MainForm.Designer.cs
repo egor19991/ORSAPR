@@ -224,7 +224,7 @@ namespace LampPluginUI
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(261, 242);
+            this.ClientSize = new System.Drawing.Size(264, 241);
             this.Controls.Add(this.Фbutton);
             this.Controls.Add(this.SizeComboBox);
             this.Controls.Add(this.SizeLabel);
@@ -244,6 +244,8 @@ namespace LampPluginUI
             this.Controls.Add(this.HeightBodyTextBox);
             this.Controls.Add(this.DiametrBodyTextBox);
             this.Controls.Add(this.LampBodyLabel);
+            this.MaximumSize = new System.Drawing.Size(280, 280);
+            this.MinimumSize = new System.Drawing.Size(280, 280);
             this.Name = "MainForm";
             this.Text = "Lamp Plugin";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);

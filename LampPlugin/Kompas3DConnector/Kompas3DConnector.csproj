@@ -31,29 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="KAPITypes, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\KAPITypes.dll</HintPath>
-    </Reference>
     <Reference Include="Kompas6API5, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>Lib\Kompas6API5.dll</HintPath>
     </Reference>
-    <Reference Include="Kompas6Constants, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>Lib\Kompas6Constants.dll</HintPath>
-    </Reference>
     <Reference Include="Kompas6Constants3D, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>Lib\Kompas6Constants3D.dll</HintPath>
-    </Reference>
-    <Reference Include="KompasAPI7, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>Lib\KompasAPI7.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -72,11 +58,8 @@
     <Analyzer Include="Lib\Kompas6Constants3D.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Lib\KAPITypes.dll" />
     <Content Include="Lib\Kompas6API5.dll" />
-    <Content Include="Lib\Kompas6Constants.dll" />
     <Content Include="Lib\Kompas6Constants3D.dll" />
-    <Content Include="Lib\KompasAPI7.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

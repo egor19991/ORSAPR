@@ -147,7 +147,7 @@ namespace LampPluginUI
         /// <param name="e"></param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _build.Exit();
+            _build.CloseKompas();
             Environment.Exit(0);
         }
 
