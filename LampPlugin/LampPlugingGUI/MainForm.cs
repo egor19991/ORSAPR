@@ -19,50 +19,52 @@ namespace LampPluginUI
         /// <summary>
         /// Словарь, хранящий сведения о TextBox
         /// </summary>
-        private readonly Dictionary<TextBox, Action<Lamp, string>> _textBoxDictionary;
+        private readonly Dictionary<TextBox, Action<LampParameters.LampParameters, string>> _textBoxDictionary;
 
         /// <summary>
         /// Поле хранящее данные о лампе
         /// </summary>
-        private Lamp _lamp = new Lamp{};
+        private LampParameters.LampParameters _lamp = new LampParameters.LampParameters{};
 
         private LampBuilder.LampBuilder _build = new LampBuilder.LampBuilder();
 
         public MainForm()
         {
             InitializeComponent();
-            _textBoxDictionary = new Dictionary<TextBox, Action<Lamp, string>>()
+            _textBoxDictionary = new Dictionary<TextBox, Action<LampParameters.LampParameters, string>>()
             {
                 {
                     DiametrBodyTextBox, 
-                    (Lamp lamp, string text) => {lamp.BodyDiametr.Value = Double.Parse(text);}
+                    (LampParameters.LampParameters lamp, string text) => { lamp.BodyDiametr.Value = double.Parse(text);}
                 },
                 {
                     HeightBodyTextBox, 
-                    (Lamp lamp, string text) => {lamp.BodyHeight.Value = Double.Parse(text);}
+                    (LampParameters.LampParameters lamp, string text) => { lamp.BodyHeight.Value = double.Parse(text);}
                 },
                 {
                     DiametrTubeTextBox,
-                    (Lamp lamp, string text) => {lamp.TubeDiametr.Value = Double.Parse(text);}
+                    (LampParameters.LampParameters lamp, string text) => { lamp.TubeDiametr.Value = double.Parse(text);}
                 },
                 {
                     HeightTubeTextBox,
-                    (Lamp lamp, string text) => {lamp.TubeHeight.Value = Double.Parse(text);}
+                    (LampParameters.LampParameters lamp, string text) => { lamp.TubeHeight.Value = double.Parse(text);}
                 },
                 {
                     DiametrSocketPlatformTextBox,
-                    (Lamp lamp, string text) => {lamp.SocketPlatformDiametr.Value = Double.Parse(text);}
+                    (LampParameters.LampParameters lamp, string text) => { lamp.SocketPlatformDiametr.Value = double.Parse(text);}
                 },
                 {
                     HeightSocketPlatformTextBox,
-                    (Lamp lamp, string text) => {lamp.SocketPlatformHeight.Value = Double.Parse(text);}
+                    (LampParameters.LampParameters lamp, string text) => { lamp.SocketPlatformHeight.Value = double.Parse(text);}
                 }
             };
             SizeComboBox.Items.Add("Maximum value");
             SizeComboBox.Items.Add("Average value");
             SizeComboBox.Items.Add("Minimum value");
             SizeComboBox.SelectedItem = "Average value";
+            _lamp.AvgValue();
             UpdateFormFields();
+            SetLimits();
         }
 
         /// <summary>
@@ -127,12 +129,34 @@ namespace LampPluginUI
             HeightSocketPlatformTextBox.Text = _lamp.SocketPlatformHeight.Value.ToString();
         }
 
+        private void SetLimits()
+        {
+            LampBodyDiameterLabel.Text = Convert.ToString($"Body Diameter ({_lamp.BodyDiametr.MinimumValue} - {_lamp.BodyDiametr.MaximumValue}) mm");
+            LampBodyHeightLabel.Text = Convert.ToString($"Body Height ({_lamp.BodyHeight.MinimumValue} - {_lamp.BodyHeight.MaximumValue}) mm");
+            LampTubeDiameterLabel.Text = Convert.ToString($"Tube Diameter ({_lamp.TubeDiametr.MinimumValue} - {_lamp.TubeDiametr.MaximumValue}) mm");
+            LampTubeHeightLabel.Text = Convert.ToString($"Tube Height ({_lamp.TubeHeight.MinimumValue} - {_lamp.TubeHeight.MaximumValue}) mm");
+            LampSocketPlatformDiameterLabel.Text = Convert.ToString($"Socket Platform Diameter ({_lamp.SocketPlatformDiametr.MinimumValue} - {_lamp.SocketPlatformDiametr.MaximumValue}) mm");
+            LampSocketPlatformHeightLabel.Text = Convert.ToString($"Socket Platform Height ({_lamp.SocketPlatformHeight.MinimumValue} - {_lamp.SocketPlatformHeight.MaximumValue}) mm");
+        }
+
+
         /// <summary>
-        /// Обработчик для выбора предустановленных значений
+        /// Закрытие плагина
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SizeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _build.Exit();
+            Environment.Exit(0);
+        }
+
+        private void BuildButton_Click(object sender, EventArgs e)
+        {
+            _build.BuildLamp(_lamp);
+        }
+        
+        private void button1_Click(object sender, EventArgs e)
         {
             if (SizeComboBox.SelectedIndex == -1)
             {
@@ -154,22 +178,5 @@ namespace LampPluginUI
                 UpdateFormFields();
             }
         }
-
-        /// <summary>
-        /// Закрытие плагина
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _build.Exit();
-            Environment.Exit(0);
-        }
-
-        private void BuildButton_Click(object sender, EventArgs e)
-        {
-            _build.BuildLamp(_lamp);
-        }
-
     }
 }

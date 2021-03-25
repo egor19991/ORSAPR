@@ -10,7 +10,7 @@ namespace LampParameters
     /// <summary>
     /// Класс содержит данные лампы
     /// </summary>
-    public class Lamp
+    public class LampParameters
     {
         /// <summary>
         /// Поле, хронящее высоту корпуса
@@ -117,32 +117,32 @@ namespace LampParameters
         /// <summary>
         /// Свойство, возращающее диаметр отверстия на площадке под патрон для саморезов
         /// </summary>
-        public double DiametrHole { get; } = 3;
+        public const double DiametrHole = 3;
 
         /// <summary>
         /// Свойство, возращающее расстояние между отверстиями на площадке под патрон для саморезов
         /// </summary>
-        public double DistanceHole { get; } = 57;
+        public const double DistanceHole = 57;
 
         /// <summary>
         /// Свойство, возращающее высоту кабеля провода
         /// </summary>
-        public double HeightCable { get; } = 4;
-
-        /// <summary>
-        /// Свойство, возращающее ширину кабеля провода
-        /// </summary>
-        public double WightCable { get; } = 6;
-
+        public const double HeightCable = 4;
+        
         /// <summary>
         /// Свойство, возращающее ширину кнопки
         /// </summary>
-        public double WightSwitch { get; } = 28;
+        public const double WightSwitch = 28;
 
         /// <summary>
         /// Свойство, возращающее высоту кнопки
         /// </summary>
-        public double HeightSwitch { get; } = 22;
+        public const double HeightSwitch = 22;
+
+        /// <summary>
+        /// Свойство, возращающее ширину кабеля провода
+        /// </summary>
+        public const double WightCable = 6;
 
         /// <summary>
         /// Свойство, возращающее длину отверстия в корусе, ножке, платформе
@@ -201,7 +201,7 @@ namespace LampParameters
             _heightTube.Value = _heightTube.MinimumValue;
         }
 
-        public Lamp()
+        public LampParameters()
         {
             this._diametrBody = new Parameter(90, 180);
             this._diametrSocketPlatform = new Parameter(70, 100);
