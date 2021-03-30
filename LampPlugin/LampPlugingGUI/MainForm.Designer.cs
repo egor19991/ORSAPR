@@ -47,7 +47,7 @@ namespace LampPluginUI
             this.BuildButton = new System.Windows.Forms.Button();
             this.SizeLabel = new System.Windows.Forms.Label();
             this.SizeComboBox = new System.Windows.Forms.ComboBox();
-            this.Фbutton = new System.Windows.Forms.Button();
+            this.ApplyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LampBodyLabel
@@ -211,21 +211,21 @@ namespace LampPluginUI
             this.SizeComboBox.Size = new System.Drawing.Size(96, 21);
             this.SizeComboBox.TabIndex = 17;
             // 
-            // Фbutton
+            // ApplyButton
             // 
-            this.Фbutton.Location = new System.Drawing.Point(204, 173);
-            this.Фbutton.Name = "Фbutton";
-            this.Фbutton.Size = new System.Drawing.Size(48, 23);
-            this.Фbutton.TabIndex = 18;
-            this.Фbutton.Text = "Apply";
-            this.Фbutton.UseVisualStyleBackColor = true;
-            this.Фbutton.Click += new System.EventHandler(this.button1_Click);
+            this.ApplyButton.Location = new System.Drawing.Point(204, 173);
+            this.ApplyButton.Name = "ApplyButton";
+            this.ApplyButton.Size = new System.Drawing.Size(48, 23);
+            this.ApplyButton.TabIndex = 18;
+            this.ApplyButton.Text = "Apply";
+            this.ApplyButton.UseVisualStyleBackColor = true;
+            this.ApplyButton.Click += new System.EventHandler(this.ApplyButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(264, 241);
-            this.Controls.Add(this.Фbutton);
+            this.Controls.Add(this.ApplyButton);
             this.Controls.Add(this.SizeComboBox);
             this.Controls.Add(this.SizeLabel);
             this.Controls.Add(this.BuildButton);
@@ -274,7 +274,7 @@ namespace LampPluginUI
         private System.Windows.Forms.Button BuildButton;
         private System.Windows.Forms.Label SizeLabel;
         private System.Windows.Forms.ComboBox SizeComboBox;
-        private System.Windows.Forms.Button Фbutton;
+        private System.Windows.Forms.Button ApplyButton;
     }
 }
 

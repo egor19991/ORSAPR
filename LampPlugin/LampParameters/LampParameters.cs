@@ -145,9 +145,9 @@ namespace LampParameters
         public const double WightCable = 6;
 
         /// <summary>
-        /// Свойство, возращающее длину отверстия в корусе, ножке, платформе
+        /// Свойство, возращающее глубина отверстия в корусе, ножке, платформе
         /// </summary>
-        public double HightHole
+        public double DepthHole
         {
             get
             {

@@ -17,7 +17,7 @@ namespace LampPluginUI
     public partial class MainForm : Form
     {
         /// <summary>
-        /// Словарь, хранящий сведения о TextBox
+        /// Словарь для хранения сведений о TextBox
         /// </summary>
         private readonly Dictionary<TextBox, Action<LampParameters.LampParameters, string>> _textBoxDictionary;
 
@@ -26,7 +26,12 @@ namespace LampPluginUI
         /// </summary>
         private LampParameters.LampParameters _lamp = new LampParameters.LampParameters{};
 
+        /// <summary>
+        /// Поле для хранения данных о билдере
+        /// </summary>
         private LampBuilder.LampBuilder _build = new LampBuilder.LampBuilder();
+
+
 
         public MainForm()
         {
@@ -87,6 +92,7 @@ namespace LampPluginUI
                 {
                     currentTextBox.BackColor = Color.LightCoral;
                     MessageBox.Show(exception.Message);
+                    //currentTextBox.Validated;
                 }
             }
         }
@@ -117,7 +123,7 @@ namespace LampPluginUI
         }
 
         /// <summary>
-        /// Метод, присваивающий значение TextBox
+        /// Метод, присваивающий значение предустановленных параметров в TextBox
         /// </summary>
         private void UpdateFormFields()
         {
@@ -129,6 +135,9 @@ namespace LampPluginUI
             HeightSocketPlatformTextBox.Text = _lamp.SocketPlatformHeight.Value.ToString();
         }
 
+        /// <summary>
+        /// Метод для проброса минимальных и максимальных параметров в форму
+        /// </summary>
         private void SetLimits()
         {
             LampBodyDiameterLabel.Text = Convert.ToString($"Body Diameter ({_lamp.BodyDiametr.MinimumValue} - {_lamp.BodyDiametr.MaximumValue}) mm");
@@ -156,7 +165,7 @@ namespace LampPluginUI
             _build.BuildLamp(_lamp);
         }
         
-        private void button1_Click(object sender, EventArgs e)
+        private void ApplyButton_Click(object sender, EventArgs e)
         {
             if (SizeComboBox.SelectedIndex == -1)
             {

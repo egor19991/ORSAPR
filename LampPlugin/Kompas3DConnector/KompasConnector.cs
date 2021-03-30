@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace Kompas3DConnector
 {
     /// <summary>
-    /// Класс для соединения с Компас 3D
+    /// Класс для соединения с API Компас-3D
     /// </summary>
     public class KompasConnector
     {
@@ -39,7 +39,6 @@ namespace Kompas3DConnector
             {
                 if (_instance == null)
                     _instance = new KompasConnector();
-                //_instance.InitializationKompas();
                 return _instance;
             }
         }
@@ -76,22 +75,31 @@ namespace Kompas3DConnector
         /// </summary>
         public void InitializationKompas()
         {
-            if (_kompasObject == null)
+            try
             {
-                #if __LIGHT_VERSION__
-                Type t = Type.GetTypeFromProgID("KOMPASLT.Application.5");
-                #else
-                Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
-                #endif
-                _kompasObject = (KompasObject)Activator.CreateInstance(t);
+                if (_kompasObject != null)
+                {
+                    _document3d.close();
+                }
+                if (_kompasObject == null)
+                {
+                    #if __LIGHT_VERSION__
+                    Type t = Type.GetTypeFromProgID("KOMPASLT.Application.5");
+                    #else
+                    Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
+                    #endif
+                    _kompasObject = (KompasObject)Activator.CreateInstance(t);
+                }
                 _document3d = (Document3D)_kompasObject.Document3D();
                 _document3d.Create(false, true);
                 _kompasPart = (ksPart)_document3d.GetPart((short)Part_Type.pTop_Part);
-            }
-            if (_kompasObject != null)
-            {
                 _kompasObject.Visible = true;
                 _kompasObject.ActivateControllerAPI();
+            }
+            catch (Exception e)
+            {
+                _kompasObject = null;
+                InitializationKompas();
             }
         }
 
