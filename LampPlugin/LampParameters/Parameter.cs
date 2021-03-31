@@ -14,15 +14,23 @@ namespace LampParameters
 
         private double _minValue;
 
+        private double _defaultValue;
+
+        private string _nameParameter;
+
         /// <summary>
-        /// Свойство, задающее выстоу корпуса
+        /// Свойство для присвоения значения параметра
         /// </summary>
         public double Value
         {
             get => _value; 
             set
             {
-                if (_maxValue > 0 && _minValue >= 0)
+                if (String.IsNullOrEmpty(_nameParameter))
+                {
+                    throw new ArgumentException("Parameter name not specified");
+                }
+                if (_maxValue > 0 && _minValue > 0)
                 {
                     if (value <= _maxValue && value >= _minValue)
                     {
@@ -30,23 +38,15 @@ namespace LampParameters
                     }
                     else
                     {
-                        throw new ArgumentException($"Parametr Body Height" +
+                        throw new ArgumentException($"Parameter {_nameParameter} " +
                                                     $"should be more then {_maxValue} " +
                                                     $"and less then {_minValue}");
                     }
                 }
                 else
                 {
-                    if (_maxValue > 0)
-                    {
-                        throw new ArgumentException("The minimum value of the" +
-                                                    " parameter is not specified");
-                    }
-                    else
-                    {
-                        throw new ArgumentException("The maximum value of the" +
-                                                    " parameter is not specified");
-                    }
+                    throw new ArgumentException("The minimum value or maximum value of the" +
+                                                " parameter is not specified");
                 }
             }
         }
@@ -56,7 +56,7 @@ namespace LampParameters
             get => _maxValue;
             set
             {
-                if (_minValue >= 0)
+                if (_minValue > 0)
                 {
                     if (value > _minValue)
                     {
@@ -100,7 +100,7 @@ namespace LampParameters
                 }
                 else
                 {
-                    if (value >= 0)
+                    if (value > 0)
                     {
                         _minValue = value;
                     }
@@ -113,22 +113,37 @@ namespace LampParameters
             }
         }
 
-        public double Average()
+        public string NameParameter
         {
-            if (_maxValue > 0 && _minValue >= 0)
+            get { return _nameParameter; }
+            set { _nameParameter = value; }
+        }
+
+        public double DefaultValue
+        {
+            get => _defaultValue;
+            set
             {
-                return (_minValue + _maxValue) / 2;
-            }
-            else
-            {
-                if (_maxValue > 0)
+                if (String.IsNullOrEmpty(_nameParameter))
                 {
-                    throw new ArgumentException("The minimum value of the" +
-                                                " parameter is not specified");
+                    throw new ArgumentException("Parameter name not specified");
+                }
+                if (_maxValue > 0 && _minValue > 0)
+                {
+                    if (value <= _maxValue && value >= _minValue)
+                    {
+                        _defaultValue = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException($"Parameter {_nameParameter} " +
+                                                    $"should be more then {_maxValue} " +
+                                                    $"and less then {_minValue}");
+                    }
                 }
                 else
                 {
-                    throw new ArgumentException("The maximum value of the" +
+                    throw new ArgumentException("The minimum value or maximum value of the" +
                                                 " parameter is not specified");
                 }
             }
@@ -136,10 +151,12 @@ namespace LampParameters
 
         public Parameter() {}
 
-        public Parameter(double min, double max)
+        public Parameter(string name, double min, double max, double defaultValue)
         {
             this.MinimumValue = min;
             this.MaximumValue = max;
+            this.NameParameter = name;
+            this.DefaultValue = defaultValue;
         }
 
     }

@@ -62,10 +62,10 @@ namespace LampPluginUI
                 }
             };
             SizeComboBox.Items.Add("Maximum value");
-            SizeComboBox.Items.Add("Average value");
             SizeComboBox.Items.Add("Minimum value");
-            SizeComboBox.SelectedItem = "Average value";
-            _lamp.AvgValue();
+            SizeComboBox.Items.Add("Default value");
+            SizeComboBox.SelectedItem = "Default value";
+            _lamp.DefaultValue();
             UpdateFormFields();
             SetLimits();
         }
@@ -225,9 +225,9 @@ namespace LampPluginUI
                 WhiteColorTextBox();
                 BuildButton.Enabled = true;
             }
-            if (SizeComboBox.SelectedItem.ToString() == "Average value")
+            if (SizeComboBox.SelectedItem.ToString() == "Default value")
             {
-                _lamp.AvgValue();
+                _lamp.DefaultValue();
                 UpdateFormFields();
                 WhiteColorTextBox();
                 BuildButton.Enabled = true;

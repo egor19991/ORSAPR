@@ -165,14 +165,14 @@ namespace LampParameters
         /// <summary>
         /// Свойство, задающее среднее значение для зависимых параметров
         /// </summary>
-        public void AvgValue()
+        public void DefaultValue()
         {
-            _diametrBody.Value = _diametrBody.Average();
-            _heightBody.Value = _heightBody.Average();
-            _diametrSocketPlatform.Value = _diametrSocketPlatform.Average();
-            _heightSocketPlatform.Value = _heightSocketPlatform.Average();
-            _diametrTube.Value = _diametrTube.Average();
-            _heightTube.Value = _heightTube.Average();
+            _diametrBody.Value = _diametrBody.DefaultValue;
+            _heightBody.Value = _heightBody.DefaultValue;
+            _diametrSocketPlatform.Value = _diametrSocketPlatform.DefaultValue;
+            _heightSocketPlatform.Value = _heightSocketPlatform.DefaultValue;
+            _diametrTube.Value = _diametrTube.DefaultValue;
+            _heightTube.Value = _heightTube.DefaultValue;
         }
 
         /// <summary>
@@ -203,12 +203,12 @@ namespace LampParameters
 
         public LampParameters()
         {
-            this._diametrBody = new Parameter(90, 180);
-            this._diametrSocketPlatform = new Parameter(70, 100);
-            this._diametrTube = new Parameter(30, 60);
-            this._heightBody = new Parameter(50, 100);
-            this._heightSocketPlatform = new Parameter(2, 6);
-            this._heightTube = new Parameter(150, 200);
+            this._diametrBody = new Parameter("Body Diameter",90, 180, 150);
+            this._diametrSocketPlatform = new Parameter("Socket Platform Diameter", 70, 100, 100);
+            this._diametrTube = new Parameter("Tube Diameter ", 30, 60, 60);
+            this._heightBody = new Parameter("Body Height",50, 100,100);
+            this._heightSocketPlatform = new Parameter("SocketPlatform Height", 2,6, 4);
+            this._heightTube = new Parameter("Tube Height", 150, 200, 200);
         }
     }
 }

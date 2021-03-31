@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LampBuilder", "LampBuilder\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas3DConnector", "Kompas3DConnector\Kompas3DConnector.csproj", "{E07F809A-9795-4C9B-8EEA-38DACA30BF45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LampPlugin.UnitTest", "UnitTestLampParameters\LampPlugin.UnitTest.csproj", "{A1CA09EB-2DE4-4D17-950D-11D602ECEA81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E07F809A-9795-4C9B-8EEA-38DACA30BF45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E07F809A-9795-4C9B-8EEA-38DACA30BF45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E07F809A-9795-4C9B-8EEA-38DACA30BF45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1CA09EB-2DE4-4D17-950D-11D602ECEA81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1CA09EB-2DE4-4D17-950D-11D602ECEA81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1CA09EB-2DE4-4D17-950D-11D602ECEA81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1CA09EB-2DE4-4D17-950D-11D602ECEA81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
