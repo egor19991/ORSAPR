@@ -31,35 +31,33 @@ namespace LampPluginUI
         /// </summary>
         private LampBuilder.LampBuilder _build = new LampBuilder.LampBuilder();
 
-
-
         public MainForm()
         {
             InitializeComponent();
             _textBoxDictionary = new Dictionary<TextBox, Action<LampParameters.LampParameters, string>>()
             {
                 {
-                    DiametrBodyTextBox, 
+                    BodyDiameterTextBox, 
                     (LampParameters.LampParameters lamp, string text) => { lamp.BodyDiametr.Value = double.Parse(text);}
                 },
                 {
-                    HeightBodyTextBox, 
+                    BodyHeightTextBox, 
                     (LampParameters.LampParameters lamp, string text) => { lamp.BodyHeight.Value = double.Parse(text);}
                 },
                 {
-                    DiametrTubeTextBox,
+                    TubeDiameterTextBox,
                     (LampParameters.LampParameters lamp, string text) => { lamp.TubeDiametr.Value = double.Parse(text);}
                 },
                 {
-                    HeightTubeTextBox,
+                    TubeHeightTextBox,
                     (LampParameters.LampParameters lamp, string text) => { lamp.TubeHeight.Value = double.Parse(text);}
                 },
                 {
-                    DiametrSocketPlatformTextBox,
+                    SocketPlatformDiameterTextBox,
                     (LampParameters.LampParameters lamp, string text) => { lamp.SocketPlatformDiametr.Value = double.Parse(text);}
                 },
                 {
-                    HeightSocketPlatformTextBox,
+                    SocketPlatformHeightTextBox,
                     (LampParameters.LampParameters lamp, string text) => { lamp.SocketPlatformHeight.Value = double.Parse(text);}
                 }
             };
@@ -87,14 +85,51 @@ namespace LampPluginUI
                 {
                     currentAction.Invoke(_lamp, currentTextBox.Text);
                     currentTextBox.BackColor = Color.White;
+                    if (Validate())
+                    {
+                        BuildButton.Enabled = true;
+                    }
                 }
                 catch (ArgumentException exception)
                 {
                     currentTextBox.BackColor = Color.LightCoral;
                     MessageBox.Show(exception.Message);
-                    //currentTextBox.Validated;
+                    BuildButton.Enabled = false;
                 }
             }
+        }
+
+        /// <summary>
+        /// Метод для проверки на соответствие сохраненных и введенных параметров
+        /// </summary>
+        /// <returns></returns>
+        private bool Validate()
+        {
+            if (BodyDiameterTextBox.Text.ToString() != _lamp.BodyDiametr.Value.ToString())
+            {
+                return false;
+            }
+            if (BodyHeightTextBox.Text.ToString() != _lamp.BodyHeight.Value.ToString())
+            {
+                return false;
+            }
+            if (SocketPlatformDiameterTextBox.Text.ToString() != _lamp.SocketPlatformDiametr.Value.ToString())
+            {
+                return false;
+            }
+            if (SocketPlatformHeightTextBox.Text.ToString() != _lamp.SocketPlatformHeight.Value.ToString())
+            {
+                return false;
+            }
+            if (TubeDiameterTextBox.Text.ToString() != _lamp.TubeDiametr.Value.ToString())
+            {
+                return false;
+            }
+            if (TubeHeightTextBox.Text.ToString() != _lamp.TubeHeight.Value.ToString())
+            {
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -127,12 +162,12 @@ namespace LampPluginUI
         /// </summary>
         private void UpdateFormFields()
         {
-            DiametrBodyTextBox.Text = _lamp.BodyDiametr.Value.ToString();
-            HeightBodyTextBox.Text = _lamp.BodyHeight.Value.ToString();
-            DiametrTubeTextBox.Text = _lamp.TubeDiametr.Value.ToString();
-            HeightTubeTextBox.Text = _lamp.TubeHeight.Value.ToString();
-            DiametrSocketPlatformTextBox.Text = _lamp.SocketPlatformDiametr.Value.ToString();
-            HeightSocketPlatformTextBox.Text = _lamp.SocketPlatformHeight.Value.ToString();
+            BodyDiameterTextBox.Text = _lamp.BodyDiametr.Value.ToString();
+            BodyHeightTextBox.Text = _lamp.BodyHeight.Value.ToString();
+            TubeDiameterTextBox.Text = _lamp.TubeDiametr.Value.ToString();
+            TubeHeightTextBox.Text = _lamp.TubeHeight.Value.ToString();
+            SocketPlatformDiameterTextBox.Text = _lamp.SocketPlatformDiametr.Value.ToString();
+            SocketPlatformHeightTextBox.Text = _lamp.SocketPlatformHeight.Value.ToString();
         }
 
         /// <summary>
@@ -140,14 +175,26 @@ namespace LampPluginUI
         /// </summary>
         private void SetLimits()
         {
-            LampBodyDiameterLabel.Text = Convert.ToString($"Body Diameter ({_lamp.BodyDiametr.MinimumValue} - {_lamp.BodyDiametr.MaximumValue}) mm");
-            LampBodyHeightLabel.Text = Convert.ToString($"Body Height ({_lamp.BodyHeight.MinimumValue} - {_lamp.BodyHeight.MaximumValue}) mm");
-            LampTubeDiameterLabel.Text = Convert.ToString($"Tube Diameter ({_lamp.TubeDiametr.MinimumValue} - {_lamp.TubeDiametr.MaximumValue}) mm");
-            LampTubeHeightLabel.Text = Convert.ToString($"Tube Height ({_lamp.TubeHeight.MinimumValue} - {_lamp.TubeHeight.MaximumValue}) mm");
-            LampSocketPlatformDiameterLabel.Text = Convert.ToString($"Socket Platform Diameter ({_lamp.SocketPlatformDiametr.MinimumValue} - {_lamp.SocketPlatformDiametr.MaximumValue}) mm");
-            LampSocketPlatformHeightLabel.Text = Convert.ToString($"Socket Platform Height ({_lamp.SocketPlatformHeight.MinimumValue} - {_lamp.SocketPlatformHeight.MaximumValue}) mm");
+            BodyDiameterLabel.Text = Convert.ToString($"Body Diameter ({_lamp.BodyDiametr.MinimumValue} - {_lamp.BodyDiametr.MaximumValue}) mm");
+            BodyHeightLabel.Text = Convert.ToString($"Body Height ({_lamp.BodyHeight.MinimumValue} - {_lamp.BodyHeight.MaximumValue}) mm");
+            TubeDiameterLabel.Text = Convert.ToString($"Tube Diameter ({_lamp.TubeDiametr.MinimumValue} - {_lamp.TubeDiametr.MaximumValue}) mm");
+            TubeHeightLabel.Text = Convert.ToString($"Tube Height ({_lamp.TubeHeight.MinimumValue} - {_lamp.TubeHeight.MaximumValue}) mm");
+            SocketPlatformDiameterLabel.Text = Convert.ToString($"Socket Platform Diameter ({_lamp.SocketPlatformDiametr.MinimumValue} - {_lamp.SocketPlatformDiametr.MaximumValue}) mm");
+            SocketPlatformHeightLabel.Text = Convert.ToString($"Socket Platform Height ({_lamp.SocketPlatformHeight.MinimumValue} - {_lamp.SocketPlatformHeight.MaximumValue}) mm");
         }
 
+        /// <summary>
+        /// Метод, присваивающий белый цвет BackColor для TextBox
+        /// </summary>
+        private void WhiteColorTextBox()
+        {
+            BodyDiameterTextBox.BackColor = Color.White;
+            BodyHeightTextBox.BackColor = Color.White; 
+            TubeDiameterTextBox.BackColor = Color.White;
+            TubeHeightTextBox.BackColor = Color.White;
+            SocketPlatformHeightTextBox.BackColor = Color.White;
+            SocketPlatformDiameterTextBox.BackColor = Color.White;
+        }
 
         /// <summary>
         /// Закрытие плагина
@@ -175,16 +222,22 @@ namespace LampPluginUI
             {
                 _lamp.MaxValue();
                 UpdateFormFields();
+                WhiteColorTextBox();
+                BuildButton.Enabled = true;
             }
             if (SizeComboBox.SelectedItem.ToString() == "Average value")
             {
                 _lamp.AvgValue();
                 UpdateFormFields();
+                WhiteColorTextBox();
+                BuildButton.Enabled = true;
             }
             if (SizeComboBox.SelectedItem.ToString() == "Minimum value")
             {
                 _lamp.MinValue();
                 UpdateFormFields();
+                WhiteColorTextBox();
+                BuildButton.Enabled = true;
             }
         }
     }
