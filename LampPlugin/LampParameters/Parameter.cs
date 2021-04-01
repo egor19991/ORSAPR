@@ -1,25 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LampParameters
 {
     public class Parameter
     {
+        /// <summary>
+        /// Поле, хранящее значение параметра
+        /// </summary>
         private double _value;
  
+        /// <summary>
+        /// Поле, хранящее максимально допустимое значение параметра
+        /// </summary>
         private double _maxValue;
 
+        /// <summary>
+        ///  Поле, хранящее Минимально допустимое значение параметра
+        /// </summary>
         private double _minValue;
 
+        /// <summary>
+        ///  Поле, хранящее значение по умолчанию для параметра
+        /// </summary>
         private double _defaultValue;
 
+        /// <summary>
+        ///  Поле, хранящее название параметра
+        /// </summary>
         private string _nameParameter;
 
         /// <summary>
-        /// Свойство для присвоения значения параметра
+        /// Свойство, хранящее значения параметра
         /// </summary>
         public double Value
         {
@@ -51,6 +62,9 @@ namespace LampParameters
             }
         }
 
+        /// <summary>
+        /// Поле, хранящее максимальное допустимое значение параметра
+        /// </summary>
         public double MaximumValue
         {
             get => _maxValue;
@@ -82,6 +96,9 @@ namespace LampParameters
             }
         }
 
+        /// <summary>
+        /// Свойство, хранящее минимально допустимое значение параметра
+        /// </summary>
         public double MinimumValue
         {
             get => _minValue;
@@ -113,12 +130,18 @@ namespace LampParameters
             }
         }
 
+        /// <summary>
+        /// Свойство, хранящее название параметра
+        /// </summary>
         public string NameParameter
         {
             get { return _nameParameter; }
             set { _nameParameter = value; }
         }
 
+        /// <summary>
+        /// Свойство, хранящее параметер по умолчанию
+        /// </summary>
         public double DefaultValue
         {
             get => _defaultValue;

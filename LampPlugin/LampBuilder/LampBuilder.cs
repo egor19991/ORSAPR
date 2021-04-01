@@ -35,9 +35,9 @@ namespace LampBuilder
         /// <summary>
         /// Метод для создания цилиндра
         /// </summary>
-        /// <param name="height"></param>
-        /// <param name="diametr"></param>
-        /// <param name="heightPlane"></param>
+        /// <param name="height">Высота цилиндра</param>
+        /// <param name="diametr">Диаметер цилиндра</param>
+        /// <param name="heightPlane">Выстоа плоскости</param>
         private void CreateСylinder(double height, double diametr, double heightPlane)
         {
             var SketchDef = CreateSketch(heightPlane);
@@ -55,10 +55,10 @@ namespace LampBuilder
         /// <summary>
         /// Метод для создания выемок в основании под провод и выключатель
         /// </summary>
-        /// <param name="depth"></param>
-        /// <param name="width"></param>
-        /// <param name="diametr"></param>
-        /// <param name="type"></param>
+        /// <param name="depth">Глубина выемки</param>
+        /// <param name="width">Ширина выемки</param>
+        /// <param name="diametr">Диаметер основания</param>
+        /// <param name="type">направеление выреза</param>
         private void CreateRecess(double depth, double width, double diametr, bool type)
         {
             ksEntity currentPlane = (ksEntity)KompasConnector.Instance.KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
@@ -89,13 +89,13 @@ namespace LampBuilder
         }
 
         /// <summary>
-        /// Метод для создания выемок
+        /// Метод для создания отверстий
         /// </summary>
-        /// <param name="xc"></param>
-        /// <param name="yc"></param>
-        /// <param name="diametr"></param>
-        /// <param name="depth"></param>
-        /// <param name="heightPlane"></param>
+        /// <param name="xc">Координата центра окружности x</param>
+        /// <param name="yc">Координата центра окружности y</param>
+        /// <param name="diametr">Диаметр окружности</param>
+        /// <param name="depth">Глубина отверстия</param>
+        /// <param name="heightPlane">Расстояние от начала плоскости</param>
         public void CreateHole(double xc, double yc, double diametr, double depth, double heightPlane)
         {
             var SketchDef = CreateSketch(heightPlane);
@@ -112,8 +112,8 @@ namespace LampBuilder
         /// <summary>
         /// Метод для создания эскиза
         /// </summary>
-        /// <param name="heightPlane"></param>
-        /// <returns></returns>
+        /// <param name="heightPlane">Высота плоскости</param>
+        /// <returns>Эскиз</returns>
         public ksSketchDefinition CreateSketch(double heightPlane)
         {
             ksEntity currentPlane = (ksEntity)KompasConnector.Instance.KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
@@ -136,10 +136,10 @@ namespace LampBuilder
         }
 
         /// <summary>
-        /// Метод для вырезания выдавливания эскиза
+        /// Метод для вырезания выдавливанием 
         /// </summary>
-        /// <param name="depth"></param>
-        /// <param name="SketchDef"></param>
+        /// <param name="depth">Глубина выреза</param>
+        /// <param name="SketchDef">Эскиз</param>
         public void CutExtrusion(double depth, ksSketchDefinition SketchDef)
         {
             var iBaseExtrusionEntity1 = (ksEntity)KompasConnector.Instance.KompasPart.NewEntity((short)ksObj3dTypeEnum.o3d_cutExtrusion);
@@ -151,10 +151,10 @@ namespace LampBuilder
         }
 
         /// <summary>
-        /// Метод для выдавливания эскиза
+        /// Метод для выдавливания
         /// </summary>
-        /// <param name="height"></param>
-        /// <param name="SketchDef"></param>
+        /// <param name="height">Высота выдавливания</param>
+        /// <param name="SketchDef">Эскиз</param>
         public void BossExtrusion(double height, ksSketchDefinition SketchDef)
         {
             var iBaseExtrusionEntity = (ksEntity)KompasConnector.Instance.KompasPart.NewEntity((short)ksObj3dTypeEnum.o3d_bossExtrusion);

@@ -197,21 +197,10 @@ namespace LampPluginUI
         }
 
         /// <summary>
-        /// Закрытие плагина
+        /// Обработчик кнопки Build
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _build.CloseKompas();
-            Environment.Exit(0);
-        }
-
-        private void BuildButton_Click(object sender, EventArgs e)
-        {
-            _build.BuildLamp(_lamp);
-        }
-        
         private void ApplyButton_Click(object sender, EventArgs e)
         {
             if (SizeComboBox.SelectedIndex == -1)
@@ -240,5 +229,23 @@ namespace LampPluginUI
                 BuildButton.Enabled = true;
             }
         }
+
+        /// <summary>
+        /// Закрытие плагина
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _build.CloseKompas();
+            Environment.Exit(0);
+        }
+
+        private void BuildButton_Click(object sender, EventArgs e)
+        {
+            _build.BuildLamp(_lamp);
+        }
+        
+        
     }
 }

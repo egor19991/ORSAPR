@@ -104,7 +104,7 @@ namespace Kompas3DConnector
         }
 
         /// <summary>
-        /// Метод для выгрузки и выхода и компаса
+        /// Метод для выгрузки и выхода из компаса
         /// </summary>
         public void UnloadKompas()
         {

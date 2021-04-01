@@ -13,32 +13,32 @@ namespace LampParameters
     public class LampParameters
     {
         /// <summary>
-        /// Поле, хронящее высоту корпуса
+        /// Поле, хранящее высоту корпуса
         /// </summary>
         private Parameter _heightBody;
 
         /// <summary>
-        /// Поле, хронящее высоту корпуса
+        /// Поле, хранящее диаметр корпуса
         /// </summary>
         private Parameter _diameterBody;
 
         /// <summary>
-        /// Поле, хронящее высоту стойки
+        /// Поле, хранящее высоту стойки
         /// </summary>
         private Parameter _heightTube;
 
         /// <summary>
-        /// Поле, хронящее высоту стойки
+        /// Поле, хранящее диаметр стойки
         /// </summary>
         private Parameter _diameterTube;
 
         /// <summary>
-        /// Поле, хронящее высоту платформы под патрон
+        /// Поле, хранящее высоту платформы под патрон
         /// </summary>
         private Parameter _heightSocketPlatform;
 
         /// <summary>
-        /// Поле, хронящее высоту платформы под патрон
+        /// Поле, хранящее диаметр платформы под патрон
         /// </summary>
         private Parameter _diameterSocketPlatform;
 
@@ -55,7 +55,7 @@ namespace LampParameters
         }
 
         /// <summary>
-        /// Свойство, задающее диамеир корпуса
+        /// Свойство, задающее диаметр корпуса
         /// </summary>
         public Parameter BodyDiameter
         {
@@ -79,7 +79,7 @@ namespace LampParameters
         }
 
         /// <summary>
-        /// Свойство, задающее диамеир стойки
+        /// Свойство, задающее диаметр стойки
         /// </summary>
         public Parameter TubeDiameter
         {
@@ -103,7 +103,7 @@ namespace LampParameters
         }
         
         /// <summary>
-        /// Свойство, задающее диамеир платформы под патрон
+        /// Свойство, задающее диаметр платформы под патрон
         /// </summary>
         public Parameter SocketPlatformDiameter
         {
@@ -115,17 +115,17 @@ namespace LampParameters
         }
 
         /// <summary>
-        /// Свойство, возращающее диаметр отверстия на площадке под патрон для саморезов
+        /// Константа, хранящая диаметр отверстия на площадке под патрон для саморезов
         /// </summary>
         public const double DiameterHole = 3;
 
         /// <summary>
-        /// Свойство, возращающее расстояние между отверстиями на площадке под патрон для саморезов
+        /// Константа, хранящая расстояние между отверстиями на площадке под патрон для саморезов
         /// </summary>
         public const double DistanceHole = 57;
 
         /// <summary>
-        /// Свойство, возращающее высоту кабеля провода
+        /// Константа, хранящая высоту кабеля провода
         /// </summary>
         public const double HeightCable = 4;
         
@@ -135,17 +135,17 @@ namespace LampParameters
         public const double WightSwitch = 28;
 
         /// <summary>
-        /// Свойство, возращающее высоту кнопки
+        /// Константа, хранящая высоту кнопки
         /// </summary>
         public const double HeightSwitch = 22;
 
         /// <summary>
-        /// Свойство, возращающее ширину кабеля провода
+        /// Константа, хранящая ширину кабеля провода
         /// </summary>
         public const double WightCable = 6;
 
         /// <summary>
-        /// Свойство, возращающее глубина отверстия в корусе, ножке, платформе
+        /// Свойство, возращающее глубину отверстия в корусе, ножке, платформе
         /// </summary>
         public double DepthHole
         {
@@ -163,7 +163,7 @@ namespace LampParameters
         }
 
         /// <summary>
-        /// Свойство, задающее среднее значение для зависимых параметров
+        /// Свойство, присваивающее значение по умолчанию для зависимых параметров
         /// </summary>
         public void DefaultValue()
         {
@@ -176,7 +176,7 @@ namespace LampParameters
         }
 
         /// <summary>
-        /// Свойство, задающее максимальное значение для зависимых параметров
+        /// Свойство, присваивающее максимальное значение для зависимых параметров
         /// </summary>
         public void MaxValue()
         {
@@ -189,7 +189,7 @@ namespace LampParameters
         }
 
         /// <summary>
-        /// Свойство, задающее минимальное значение для зависимых параметров
+        /// Свойство, присваивающее минимальное значение для зависимых параметров
         /// </summary>
         public void MinValue()
         {
