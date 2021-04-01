@@ -38,7 +38,7 @@ namespace LampPluginUI
             {
                 {
                     BodyDiameterTextBox, 
-                    (LampParameters.LampParameters lamp, string text) => { lamp.BodyDiametr.Value = double.Parse(text);}
+                    (LampParameters.LampParameters lamp, string text) => { lamp.BodyDiameter.Value = double.Parse(text);}
                 },
                 {
                     BodyHeightTextBox, 
@@ -46,7 +46,7 @@ namespace LampPluginUI
                 },
                 {
                     TubeDiameterTextBox,
-                    (LampParameters.LampParameters lamp, string text) => { lamp.TubeDiametr.Value = double.Parse(text);}
+                    (LampParameters.LampParameters lamp, string text) => { lamp.TubeDiameter.Value = double.Parse(text);}
                 },
                 {
                     TubeHeightTextBox,
@@ -54,7 +54,7 @@ namespace LampPluginUI
                 },
                 {
                     SocketPlatformDiameterTextBox,
-                    (LampParameters.LampParameters lamp, string text) => { lamp.SocketPlatformDiametr.Value = double.Parse(text);}
+                    (LampParameters.LampParameters lamp, string text) => { lamp.SocketPlatformDiameter.Value = double.Parse(text);}
                 },
                 {
                     SocketPlatformHeightTextBox,
@@ -105,7 +105,7 @@ namespace LampPluginUI
         /// <returns></returns>
         private bool Validate()
         {
-            if (BodyDiameterTextBox.Text.ToString() != _lamp.BodyDiametr.Value.ToString())
+            if (BodyDiameterTextBox.Text.ToString() != _lamp.BodyDiameter.Value.ToString())
             {
                 return false;
             }
@@ -113,7 +113,7 @@ namespace LampPluginUI
             {
                 return false;
             }
-            if (SocketPlatformDiameterTextBox.Text.ToString() != _lamp.SocketPlatformDiametr.Value.ToString())
+            if (SocketPlatformDiameterTextBox.Text.ToString() != _lamp.SocketPlatformDiameter.Value.ToString())
             {
                 return false;
             }
@@ -121,7 +121,7 @@ namespace LampPluginUI
             {
                 return false;
             }
-            if (TubeDiameterTextBox.Text.ToString() != _lamp.TubeDiametr.Value.ToString())
+            if (TubeDiameterTextBox.Text.ToString() != _lamp.TubeDiameter.Value.ToString())
             {
                 return false;
             }
@@ -162,11 +162,11 @@ namespace LampPluginUI
         /// </summary>
         private void UpdateFormFields()
         {
-            BodyDiameterTextBox.Text = _lamp.BodyDiametr.Value.ToString();
+            BodyDiameterTextBox.Text = _lamp.BodyDiameter.Value.ToString();
             BodyHeightTextBox.Text = _lamp.BodyHeight.Value.ToString();
-            TubeDiameterTextBox.Text = _lamp.TubeDiametr.Value.ToString();
+            TubeDiameterTextBox.Text = _lamp.TubeDiameter.Value.ToString();
             TubeHeightTextBox.Text = _lamp.TubeHeight.Value.ToString();
-            SocketPlatformDiameterTextBox.Text = _lamp.SocketPlatformDiametr.Value.ToString();
+            SocketPlatformDiameterTextBox.Text = _lamp.SocketPlatformDiameter.Value.ToString();
             SocketPlatformHeightTextBox.Text = _lamp.SocketPlatformHeight.Value.ToString();
         }
 
@@ -175,11 +175,11 @@ namespace LampPluginUI
         /// </summary>
         private void SetLimits()
         {
-            BodyDiameterLabel.Text = Convert.ToString($"Body Diameter ({_lamp.BodyDiametr.MinimumValue} - {_lamp.BodyDiametr.MaximumValue}) mm");
+            BodyDiameterLabel.Text = Convert.ToString($"Body Diameter ({_lamp.BodyDiameter.MinimumValue} - {_lamp.BodyDiameter.MaximumValue}) mm");
             BodyHeightLabel.Text = Convert.ToString($"Body Height ({_lamp.BodyHeight.MinimumValue} - {_lamp.BodyHeight.MaximumValue}) mm");
-            TubeDiameterLabel.Text = Convert.ToString($"Tube Diameter ({_lamp.TubeDiametr.MinimumValue} - {_lamp.TubeDiametr.MaximumValue}) mm");
+            TubeDiameterLabel.Text = Convert.ToString($"Tube Diameter ({_lamp.TubeDiameter.MinimumValue} - {_lamp.TubeDiameter.MaximumValue}) mm");
             TubeHeightLabel.Text = Convert.ToString($"Tube Height ({_lamp.TubeHeight.MinimumValue} - {_lamp.TubeHeight.MaximumValue}) mm");
-            SocketPlatformDiameterLabel.Text = Convert.ToString($"Socket Platform Diameter ({_lamp.SocketPlatformDiametr.MinimumValue} - {_lamp.SocketPlatformDiametr.MaximumValue}) mm");
+            SocketPlatformDiameterLabel.Text = Convert.ToString($"Socket Platform Diameter ({_lamp.SocketPlatformDiameter.MinimumValue} - {_lamp.SocketPlatformDiameter.MaximumValue}) mm");
             SocketPlatformHeightLabel.Text = Convert.ToString($"Socket Platform Height ({_lamp.SocketPlatformHeight.MinimumValue} - {_lamp.SocketPlatformHeight.MaximumValue}) mm");
         }
 

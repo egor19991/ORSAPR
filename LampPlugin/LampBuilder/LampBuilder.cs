@@ -22,14 +22,14 @@ namespace LampBuilder
         public void BuildLamp(LampParameters.LampParameters lamp)
         {
             KompasConnector.Instance.InitializationKompas();
-            CreateСylinder(lamp.BodyHeight.Value,lamp.BodyDiametr.Value,0);
-            CreateСylinder(lamp.TubeHeight.Value, lamp.TubeDiametr.Value, lamp.BodyHeight.Value);
-            CreateСylinder(lamp.SocketPlatformHeight.Value, lamp.SocketPlatformDiametr.Value, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
-            CreateRecess(LampParameters.LampParameters.HeightSwitch, LampParameters.LampParameters.WightSwitch, lamp.BodyDiametr.Value, true);
-            CreateRecess(LampParameters.LampParameters.HeightCable, LampParameters.LampParameters.WightCable, lamp.BodyDiametr.Value, false);
+            CreateСylinder(lamp.BodyHeight.Value,lamp.BodyDiameter.Value,0);
+            CreateСylinder(lamp.TubeHeight.Value, lamp.TubeDiameter.Value, lamp.BodyHeight.Value);
+            CreateСylinder(lamp.SocketPlatformHeight.Value, lamp.SocketPlatformDiameter.Value, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
+            CreateRecess(LampParameters.LampParameters.HeightSwitch, LampParameters.LampParameters.WightSwitch, lamp.BodyDiameter.Value, true);
+            CreateRecess(LampParameters.LampParameters.HeightCable, LampParameters.LampParameters.WightCable, lamp.BodyDiameter.Value, false);
             CreateHole(0, 0, LampParameters.LampParameters.WightCable, lamp.DepthHole, 0);
-            CreateHole(0, LampParameters.LampParameters.DistanceHole / 2, LampParameters.LampParameters.DiametrHole, lamp.DepthHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
-            CreateHole(0, -LampParameters.LampParameters.DistanceHole / 2, LampParameters.LampParameters.DiametrHole, lamp.DepthHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
+            CreateHole(0, LampParameters.LampParameters.DistanceHole / 2, LampParameters.LampParameters.DiameterHole, lamp.DepthHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
+            CreateHole(0, -LampParameters.LampParameters.DistanceHole / 2, LampParameters.LampParameters.DiameterHole, lamp.DepthHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
         }
 
         /// <summary>

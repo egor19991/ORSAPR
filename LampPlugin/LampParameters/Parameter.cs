@@ -124,10 +124,6 @@ namespace LampParameters
             get => _defaultValue;
             set
             {
-                if (String.IsNullOrEmpty(_nameParameter))
-                {
-                    throw new ArgumentException("Parameter name not specified");
-                }
                 if (_maxValue > 0 && _minValue > 0)
                 {
                     if (value <= _maxValue && value >= _minValue)

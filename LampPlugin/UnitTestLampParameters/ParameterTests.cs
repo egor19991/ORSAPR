@@ -307,23 +307,5 @@ namespace UnitTestLampParameters
             }
             );
         }
-
-        [Test]
-        public void DefaultValue_EmptyNameParameter_ThrowsException()
-        {
-            // Setup
-            var parameter = new Parameter { };
-            var sourceDefaultValue = 50;
-
-            // Assert
-            NUnit.Framework.Assert.Throws<ArgumentException>
-            (() =>
-            {
-                // Act
-                parameter.DefaultValue = sourceDefaultValue;
-            }
-            );
-        }
-
     }
 }
