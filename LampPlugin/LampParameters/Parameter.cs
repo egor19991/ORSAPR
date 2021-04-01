@@ -167,9 +167,9 @@ namespace LampParameters
                 }
             }
         }
-
-        public Parameter() {}
-
+        //TODO:
+        public Parameter() : this("", 1, 2, 1) {}
+        //TODO:
         public Parameter(string name, double min, double max, double defaultValue)
         {
             this.MinimumValue = min;

@@ -9,6 +9,7 @@ namespace UnitTestLampParameters
     [TestFixture]
     public class ParameterTests
     {
+        //TODO: добавить тестнэймы
         [Test]
         public void NameParameter_GoodName_ReturnsSameName()
         {
@@ -25,6 +26,7 @@ namespace UnitTestLampParameters
             NUnit.Framework.Assert.AreEqual(expectedName, actualName);
         }
 
+        //TODO убрать дублирование через тесткейзы
         [Test]
         public void Value_GoodValue_ReturnsSameValue()
         {

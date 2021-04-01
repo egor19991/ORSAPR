@@ -34,11 +34,15 @@ namespace LampPluginUI
         public MainForm()
         {
             InitializeComponent();
+                // TODO: RSDN
             _textBoxDictionary = new Dictionary<TextBox, Action<LampParameters.LampParameters, string>>()
             {
                 {
-                    BodyDiameterTextBox, 
-                    (LampParameters.LampParameters lamp, string text) => { lamp.BodyDiameter.Value = double.Parse(text);}
+                    BodyDiameterTextBox,
+                    (LampParameters.LampParameters lamp, string text) =>
+                    {
+                        lamp.BodyDiameter.Value = double.Parse(text);
+                    }
                 },
                 {
                     BodyHeightTextBox, 
@@ -105,6 +109,7 @@ namespace LampPluginUI
         /// <returns></returns>
         private bool Validate()
         {
+            //TODO
             if (BodyDiameterTextBox.Text.ToString() != _lamp.BodyDiameter.Value.ToString())
             {
                 return false;
@@ -207,6 +212,7 @@ namespace LampPluginUI
             {
                 return;
             }
+            //TODO switch case
             if (SizeComboBox.SelectedItem.ToString() == "Maximum value")
             {
                 _lamp.MaxValue();
@@ -241,6 +247,7 @@ namespace LampPluginUI
             Environment.Exit(0);
         }
 
+        //TODO
         private void BuildButton_Click(object sender, EventArgs e)
         {
             _build.BuildLamp(_lamp);
