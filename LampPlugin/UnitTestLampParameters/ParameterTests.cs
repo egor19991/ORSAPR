@@ -1,8 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using NUnit.Framework;
 using ModelParameters;
-using NUnit.Framework.Internal;
 
 
 namespace UnitTestLampParameters

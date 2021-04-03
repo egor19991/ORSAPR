@@ -8,6 +8,21 @@ namespace UnitTestLampParameters
     [TestFixture]
     class LampParametersTests
     {
+        private Dictionary<string, Parameter> TestingParameter
+        {
+            get
+            {
+                var lamp = new LampParameters { };
+                return new Dictionary<string, Parameter>
+                {
+                    {nameof(lamp.BodyDiameter), lamp.BodyDiameter},
+                    {nameof(lamp.BodyHeight), lamp.BodyHeight},
+                    {nameof(lamp.SocketPlatformDiameter), lamp.SocketPlatformDiameter},
+                    {nameof(lamp.SocketPlatformHeight), lamp.SocketPlatformHeight},
+                };
+            }
+        }
+
         //private List<Parameter> _parameters = new List<Parameter>();
         //private LampParameters _lamp = new LampParameters();
 

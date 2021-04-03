@@ -159,6 +159,7 @@ namespace ModelParameters
                 }
             }
         }
+
         //TODO:
         /// <summary>
         /// 
@@ -173,6 +174,7 @@ namespace ModelParameters
         {
             this.NameParameter = name;
         }
+
         //TODO:
         /// <summary>
         /// 

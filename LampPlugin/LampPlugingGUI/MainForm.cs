@@ -32,10 +32,11 @@ namespace LampPluginUI
         /// </summary>
         private LampBuilder.LampBuilder _build = new LampBuilder.LampBuilder();
 
+         //TODO: RSDN
         /// <summary>
         /// Лист параметров
         /// </summary>
-        private List<Parameter> parameters = new List<Parameter>();
+        private readonly List<Parameter> parameters;
 
         /// <summary>
         /// Лист c текстбоксами
@@ -55,7 +56,6 @@ namespace LampPluginUI
         public MainForm()
         {
             InitializeComponent();
-                // TODO: RSDN
             _textBoxDictionary = new Dictionary<TextBox, Action<LampParameters, string>>()
             {
                 {
@@ -101,27 +101,36 @@ namespace LampPluginUI
                     }
                 }
             };
-            parameters.Add(_lamp.BodyDiameter);
-            parameters.Add(_lamp.BodyHeight);
-            parameters.Add(_lamp.TubeDiameter);
-            parameters.Add(_lamp.TubeHeight);
-            parameters.Add(_lamp.SocketPlatformDiameter);
-            parameters.Add(_lamp.SocketPlatformHeight);
+
+            parameters = new List<Parameter>
+            {
+                _lamp.BodyDiameter,
+                _lamp.BodyHeight,
+                _lamp.TubeDiameter,
+                _lamp.TubeHeight,
+                _lamp.SocketPlatformDiameter,
+                _lamp.SocketPlatformHeight
+            };
+
             textBoxList.Add(BodyDiameterTextBox);
             textBoxList.Add(BodyHeightTextBox);
             textBoxList.Add(TubeDiameterTextBox);
             textBoxList.Add(TubeHeightTextBox);
             textBoxList.Add(SocketPlatformDiameterTextBox);
             textBoxList.Add(SocketPlatformHeightTextBox);
+
             labelList.Add(BodyDiameterLabel);
             labelList.Add(BodyHeightLabel);
             labelList.Add(TubeDiameterLabel);
             labelList.Add(TubeHeightLabel);
             labelList.Add(SocketPlatformDiameterLabel);
             labelList.Add(SocketPlatformHeightLabel);
+
             sizeParameters.Add("Maximum value");
             sizeParameters.Add("Minimum value");
             sizeParameters.Add("Default value");
+            //SizeComboBox.Items.AddRange(new[] {sizeParameters});
+            
             foreach (var parameter in sizeParameters)
             {
                 SizeComboBox.Items.Add(parameter);
@@ -252,30 +261,19 @@ namespace LampPluginUI
             {
                 return;
             }
-            if (SizeComboBox.SelectedItem.ToString() == sizeParameters[0])
+
+            var tmpDictionary = new Dictionary<string, Action>()
             {
-                _lamp.MaxValue();
-                UpdateFormFields();
-                WhiteColorTextBox();
-                BuildButton.Enabled = true;
-                return;
-            }
-            else if (SizeComboBox.SelectedItem.ToString() == sizeParameters[1])
-            {
-                _lamp.MinValue();
-                UpdateFormFields();
-                WhiteColorTextBox();
-                BuildButton.Enabled = true;
-                return;
-            }
-            else if (SizeComboBox.SelectedItem.ToString() == sizeParameters[2])
-            {
-                _lamp.DefaultValue();
-                UpdateFormFields();
-                WhiteColorTextBox();
-                BuildButton.Enabled = true;
-                return;
-            }
+                {sizeParameters[0], () => _lamp.MaxValue()},
+                {sizeParameters[1], () => _lamp.MinValue()},
+                {sizeParameters[2], () => _lamp.DefaultValue()},
+            };
+
+            tmpDictionary[SizeComboBox.SelectedItem.ToString()].Invoke();
+
+            UpdateFormFields();
+            WhiteColorTextBox();
+            BuildButton.Enabled = true;
         }
 
         /// <summary>
