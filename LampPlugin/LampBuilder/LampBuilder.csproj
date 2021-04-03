@@ -57,9 +57,9 @@
       <Project>{e07f809a-9795-4c9b-8eea-38daca30bf45}</Project>
       <Name>Kompas3DConnector</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LampParameters\LampParameters.csproj">
+    <ProjectReference Include="..\LampParameters\ModelParameters.csproj">
       <Project>{518770ba-b8e4-4c6f-a442-7b2f25883e09}</Project>
-      <Name>LampParameters</Name>
+      <Name>ModelParameters</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

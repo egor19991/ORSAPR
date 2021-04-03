@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LampParameters
+namespace ModelParameters
 {
     public class Parameter
     {
@@ -25,11 +25,6 @@ namespace LampParameters
         private double _defaultValue;
 
         /// <summary>
-        ///  Поле, хранящее название параметра
-        /// </summary>
-        private string _nameParameter;
-
-        /// <summary>
         /// Свойство, хранящее значения параметра
         /// </summary>
         public double Value
@@ -37,7 +32,7 @@ namespace LampParameters
             get => _value; 
             set
             {
-                if (String.IsNullOrEmpty(_nameParameter))
+                if (String.IsNullOrEmpty(NameParameter))
                 {
                     throw new ArgumentException("Parameter name not specified");
                 }
@@ -49,7 +44,7 @@ namespace LampParameters
                     }
                     else
                     {
-                        throw new ArgumentException($"Parameter {_nameParameter} " +
+                        throw new ArgumentException($"Parameter {NameParameter} " +
                                                     $"should be more then {_maxValue} " +
                                                     $"and less then {_minValue}");
                     }
@@ -112,7 +107,8 @@ namespace LampParameters
                     }
                     else
                     {
-                        throw new ArgumentException($"Minimum parameter must be less Maximum parameter = {_maxValue}");
+                        throw new ArgumentException($"Minimum parameter must be less Maximum " +
+                                                    $"parameter = {_maxValue}");
                     }
                 }
                 else
@@ -133,11 +129,7 @@ namespace LampParameters
         /// <summary>
         /// Свойство, хранящее название параметра
         /// </summary>
-        public string NameParameter
-        {
-            get { return _nameParameter; }
-            set { _nameParameter = value; }
-        }
+        public string NameParameter { get; set; }
 
         /// <summary>
         /// Свойство, хранящее параметер по умолчанию
@@ -155,7 +147,7 @@ namespace LampParameters
                     }
                     else
                     {
-                        throw new ArgumentException($"Parameter {_nameParameter} " +
+                        throw new ArgumentException($"Parameter {NameParameter} " +
                                                     $"should be more then {_maxValue} " +
                                                     $"and less then {_minValue}");
                     }
@@ -168,8 +160,27 @@ namespace LampParameters
             }
         }
         //TODO:
-        public Parameter() : this("", 1, 2, 1) {}
+        /// <summary>
+        /// 
+        /// </summary>
+        public Parameter() : this("", 1, 15, 5) {}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        public Parameter(string name)
+        {
+            this.NameParameter = name;
+        }
         //TODO:
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <param name="defaultValue"></param>
         public Parameter(string name, double min, double max, double defaultValue)
         {
             this.MinimumValue = min;

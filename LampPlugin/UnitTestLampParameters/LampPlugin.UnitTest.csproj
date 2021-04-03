@@ -61,9 +61,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LampParameters\LampParameters.csproj">
+    <ProjectReference Include="..\LampParameters\ModelParameters.csproj">
       <Project>{518770ba-b8e4-4c6f-a442-7b2f25883e09}</Project>
-      <Name>LampParameters</Name>
+      <Name>ModelParameters</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

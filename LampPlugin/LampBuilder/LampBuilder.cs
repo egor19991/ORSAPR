@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Kompas3DConnector;
 using Kompas6API5;
 using Kompas6Constants3D;
-using LampParameters;
+using ModelParameters;
 
 namespace LampBuilder
 {
@@ -19,17 +19,30 @@ namespace LampBuilder
         /// Метод для построения лампы целиком
         /// </summary>
         /// <param name="lamp"></param>
-        public void BuildLamp(LampParameters.LampParameters lamp)
+        public void BuildLamp(LampParameters lamp)
         {
             KompasConnector.Instance.InitializationKompas();
-            CreateСylinder(lamp.BodyHeight.Value,lamp.BodyDiameter.Value,0);
-            CreateСylinder(lamp.TubeHeight.Value, lamp.TubeDiameter.Value, lamp.BodyHeight.Value);
-            CreateСylinder(lamp.SocketPlatformHeight.Value, lamp.SocketPlatformDiameter.Value, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
-            CreateRecess(LampParameters.LampParameters.HeightSwitch, LampParameters.LampParameters.WightSwitch, lamp.BodyDiameter.Value, true);
-            CreateRecess(LampParameters.LampParameters.HeightCable, LampParameters.LampParameters.WightCable, lamp.BodyDiameter.Value, false);
-            CreateHole(0, 0, LampParameters.LampParameters.WightCable, lamp.DepthHole, 0);
-            CreateHole(0, LampParameters.LampParameters.DistanceHole / 2, LampParameters.LampParameters.DiameterHole, lamp.DepthHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
-            CreateHole(0, -LampParameters.LampParameters.DistanceHole / 2, LampParameters.LampParameters.DiameterHole, lamp.DepthHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
+            CreateСylinder(lamp.BodyHeight.
+                Value,lamp.BodyDiameter.Value,0);
+            CreateСylinder(lamp.TubeHeight.Value, lamp.TubeDiameter.Value,
+                lamp.BodyHeight.Value);
+            CreateСylinder(lamp.SocketPlatformHeight.Value, 
+                lamp.SocketPlatformDiameter.Value,
+                lamp.BodyHeight.Value + lamp.TubeHeight.Value);
+            CreateRecess(LampParameters.HeightSwitch,
+                LampParameters.WightSwitch,
+                lamp.BodyDiameter.Value, true);
+            CreateRecess(LampParameters.HeightCable,
+                LampParameters.WightCable,
+                lamp.BodyDiameter.Value, false);
+            CreateHole(0, 0, LampParameters.WightCable,
+                lamp.DepthHole, 0);
+            CreateHole(0, LampParameters.DistanceHole / 2,
+                LampParameters.DiameterHole,
+                lamp.DepthHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
+            CreateHole(0, -LampParameters.DistanceHole / 2,
+                LampParameters.DiameterHole, 
+                lamp.DepthHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
         }
 
         /// <summary>
@@ -61,7 +74,8 @@ namespace LampBuilder
         /// <param name="type">направеление выреза</param>
         private void CreateRecess(double depth, double width, double diametr, bool type)
         {
-            ksEntity currentPlane = (ksEntity)KompasConnector.Instance.KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
+            ksEntity currentPlane = (ksEntity)KompasConnector.Instance.
+                KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
             
             double radiusBodyDiametr = diametr / 2;
             double x2 = Math.Sqrt(Math.Pow(radiusBodyDiametr, 2) - Math.Pow(width / 2, 2));
@@ -72,9 +86,11 @@ namespace LampBuilder
                 direction = -1;
             }
 
-            currentPlane = (ksEntity)KompasConnector.Instance.KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
+            currentPlane = (ksEntity)KompasConnector.Instance.
+                KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
 
-            ksEntity Sketch = (ksEntity)KompasConnector.Instance.KompasPart.NewEntity((short)Obj3dType.o3d_sketch);
+            ksEntity Sketch = (ksEntity)KompasConnector.Instance.
+                KompasPart.NewEntity((short)Obj3dType.o3d_sketch);
             ksSketchDefinition SketchDef = Sketch.GetDefinition();
             SketchDef.SetPlane(currentPlane);
             Sketch.Create();
@@ -82,7 +98,8 @@ namespace LampBuilder
             document2D.ksLineSeg(0, -(width / 2), 0, (width / 2), 1);
             document2D.ksLineSeg(0, -(width / 2), x2, -(width / 2), 1);
             document2D.ksLineSeg(0, (width / 2), x2, (width / 2), 1);
-            document2D.ksArcByPoint(0, 0, radiusBodyDiametr, x2, -(width / 2), x2, (width / 2), direction, 1);
+            document2D.ksArcByPoint(0, 0, radiusBodyDiametr, x2, 
+                -(width / 2), x2, (width / 2), direction, 1);
             SketchDef.EndEdit();
 
             CutExtrusion(depth,SketchDef);
@@ -116,19 +133,27 @@ namespace LampBuilder
         /// <returns>Эскиз</returns>
         public ksSketchDefinition CreateSketch(double heightPlane)
         {
-            ksEntity currentPlane = (ksEntity)KompasConnector.Instance.KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
-            ksEntity newPlane = (ksEntity)KompasConnector.Instance.KompasPart.NewEntity((short)Obj3dType.o3d_planeOffset);
+            ksEntity currentPlane = (ksEntity)KompasConnector
+                .Instance.KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
+            ksEntity newPlane = (ksEntity)KompasConnector
+                .Instance.KompasPart.NewEntity((short)Obj3dType.o3d_planeOffset);
             // Интерфейс настроек смещенной плоскости
-            ksPlaneOffsetDefinition newPlaneDefinition = (ksPlaneOffsetDefinition)newPlane.GetDefinition();
+            ksPlaneOffsetDefinition newPlaneDefinition = 
+                (ksPlaneOffsetDefinition)newPlane.GetDefinition();
 
-            newPlaneDefinition.SetPlane(currentPlane); // начальная позиция плоскости: от предыдущей
-            newPlaneDefinition.direction = true; // направление смещения: прямое
-            newPlaneDefinition.offset = heightPlane; // расстояние смещения
-            newPlane.Create(); // создать плоскость
+            // начальная позиция плоскости: от предыдущей
+            newPlaneDefinition.SetPlane(currentPlane);
+            // направление смещения: прямое
+            newPlaneDefinition.direction = true;
+            // расстояние смещения
+            newPlaneDefinition.offset = heightPlane;
+            // создать плоскость
+            newPlane.Create();
+            // установить последнюю созданную плоскость текущей
+            currentPlane = newPlane;
 
-            currentPlane = newPlane; // установить последнюю созданную плоскость текущей
-
-            ksEntity Sketch = (ksEntity)KompasConnector.Instance.KompasPart.NewEntity((short)Obj3dType.o3d_sketch);
+            ksEntity Sketch = (ksEntity)KompasConnector
+                .Instance.KompasPart.NewEntity((short)Obj3dType.o3d_sketch);
             ksSketchDefinition SketchDef = Sketch.GetDefinition();
             SketchDef.SetPlane(currentPlane);
             Sketch.Create();
@@ -142,12 +167,16 @@ namespace LampBuilder
         /// <param name="SketchDef">Эскиз</param>
         public void CutExtrusion(double depth, ksSketchDefinition SketchDef)
         {
-            var iBaseExtrusionEntity1 = (ksEntity)KompasConnector.Instance.KompasPart.NewEntity((short)ksObj3dTypeEnum.o3d_cutExtrusion);
+            var iBaseExtrusionEntity1 = (ksEntity)KompasConnector
+                .Instance.KompasPart.NewEntity((short)ksObj3dTypeEnum.o3d_cutExtrusion);
             //интерфейс свойств базовой операции выдавливания
             var iBaseExtrusionDef1 = (ksCutExtrusionDefinition)iBaseExtrusionEntity1.GetDefinition();
-            iBaseExtrusionDef1.SetSideParam(false, 0, depth);   //толщина выдавливания
-            iBaseExtrusionDef1.SetSketch(SketchDef); // эскиз операции выдавливания
-            iBaseExtrusionEntity1.Create(); // создать операцию
+            //толщина выдавливания
+            iBaseExtrusionDef1.SetSideParam(false, 0, depth);
+            // эскиз операции выдавливания
+            iBaseExtrusionDef1.SetSketch(SketchDef);
+            // создать операцию
+            iBaseExtrusionEntity1.Create();
         }
 
         /// <summary>
@@ -157,12 +186,16 @@ namespace LampBuilder
         /// <param name="SketchDef">Эскиз</param>
         public void BossExtrusion(double height, ksSketchDefinition SketchDef)
         {
-            var iBaseExtrusionEntity = (ksEntity)KompasConnector.Instance.KompasPart.NewEntity((short)ksObj3dTypeEnum.o3d_bossExtrusion);
+            var iBaseExtrusionEntity = (ksEntity)KompasConnector.Instance.
+                KompasPart.NewEntity((short)ksObj3dTypeEnum.o3d_bossExtrusion);
             // интерфейс свойств базовой операции выдавливания
             var iBaseExtrusionDef = (ksBossExtrusionDefinition)iBaseExtrusionEntity.GetDefinition();
-            iBaseExtrusionDef.SetSideParam(true, 0, height);   //толщина выдавливания
-            iBaseExtrusionDef.SetSketch(SketchDef); // эскиз операции выдавливания
-            iBaseExtrusionEntity.Create(); // создать операцию
+            //толщина выдавливания
+            iBaseExtrusionDef.SetSideParam(true, 0, height);
+            // эскиз операции выдавливания
+            iBaseExtrusionDef.SetSketch(SketchDef);
+            // создать операцию
+            iBaseExtrusionEntity.Create(); 
         }
         
         /// <summary>

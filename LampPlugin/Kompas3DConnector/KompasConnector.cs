@@ -11,24 +11,9 @@ namespace Kompas3DConnector
     public class KompasConnector
     {
         /// <summary>
-        /// Поле, хранящее данные о 3D детали
-        /// </summary>
-        private ksDocument3D _document3d;
-
-        /// <summary>
-        /// Поле предназназначено для свизи с API Компас 
-        /// </summary>
-        private KompasObject _kompasObject;
-
-        /// <summary>
         /// Поле для создание интерфейса
         /// </summary>
         private static KompasConnector _instance;
-
-        /// <summary>
-        /// Поле, для работы с частями детали 
-        /// </summary>
-        private ksPart _kompasPart;
 
         /// <summary>
         /// Свойство для реализации интерфейса API Компас 
@@ -46,29 +31,17 @@ namespace Kompas3DConnector
         /// <summary>
         /// Свойство для реализации связи с API Компас
         /// </summary>
-        public KompasObject KompasObject
-        {
-            get { return _kompasObject; }
-            set { _kompasObject = value; }
-        }
+        public KompasObject KompasObject { get; set; }
 
         /// <summary>
         /// Сойство для реализации связи с частями детали
         /// </summary>
-        public ksPart KompasPart
-        {
-            get { return _kompasPart; }
-            set { _kompasPart = value; }
-        }
+        public ksPart KompasPart { get; set; }
 
         /// <summary>
         /// Сойство для реализации связи с 3D эскизом
         /// </summary>
-        public ksDocument3D Document3D
-        {
-            get { return _document3d; }
-            set { _document3d = value; }
-        }
+        public ksDocument3D Document3D { get; set; }
 
         /// <summary>
         /// Метод запуска Компас в режиме детали, инициализации свойств Document3D, KompasPart и KompasObject
@@ -77,28 +50,28 @@ namespace Kompas3DConnector
         {
             try
             {
-                if (_kompasObject != null)
+                if (KompasObject != null)
                 {
-                    _document3d.close();
+                    Document3D.close();
                 }
-                if (_kompasObject == null)
+                if (KompasObject == null)
                 {
                     #if __LIGHT_VERSION__
                     Type t = Type.GetTypeFromProgID("KOMPASLT.Application.5");
                     #else
                     Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
                     #endif
-                    _kompasObject = (KompasObject)Activator.CreateInstance(t);
+                    KompasObject = (KompasObject)Activator.CreateInstance(t);
                 }
-                _document3d = (Document3D)_kompasObject.Document3D();
-                _document3d.Create(false, true);
-                _kompasPart = (ksPart)_document3d.GetPart((short)Part_Type.pTop_Part);
-                _kompasObject.Visible = true;
-                _kompasObject.ActivateControllerAPI();
+                Document3D = (Document3D)KompasObject.Document3D();
+                Document3D.Create(false, true);
+                KompasPart = (ksPart)Document3D.GetPart((short)Part_Type.pTop_Part);
+                KompasObject.Visible = true;
+                KompasObject.ActivateControllerAPI();
             }
             catch (Exception e)
             {
-                _kompasObject = null;
+                KompasObject = null;
                 InitializationKompas();
             }
         }
@@ -108,10 +81,10 @@ namespace Kompas3DConnector
         /// </summary>
         public void UnloadKompas()
         {
-            if (_kompasObject != null)
+            if (KompasObject != null)
             {
-                _kompasObject.Quit();
-                Marshal.ReleaseComObject(_kompasObject);
+                KompasObject.Quit();
+                Marshal.ReleaseComObject(KompasObject);
             }
         }
 
