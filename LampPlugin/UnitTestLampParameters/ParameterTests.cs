@@ -9,7 +9,6 @@ namespace UnitTestLampParameters
     public class ParameterTests
     {
         [TestCase(TestName = "Позитивный тест на присваивание и считывание названия параметра")]
-        [Test]
         public void NameParameter_GoodName_ReturnsSameName()
         {
             // Setup
@@ -26,7 +25,6 @@ namespace UnitTestLampParameters
         }
 
         [TestCase(TestName = "Позитивный тест на присваивание и считывание значения параметра")]
-        [Test]
         public void Value_GoodValue_ReturnsSameValue()
         {
             // Setup
@@ -44,7 +42,6 @@ namespace UnitTestLampParameters
 
         [TestCase(9.5, TestName = "Негативный тест на проверку минимальной границы значения параметра")]
         [TestCase(60.5, TestName = "Негативный тест на проверку максимальной границы значения параметра")]
-        [Test]
         public void Value_BadValue_ThrowsException(double sourceValue)
         {
             // Setup
@@ -64,7 +61,6 @@ namespace UnitTestLampParameters
                                  "строке")]
         [TestCase("width", TestName = "Негативный тест на присваивание значения параметра при" +
                                       " пустых ограничениях")]
-        [Test]
         public void Value_EmptyNameParameter_ThrowsException(string sourceName)
         {
             // Setup
@@ -87,7 +83,6 @@ namespace UnitTestLampParameters
         [TestCase(4, 50, TestName = "Позитивный тест, для присваивания " +
                                     "и получения максимально значения, когда минимальный параметер " +
                                     "определен")]
-        [Test]
         public void MaximumValue_GoodMaximumValue_ReturnsSameMaximumValue(double sourceMinimumValue,
             double sourceMaximumValue)
         {
@@ -113,7 +108,6 @@ namespace UnitTestLampParameters
         [TestCase(0, -1, TestName = "Негативный тест, для максимального " +
                                     "значения, когда минимальный параметер не определен и присваивается " +
                                     "отрицательное значенние для максимального параметра")]
-        [Test]
         public void MaximumValue_MaximumValueBad_ThrowsException(double sourceMinimumValue, 
             double sourceMaximumValue)
         {
@@ -140,7 +134,6 @@ namespace UnitTestLampParameters
         [TestCase(20, 50, TestName = "Позитивный тест, для присваивания " +
                                      "и получения минимального значения, когда максимальный параметер" +
                                      " определен")]
-        [Test]
         public void MinimumValue_GoodMinimumValue_ReturnsSameMinimumValue(double sourceMinimumValue,
             double sourceMaximumValue)
         {
@@ -166,7 +159,6 @@ namespace UnitTestLampParameters
         [TestCase(-1, 0, TestName = "Негативный тест, для максимально" +
                                     " значения, когда максимальный параметер не определен и присваивается" +
                                     " отрицательное значенние для минимального параметра")]
-        [Test]
         public void MinimumValue_MinimumValueBad_ThrowsException(double sourceMinimumValue, 
             double sourceMaximumValue)
         {
@@ -190,7 +182,6 @@ namespace UnitTestLampParameters
 
         [TestCase(TestName = "Позитивный тест, когда значение по умолчанию, передается в метод и " +
                              "считывается")]
-        [Test]
         public void DefaultValue_GoodValue_ReturnsSameValue()
         {
             // Setup
@@ -208,7 +199,6 @@ namespace UnitTestLampParameters
 
         [TestCase(20,TestName = "Негативный тест, когда значение по умолчанию больше чем максимум")]
         [TestCase(0.5, TestName = "Негативный тест, когда значение по умолчанию больше чем максимум")]
-        [Test]
         public void DefaultValue_BadDefaultValue_ThrowsException(double sourceDefaultValue)
         {
             // Setup
@@ -226,7 +216,6 @@ namespace UnitTestLampParameters
 
         [TestCase(TestName = "Негативный тест, для значение по умолчанию, когда не задан минимальный " +
                              "и максимальный параметер")]
-        [Test]
         public void DefaultValue_EmptyMaximumAndMinimumValue_ThrowsException()
         {
             var parameter = new Parameter("Width");

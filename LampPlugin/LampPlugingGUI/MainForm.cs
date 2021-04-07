@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using ModelParameters;
 using LampBuilder;
 
@@ -32,26 +25,25 @@ namespace LampPluginUI
         /// </summary>
         private LampBuilder.LampBuilder _build = new LampBuilder.LampBuilder();
 
-         //TODO: RSDN
         /// <summary>
         /// Лист параметров
         /// </summary>
-        private readonly List<Parameter> parameters;
+        private readonly List<Parameter> _parameters;
 
         /// <summary>
         /// Лист c текстбоксами
         /// </summary>
-        private List<TextBox> textBoxList = new List<TextBox>();
+        private readonly List<TextBox> _textBoxList;
 
         /// <summary>
         /// Лист c текстбоксами
         /// </summary>
-        private List<Label> labelList = new List<Label>();
+        private readonly List<Label> _labelList;
 
         /// <summary>
         /// Лист c текстбоксами
         /// </summary>
-        private List<string> sizeParameters = new List<string>();
+        private readonly List<string> _sizeParameters;
 
         public MainForm()
         {
@@ -102,7 +94,7 @@ namespace LampPluginUI
                 }
             };
 
-            parameters = new List<Parameter>
+            _parameters = new List<Parameter>
             {
                 _lamp.BodyDiameter,
                 _lamp.BodyHeight,
@@ -112,29 +104,39 @@ namespace LampPluginUI
                 _lamp.SocketPlatformHeight
             };
 
-            textBoxList.Add(BodyDiameterTextBox);
-            textBoxList.Add(BodyHeightTextBox);
-            textBoxList.Add(TubeDiameterTextBox);
-            textBoxList.Add(TubeHeightTextBox);
-            textBoxList.Add(SocketPlatformDiameterTextBox);
-            textBoxList.Add(SocketPlatformHeightTextBox);
-
-            labelList.Add(BodyDiameterLabel);
-            labelList.Add(BodyHeightLabel);
-            labelList.Add(TubeDiameterLabel);
-            labelList.Add(TubeHeightLabel);
-            labelList.Add(SocketPlatformDiameterLabel);
-            labelList.Add(SocketPlatformHeightLabel);
-
-            sizeParameters.Add("Maximum value");
-            sizeParameters.Add("Minimum value");
-            sizeParameters.Add("Default value");
-            //SizeComboBox.Items.AddRange(new[] {sizeParameters});
-            
-            foreach (var parameter in sizeParameters)
+            _textBoxList = new List<TextBox>
             {
-                SizeComboBox.Items.Add(parameter);
-            }
+                BodyDiameterTextBox,
+                BodyHeightTextBox,
+                TubeDiameterTextBox,
+                TubeHeightTextBox,
+                SocketPlatformDiameterTextBox,
+                SocketPlatformHeightTextBox
+            };
+
+            _labelList = new List<Label>
+            {
+                BodyDiameterLabel,
+                BodyHeightLabel,
+                TubeDiameterLabel,
+                TubeHeightLabel,
+                SocketPlatformDiameterLabel,
+                SocketPlatformHeightLabel
+            };
+
+            _sizeParameters = new List<string>
+            {
+                "Maximum value",
+                "Minimum value",
+                "Default value"
+            };
+
+           // SizeComboBox.Items.AddRange( CollectionConverter sizeParameters );
+           SizeComboBox.Items.AddRange(_sizeParameters.ToArray());
+            //foreach (var parameter in sizeParameters)
+            //{
+            //    SizeComboBox.Items.Add(parameter);
+            //}
             SizeComboBox.SelectedItem = "Default value";
             _lamp.DefaultValue();
             UpdateFormFields();
@@ -150,7 +152,7 @@ namespace LampPluginUI
         {
             var currentTextBox = (TextBox)sender;
             var currentAction = _textBoxDictionary[currentTextBox];
-            if (currentTextBox.Text != String.Empty)
+            if (!String.IsNullOrEmpty(currentTextBox.Text))
             {
                 try
                 {
@@ -176,11 +178,10 @@ namespace LampPluginUI
         /// <returns></returns>
         private bool Validate()
         {
-            //TODO
-            var smallestUpperBound = Math.Min(textBoxList.Count, parameters.Count);
+            var smallestUpperBound = Math.Min(_textBoxList.Count, _parameters.Count);
             for (var index = 0; index < smallestUpperBound; index++)
             {
-                if (textBoxList[index].Text.ToString() != parameters[index].Value.ToString())
+                if (_textBoxList[index].Text.ToString() != _parameters[index].Value.ToString())
                 {
                     return false;
                 }
@@ -218,10 +219,10 @@ namespace LampPluginUI
         /// </summary>
         private void UpdateFormFields()
         {
-            var smallestUpperBound = Math.Min(textBoxList.Count, parameters.Count);
+            var smallestUpperBound = Math.Min(_textBoxList.Count, _parameters.Count);
             for (var index = 0; index < smallestUpperBound; index++)
             {
-                textBoxList[index].Text = parameters[index].Value.ToString();
+                _textBoxList[index].Text = _parameters[index].Value.ToString();
             }
         }
 
@@ -230,12 +231,12 @@ namespace LampPluginUI
         /// </summary>
         private void SetLimits()
         {
-            var smallestUpperBound = Math.Min(labelList.Count, parameters.Count);
+            var smallestUpperBound = Math.Min(_labelList.Count, _parameters.Count);
             for (var index = 0; index < smallestUpperBound; index++)
             {
-                labelList[index].Text = Convert.ToString($"{parameters[index].NameParameter} " +
-                                                         $"({parameters[index].MinimumValue} - " +
-                                                         $"{parameters[index].MaximumValue}) mm");
+                _labelList[index].Text = Convert.ToString($"{_parameters[index].NameParameter} " +
+                                                         $"({_parameters[index].MinimumValue} - " +
+                                                         $"{_parameters[index].MaximumValue}) mm");
             }
         }
 
@@ -244,7 +245,7 @@ namespace LampPluginUI
         /// </summary>
         private void WhiteColorTextBox()
         {
-            foreach (var currentTextBox in textBoxList)
+            foreach (var currentTextBox in _textBoxList)
             {
                 currentTextBox.BackColor = Color.White;
             }
@@ -264,9 +265,9 @@ namespace LampPluginUI
 
             var tmpDictionary = new Dictionary<string, Action>()
             {
-                {sizeParameters[0], () => _lamp.MaxValue()},
-                {sizeParameters[1], () => _lamp.MinValue()},
-                {sizeParameters[2], () => _lamp.DefaultValue()},
+                {_sizeParameters[0], () => _lamp.MaxValue()},
+                {_sizeParameters[1], () => _lamp.MinValue()},
+                {_sizeParameters[2], () => _lamp.DefaultValue()},
             };
 
             tmpDictionary[SizeComboBox.SelectedItem.ToString()].Invoke();
@@ -296,7 +297,5 @@ namespace LampPluginUI
         {
             _build.BuildLamp(_lamp);
         }
-        
-        
     }
 }

@@ -11,7 +11,7 @@ namespace ModelParameters
         /// <summary>
         /// Лист параметров
         /// </summary>
-        private List<Parameter> parameters = new List<Parameter>();
+        private readonly List<Parameter> _parameters;
 
         /// <summary>
         /// Свойство, задающее выстоу корпуса
@@ -104,7 +104,7 @@ namespace ModelParameters
         public void DefaultValue()
         {
 
-            foreach (var carrentParameter in parameters)
+            foreach (var carrentParameter in _parameters)
             {
                 carrentParameter.Value = carrentParameter.DefaultValue;
             }
@@ -116,7 +116,7 @@ namespace ModelParameters
         /// </summary>
         public void MaxValue()
         {
-            foreach (var currentParameter in parameters)
+            foreach (var currentParameter in _parameters)
             {
                 currentParameter.Value = currentParameter.MaximumValue;
             }
@@ -128,7 +128,7 @@ namespace ModelParameters
         /// </summary>
         public void MinValue()
         {
-            foreach (var currentParameter in parameters)
+            foreach (var currentParameter in _parameters)
             {
                 currentParameter.Value = currentParameter.MinimumValue;
             }
@@ -151,12 +151,15 @@ namespace ModelParameters
                 "SocketPlatform Height", 2,6, 4);
             this.TubeHeight = new Parameter("Tube Height",
                 150, 200, 200);
-            parameters.Add(BodyDiameter);
-            parameters.Add(BodyHeight);
-            parameters.Add(TubeDiameter);
-            parameters.Add(TubeHeight);
-            parameters.Add(SocketPlatformDiameter);
-            parameters.Add(SocketPlatformHeight);
+            _parameters = new List<Parameter>
+            {
+                BodyDiameter,
+                BodyHeight,
+                TubeDiameter,
+                TubeHeight,
+                SocketPlatformDiameter,
+                SocketPlatformHeight
+            };
         }
     }
 }

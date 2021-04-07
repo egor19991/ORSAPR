@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Kompas3DConnector;
 using Kompas6API5;
 using Kompas6Constants3D;
@@ -49,16 +45,16 @@ namespace LampBuilder
         /// Метод для создания цилиндра
         /// </summary>
         /// <param name="height">Высота цилиндра</param>
-        /// <param name="diametr">Диаметер цилиндра</param>
+        /// <param name="diameter">Диаметер цилиндра</param>
         /// <param name="heightPlane">Выстоа плоскости</param>
-        private void CreateСylinder(double height, double diametr, double heightPlane)
+        private void CreateСylinder(double height, double diameter, double heightPlane)
         {
             var SketchDef = CreateSketch(heightPlane);
 
             ksDocument2D document2D = (ksDocument2D)SketchDef.BeginEdit();
             var xc = 0;
             var yc = 0;
-            var rad = diametr / 2;
+            var rad = diameter / 2;
 
             document2D.ksCircle(xc, yc, rad, 1);
             SketchDef.EndEdit();
@@ -70,14 +66,14 @@ namespace LampBuilder
         /// </summary>
         /// <param name="depth">Глубина выемки</param>
         /// <param name="width">Ширина выемки</param>
-        /// <param name="diametr">Диаметер основания</param>
+        /// <param name="diameter">Диаметер основания</param>
         /// <param name="type">направеление выреза</param>
-        private void CreateRecess(double depth, double width, double diametr, bool type)
+        private void CreateRecess(double depth, double width, double diameter, bool type)
         {
             ksEntity currentPlane = (ksEntity)KompasConnector.Instance.
                 KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
             
-            double radiusBodyDiametr = diametr / 2;
+            double radiusBodyDiametr = diameter / 2;
             double x2 = Math.Sqrt(Math.Pow(radiusBodyDiametr, 2) - Math.Pow(width / 2, 2));
             short direction = 1;
             if (type == false)
@@ -110,15 +106,15 @@ namespace LampBuilder
         /// </summary>
         /// <param name="xc">Координата центра окружности x</param>
         /// <param name="yc">Координата центра окружности y</param>
-        /// <param name="diametr">Диаметр окружности</param>
+        /// <param name="diameter">Диаметр окружности</param>
         /// <param name="depth">Глубина отверстия</param>
         /// <param name="heightPlane">Расстояние от начала плоскости</param>
-        public void CreateHole(double xc, double yc, double diametr, double depth, double heightPlane)
+        public void CreateHole(double xc, double yc, double diameter, double depth, double heightPlane)
         {
             var SketchDef = CreateSketch(heightPlane);
 
             ksDocument2D document2D = (ksDocument2D)SketchDef.BeginEdit();
-            var rad = diametr / 2;
+            var rad = diameter / 2;
 
             document2D.ksCircle(xc, yc, rad, 1);
             SketchDef.EndEdit();
