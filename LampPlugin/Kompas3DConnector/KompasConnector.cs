@@ -81,9 +81,16 @@ namespace Kompas3DConnector
         /// </summary>
         public void UnloadKompas()
         {
-            if (KompasObject != null)
+            try
             {
-                KompasObject.Quit();
+                if (KompasObject != null)
+                {
+                    KompasObject.Quit();
+                    Marshal.ReleaseComObject(KompasObject);
+                }
+            }
+            catch (Exception e)
+            {
                 Marshal.ReleaseComObject(KompasObject);
             }
         }

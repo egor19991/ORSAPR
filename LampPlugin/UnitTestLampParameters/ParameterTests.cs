@@ -57,10 +57,10 @@ namespace UnitTestLampParameters
             );
         }
 
-        [TestCase("", TestName = "Негативный тест на присваивание значения параметра при пустой " +
-                                 "строке")]
+        [TestCase("", TestName = "Негативный тест на присваивание значения параметра при" +
+                                 "незаданом названии параметра")]
         [TestCase("width", TestName = "Негативный тест на присваивание значения параметра при" +
-                                      " пустых ограничениях")]
+                                      " незаданных ограничениях")]
         public void Value_EmptyNameParameter_ThrowsException(string sourceName)
         {
             // Setup

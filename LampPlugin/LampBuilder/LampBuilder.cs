@@ -76,6 +76,7 @@ namespace LampBuilder
             double radiusBodyDiametr = diameter / 2;
             double x2 = Math.Sqrt(Math.Pow(radiusBodyDiametr, 2) - Math.Pow(width / 2, 2));
             short direction = 1;
+            double y = width / 2;
             if (type == false)
             {
                 x2 = -1 * x2;
@@ -91,9 +92,9 @@ namespace LampBuilder
             SketchDef.SetPlane(currentPlane);
             Sketch.Create();
             ksDocument2D document2D = (ksDocument2D)SketchDef.BeginEdit();
-            document2D.ksLineSeg(0, -(width / 2), 0, (width / 2), 1);
-            document2D.ksLineSeg(0, -(width / 2), x2, -(width / 2), 1);
-            document2D.ksLineSeg(0, (width / 2), x2, (width / 2), 1);
+            document2D.ksLineSeg(0, -y, 0, y, 1);
+            document2D.ksLineSeg(0, -y, x2, -y, 1);
+            document2D.ksLineSeg(0, y, x2, y, 1);
             document2D.ksArcByPoint(0, 0, radiusBodyDiametr, x2, 
                 -(width / 2), x2, (width / 2), direction, 1);
             SketchDef.EndEdit();

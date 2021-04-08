@@ -71,7 +71,7 @@ namespace LampPluginUI
             // 
             this.BodyHeightTextBox.Location = new System.Drawing.Point(204, 86);
             this.BodyHeightTextBox.Name = "BodyHeightTextBox";
-            this.BodyHeightTextBox.Size = new System.Drawing.Size(47, 20);
+            this.BodyHeightTextBox.Size = new System.Drawing.Size(45, 20);
             this.BodyHeightTextBox.TabIndex = 2;
             this.BodyHeightTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxAllowOnlyNumbers);
             this.BodyHeightTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
@@ -124,7 +124,7 @@ namespace LampPluginUI
             // 
             this.TubeHeightTextBox.Location = new System.Drawing.Point(204, 112);
             this.TubeHeightTextBox.Name = "TubeHeightTextBox";
-            this.TubeHeightTextBox.Size = new System.Drawing.Size(47, 20);
+            this.TubeHeightTextBox.Size = new System.Drawing.Size(45, 20);
             this.TubeHeightTextBox.TabIndex = 8;
             this.TubeHeightTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxAllowOnlyNumbers);
             this.TubeHeightTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
@@ -150,7 +150,7 @@ namespace LampPluginUI
             // 
             this.SocketPlatformHeightTextBox.Location = new System.Drawing.Point(204, 138);
             this.SocketPlatformHeightTextBox.Name = "SocketPlatformHeightTextBox";
-            this.SocketPlatformHeightTextBox.Size = new System.Drawing.Size(47, 20);
+            this.SocketPlatformHeightTextBox.Size = new System.Drawing.Size(45, 20);
             this.SocketPlatformHeightTextBox.TabIndex = 14;
             this.SocketPlatformHeightTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxAllowOnlyNumbers);
             this.SocketPlatformHeightTextBox.Leave += new System.EventHandler(this.TextBoxLeave);
