@@ -49,6 +49,7 @@ namespace LampBuilder
         /// <param name="heightPlane">Выстоа плоскости</param>
         private void CreateСylinder(double height, double diameter, double heightPlane)
         {
+             //TODO: RSDN
             var SketchDef = CreateSketch(heightPlane);
 
             ksDocument2D document2D = (ksDocument2D)SketchDef.BeginEdit();
@@ -86,8 +87,10 @@ namespace LampBuilder
             currentPlane = (ksEntity)KompasConnector.Instance.
                 KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
 
+             //TODO: RSDN
             ksEntity Sketch = (ksEntity)KompasConnector.Instance.
                 KompasPart.NewEntity((short)Obj3dType.o3d_sketch);
+            //TODO: RSDN naming
             ksSketchDefinition SketchDef = Sketch.GetDefinition();
             SketchDef.SetPlane(currentPlane);
             Sketch.Create();
@@ -112,6 +115,7 @@ namespace LampBuilder
         /// <param name="heightPlane">Расстояние от начала плоскости</param>
         public void CreateHole(double xc, double yc, double diameter, double depth, double heightPlane)
         {
+            //TODO: RSDN naming
             var SketchDef = CreateSketch(heightPlane);
 
             ksDocument2D document2D = (ksDocument2D)SketchDef.BeginEdit();
@@ -166,6 +170,7 @@ namespace LampBuilder
         {
             var iBaseExtrusionEntity1 = (ksEntity)KompasConnector
                 .Instance.KompasPart.NewEntity((short)ksObj3dTypeEnum.o3d_cutExtrusion);
+            //TODO: Duplication
             //интерфейс свойств базовой операции выдавливания
             var iBaseExtrusionDef1 = (ksCutExtrusionDefinition)iBaseExtrusionEntity1.GetDefinition();
             //толщина выдавливания
@@ -176,6 +181,7 @@ namespace LampBuilder
             iBaseExtrusionEntity1.Create();
         }
 
+        //TODO: RSDN naming
         /// <summary>
         /// Метод для выдавливания
         /// </summary>
@@ -185,6 +191,7 @@ namespace LampBuilder
         {
             var iBaseExtrusionEntity = (ksEntity)KompasConnector.Instance.
                 KompasPart.NewEntity((short)ksObj3dTypeEnum.o3d_bossExtrusion);
+            //TODO: Duplication
             // интерфейс свойств базовой операции выдавливания
             var iBaseExtrusionDef = (ksBossExtrusionDefinition)iBaseExtrusionEntity.GetDefinition();
             //толщина выдавливания

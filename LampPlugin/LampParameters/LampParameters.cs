@@ -103,7 +103,6 @@ namespace ModelParameters
         /// </summary>
         public void DefaultValue()
         {
-
             foreach (var carrentParameter in _parameters)
             {
                 carrentParameter.Value = carrentParameter.DefaultValue;

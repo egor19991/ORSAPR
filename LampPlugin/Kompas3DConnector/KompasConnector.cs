@@ -22,6 +22,7 @@ namespace Kompas3DConnector
         {
             get
             {
+                 //TODO: RSDN
                 if (_instance == null)
                     _instance = new KompasConnector();
                 return _instance;
@@ -43,6 +44,7 @@ namespace Kompas3DConnector
         /// </summary>
         public ksDocument3D Document3D { get; set; }
 
+         //TODO: RSDN
         /// <summary>
         /// Метод запуска Компас в режиме детали, инициализации свойств Document3D, KompasPart и KompasObject
         /// </summary>
