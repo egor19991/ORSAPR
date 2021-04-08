@@ -48,8 +48,8 @@ namespace ModelParameters
                     else
                     {
                         throw new ArgumentException($"Parameter {NameParameter} " +
-                                                    $"should be more then {_maxValue} " +
-                                                    $"and less then {_minValue}");
+                                                    $"should be less then {_minValue} " +
+                                                    $"and  more then {_maxValue}");
                     }
                 }
                 else
@@ -151,8 +151,8 @@ namespace ModelParameters
                     else
                     {
                         throw new ArgumentException($"Parameter {NameParameter} " +
-                                                    $"should be more then {_maxValue} " +
-                                                    $"and less then {_minValue}");
+                                                    $"should be less then {_minValue} " +
+                                                    $"and more then {_maxValue}");
                     }
                 }
                 else
