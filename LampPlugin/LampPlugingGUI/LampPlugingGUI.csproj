@@ -67,6 +67,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -81,9 +84,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LampBuilder\LampBuilder.csproj">
+    <ProjectReference Include="..\LampBuilder\ModelBuilder.csproj">
       <Project>{65c489b5-3056-4f06-841f-982813b5fc1e}</Project>
-      <Name>LampBuilder</Name>
+      <Name>ModelBuilder</Name>
     </ProjectReference>
     <ProjectReference Include="..\LampParameters\ModelParameters.csproj">
       <Project>{518770ba-b8e4-4c6f-a442-7b2f25883e09}</Project>

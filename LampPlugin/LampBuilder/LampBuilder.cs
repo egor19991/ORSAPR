@@ -4,7 +4,7 @@ using Kompas6API5;
 using Kompas6Constants3D;
 using ModelParameters;
 
-namespace LampBuilder
+namespace ModelBuilder
 {
     /// <summary>
     /// Класс для построения лампы
@@ -39,6 +39,11 @@ namespace LampBuilder
             CreateHole(0, -LampParameters.DistanceHole / 2,
                 LampParameters.DiameterHole, 
                 lamp.DepthHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
+            if (lamp.EnableFloorLamp)
+            {
+                CreateFloorLamp( lamp.BodyDiameter.Value, lamp.DepthHole - lamp.SocketPlatformHeight.Value,
+                    lamp.SocketPlatformDiameter.Value, 3, lamp.SocketPlatformHeight.Value);
+            }
         }
 
         /// <summary>
@@ -49,17 +54,87 @@ namespace LampBuilder
         /// <param name="heightPlane">Выстоа плоскости</param>
         private void CreateСylinder(double height, double diameter, double heightPlane)
         {
-             //TODO: RSDN
-            var SketchDef = CreateSketch(heightPlane);
+            var sketchDef = CreateSketch(heightPlane);
+            sketchDef = CreateCircle(0, 0, diameter, sketchDef);
+            sketchDef.EndEdit();
+            BossExtrusion(height, sketchDef, true, false);
+        }
 
-            ksDocument2D document2D = (ksDocument2D)SketchDef.BeginEdit();
-            var xc = 0;
-            var yc = 0;
+        /// <summary>
+        /// Метод для создания торшера
+        /// </summary>
+        /// <param name="diameter">диаметер нижней окружности торшера</param>
+        /// <param name="heightPlane">высота плоскости, с которой начинается построение</param>
+        /// <param name="diameterSocketPlatform">диаметер окружности, к которой происходит присоедиенение креплений</param>
+        /// <param name="line">количество линий</param>
+        /// <param name="heightSocketPlatform">высота площадки под патрон</param>
+        public void CreateFloorLamp( double diameter, double heightPlane, double diameterSocketPlatform,
+            int line, double heightSocketPlatform)
+        {
+            //Окружность для крепления
+            double diameterBase = diameter * 1.4;
+            var sketchDef1 = CreateSketch(heightPlane); 
+            sketchDef1 = CreateCircle(0,0, diameterBase, sketchDef1);
+
+            //Линии для соединения площадки под патрон и окружности
+            ksDocument2D document2D = (ksDocument2D) sketchDef1.BeginEdit();
+            for (int i = 1; i <= line; i++)
+            {
+                double rad = (360 / line * i) * (Math.PI / 180.0);
+                var x1 = diameterSocketPlatform / 2 * Math.Cos(rad) * 0.991;
+                var y1 = diameterSocketPlatform / 2 * Math.Sin(rad) * 0.991;
+                var x2 = diameterBase / 2 * Math.Cos(rad);
+                var y2 = diameterBase / 2 * Math.Sin(rad);
+                document2D.ksLineSeg(x1, y1, x2, y2, 1);
+            }
+            sketchDef1.EndEdit();
+            BossExtrusion(heightSocketPlatform, sketchDef1,true, true);
+
+            //Нижняя окружность для торшера
+            var sketchDef2 = CreateSketch(heightPlane + heightSocketPlatform);
+            sketchDef2 = CreateCircle(0,0, diameterBase,  sketchDef2);
+            sketchDef2.EndEdit();
+
+            //Верхняя окружность для торшера
+            var sketchDef3 = CreateSketch((heightPlane + heightSocketPlatform) * 1.33);
+            sketchDef3 = CreateCircle(0 ,0,diameterBase*0.8, sketchDef3);
+            sketchDef3.EndEdit();
+
+            //выдаливание нижней и верхней окружности
+            var loftElement = (ksEntity)KompasConnector.Instance.KompasPart.NewEntity((short)Obj3dType.o3d_baseLoft);
+            var baseLoftDefinition = (ksBaseLoftDefinition)loftElement.GetDefinition();
+            baseLoftDefinition.SetLoftParam(false, true, true);
+            baseLoftDefinition.SetThinParam(true, (short)Direction_Type.dtNormal, 1, 1);
+            var sketches = (ksEntityCollection)baseLoftDefinition.Sketchs();
+            sketches.Clear();
+            sketches.Add(sketchDef2);
+            sketches.Add(sketchDef3);
+            loftElement.Create();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="height"></param>
+        /// <param name="diameter"></param>
+        /// <param name="heightPlane">Выстоа плоскости</param>
+
+        /// <summary>
+        /// Метод для создания окружности
+        /// </summary>
+        /// <param name="xc">координата центра окружности x</param>
+        /// <param name="yc">координата центра окружности y</param>
+        /// <param name="diameter">Диаметер окружности</param>
+        /// <param name="sketchDef">Скетч</param>
+        /// <returns></returns>
+        public ksSketchDefinition CreateCircle( double xc, double yc, double diameter, ksSketchDefinition sketchDef)
+        {
+            ksDocument2D document2D = (ksDocument2D)sketchDef.BeginEdit();
             var rad = diameter / 2;
 
             document2D.ksCircle(xc, yc, rad, 1);
-            SketchDef.EndEdit();
-            BossExtrusion(height, SketchDef);
+            sketchDef.EndEdit();
+            return sketchDef;
         }
 
         /// <summary>
@@ -87,22 +162,20 @@ namespace LampBuilder
             currentPlane = (ksEntity)KompasConnector.Instance.
                 KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
 
-             //TODO: RSDN
-            ksEntity Sketch = (ksEntity)KompasConnector.Instance.
+            ksEntity sketch = (ksEntity)KompasConnector.Instance.
                 KompasPart.NewEntity((short)Obj3dType.o3d_sketch);
-            //TODO: RSDN naming
-            ksSketchDefinition SketchDef = Sketch.GetDefinition();
-            SketchDef.SetPlane(currentPlane);
-            Sketch.Create();
-            ksDocument2D document2D = (ksDocument2D)SketchDef.BeginEdit();
+            ksSketchDefinition sketchDef = sketch.GetDefinition();
+            sketchDef.SetPlane(currentPlane);
+            sketch.Create();
+            ksDocument2D document2D = (ksDocument2D)sketchDef.BeginEdit();
             document2D.ksLineSeg(0, -y, 0, y, 1);
             document2D.ksLineSeg(0, -y, x2, -y, 1);
             document2D.ksLineSeg(0, y, x2, y, 1);
             document2D.ksArcByPoint(0, 0, radiusBodyDiametr, x2, 
                 -(width / 2), x2, (width / 2), direction, 1);
-            SketchDef.EndEdit();
+            sketchDef.EndEdit();
 
-            CutExtrusion(depth,SketchDef);
+            CutExtrusion(depth, false,sketchDef);
         }
 
         /// <summary>
@@ -115,16 +188,12 @@ namespace LampBuilder
         /// <param name="heightPlane">Расстояние от начала плоскости</param>
         public void CreateHole(double xc, double yc, double diameter, double depth, double heightPlane)
         {
-            //TODO: RSDN naming
-            var SketchDef = CreateSketch(heightPlane);
+            var sketchDef = CreateSketch(heightPlane);
 
-            ksDocument2D document2D = (ksDocument2D)SketchDef.BeginEdit();
-            var rad = diameter / 2;
+            sketchDef = CreateCircle(xc,yc,diameter,sketchDef);
+            sketchDef.EndEdit();
 
-            document2D.ksCircle(xc, yc, rad, 1);
-            SketchDef.EndEdit();
-
-            CutExtrusion(depth, SketchDef);
+            CutExtrusion(depth,false, sketchDef);
         }
 
         /// <summary>
@@ -165,8 +234,9 @@ namespace LampBuilder
         /// Метод для вырезания выдавливанием 
         /// </summary>
         /// <param name="depth">Глубина выреза</param>
-        /// <param name="SketchDef">Эскиз</param>
-        public void CutExtrusion(double depth, ksSketchDefinition SketchDef)
+        /// <param name="sketchDef">Эскиз</param>
+        ///  <param name="forward">Направление выдавливания</param>
+        public void CutExtrusion(double depth, bool forward, ksSketchDefinition sketchDef)
         {
             var iBaseExtrusionEntity1 = (ksEntity)KompasConnector
                 .Instance.KompasPart.NewEntity((short)ksObj3dTypeEnum.o3d_cutExtrusion);
@@ -174,20 +244,21 @@ namespace LampBuilder
             //интерфейс свойств базовой операции выдавливания
             var iBaseExtrusionDef1 = (ksCutExtrusionDefinition)iBaseExtrusionEntity1.GetDefinition();
             //толщина выдавливания
-            iBaseExtrusionDef1.SetSideParam(false, 0, depth);
+            iBaseExtrusionDef1.SetSideParam(forward, 0, depth);
             // эскиз операции выдавливания
-            iBaseExtrusionDef1.SetSketch(SketchDef);
+            iBaseExtrusionDef1.SetSketch(sketchDef);
             // создать операцию
             iBaseExtrusionEntity1.Create();
         }
 
-        //TODO: RSDN naming
         /// <summary>
         /// Метод для выдавливания
         /// </summary>
         /// <param name="height">Высота выдавливания</param>
-        /// <param name="SketchDef">Эскиз</param>
-        public void BossExtrusion(double height, ksSketchDefinition SketchDef)
+        /// <param name="sketchDef">Эскиз</param>
+        /// <param name="forward">Направление выдавливания</param>
+        /// <param name="thin">тонкая стенка</param>
+        public void BossExtrusion(double height, ksSketchDefinition sketchDef, bool forward, bool thin)
         {
             var iBaseExtrusionEntity = (ksEntity)KompasConnector.Instance.
                 KompasPart.NewEntity((short)ksObj3dTypeEnum.o3d_bossExtrusion);
@@ -195,13 +266,17 @@ namespace LampBuilder
             // интерфейс свойств базовой операции выдавливания
             var iBaseExtrusionDef = (ksBossExtrusionDefinition)iBaseExtrusionEntity.GetDefinition();
             //толщина выдавливания
-            iBaseExtrusionDef.SetSideParam(true, 0, height);
+            if (thin)
+            {
+                iBaseExtrusionDef.SetThinParam(true, 0, 1, 1);
+            }
+            iBaseExtrusionDef.SetSideParam(forward, 0, height);
             // эскиз операции выдавливания
-            iBaseExtrusionDef.SetSketch(SketchDef);
+            iBaseExtrusionDef.SetSketch(sketchDef);
             // создать операцию
             iBaseExtrusionEntity.Create(); 
         }
-        
+
         /// <summary>
         /// Метод для завершения компаса
         /// </summary>

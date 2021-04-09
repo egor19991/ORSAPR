@@ -48,6 +48,8 @@ namespace LampPluginUI
             this.SizeLabel = new System.Windows.Forms.Label();
             this.SizeComboBox = new System.Windows.Forms.ComboBox();
             this.ApplyButton = new System.Windows.Forms.Button();
+            this.FloorLampLabel = new System.Windows.Forms.Label();
+            this.FloorLampCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // LampBodyLabel
@@ -60,7 +62,7 @@ namespace LampPluginUI
             // 
             // BodyDiameterTextBox
             // 
-            this.BodyDiameterTextBox.Location = new System.Drawing.Point(204, 8);
+            this.BodyDiameterTextBox.Location = new System.Drawing.Point(203, 8);
             this.BodyDiameterTextBox.Name = "BodyDiameterTextBox";
             this.BodyDiameterTextBox.Size = new System.Drawing.Size(45, 20);
             this.BodyDiameterTextBox.TabIndex = 1;
@@ -69,7 +71,7 @@ namespace LampPluginUI
             // 
             // BodyHeightTextBox
             // 
-            this.BodyHeightTextBox.Location = new System.Drawing.Point(204, 86);
+            this.BodyHeightTextBox.Location = new System.Drawing.Point(203, 86);
             this.BodyHeightTextBox.Name = "BodyHeightTextBox";
             this.BodyHeightTextBox.Size = new System.Drawing.Size(45, 20);
             this.BodyHeightTextBox.TabIndex = 2;
@@ -113,7 +115,7 @@ namespace LampPluginUI
             // 
             // TubeDiameterTextBox
             // 
-            this.TubeDiameterTextBox.Location = new System.Drawing.Point(204, 34);
+            this.TubeDiameterTextBox.Location = new System.Drawing.Point(203, 34);
             this.TubeDiameterTextBox.Name = "TubeDiameterTextBox";
             this.TubeDiameterTextBox.Size = new System.Drawing.Size(45, 20);
             this.TubeDiameterTextBox.TabIndex = 7;
@@ -122,7 +124,7 @@ namespace LampPluginUI
             // 
             // TubeHeightTextBox
             // 
-            this.TubeHeightTextBox.Location = new System.Drawing.Point(204, 112);
+            this.TubeHeightTextBox.Location = new System.Drawing.Point(203, 112);
             this.TubeHeightTextBox.Name = "TubeHeightTextBox";
             this.TubeHeightTextBox.Size = new System.Drawing.Size(45, 20);
             this.TubeHeightTextBox.TabIndex = 8;
@@ -148,7 +150,7 @@ namespace LampPluginUI
             // 
             // SocketPlatformHeightTextBox
             // 
-            this.SocketPlatformHeightTextBox.Location = new System.Drawing.Point(204, 138);
+            this.SocketPlatformHeightTextBox.Location = new System.Drawing.Point(203, 138);
             this.SocketPlatformHeightTextBox.Name = "SocketPlatformHeightTextBox";
             this.SocketPlatformHeightTextBox.Size = new System.Drawing.Size(45, 20);
             this.SocketPlatformHeightTextBox.TabIndex = 14;
@@ -157,7 +159,7 @@ namespace LampPluginUI
             // 
             // SocketPlatformDiameterTextBox
             // 
-            this.SocketPlatformDiameterTextBox.Location = new System.Drawing.Point(204, 60);
+            this.SocketPlatformDiameterTextBox.Location = new System.Drawing.Point(203, 60);
             this.SocketPlatformDiameterTextBox.Name = "SocketPlatformDiameterTextBox";
             this.SocketPlatformDiameterTextBox.Size = new System.Drawing.Size(45, 20);
             this.SocketPlatformDiameterTextBox.TabIndex = 13;
@@ -184,7 +186,7 @@ namespace LampPluginUI
             // 
             // BuildButton
             // 
-            this.BuildButton.Location = new System.Drawing.Point(96, 207);
+            this.BuildButton.Location = new System.Drawing.Point(96, 222);
             this.BuildButton.Name = "BuildButton";
             this.BuildButton.Size = new System.Drawing.Size(75, 23);
             this.BuildButton.TabIndex = 15;
@@ -195,7 +197,7 @@ namespace LampPluginUI
             // SizeLabel
             // 
             this.SizeLabel.AutoSize = true;
-            this.SizeLabel.Location = new System.Drawing.Point(8, 178);
+            this.SizeLabel.Location = new System.Drawing.Point(8, 193);
             this.SizeLabel.Name = "SizeLabel";
             this.SizeLabel.Size = new System.Drawing.Size(82, 13);
             this.SizeLabel.TabIndex = 16;
@@ -206,14 +208,14 @@ namespace LampPluginUI
             this.SizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SizeComboBox.FormattingEnabled = true;
             this.SizeComboBox.IntegralHeight = false;
-            this.SizeComboBox.Location = new System.Drawing.Point(96, 174);
+            this.SizeComboBox.Location = new System.Drawing.Point(96, 189);
             this.SizeComboBox.Name = "SizeComboBox";
             this.SizeComboBox.Size = new System.Drawing.Size(96, 21);
             this.SizeComboBox.TabIndex = 17;
             // 
             // ApplyButton
             // 
-            this.ApplyButton.Location = new System.Drawing.Point(204, 173);
+            this.ApplyButton.Location = new System.Drawing.Point(204, 188);
             this.ApplyButton.Name = "ApplyButton";
             this.ApplyButton.Size = new System.Drawing.Size(48, 23);
             this.ApplyButton.TabIndex = 18;
@@ -221,10 +223,31 @@ namespace LampPluginUI
             this.ApplyButton.UseVisualStyleBackColor = true;
             this.ApplyButton.Click += new System.EventHandler(this.ApplyButton_Click);
             // 
+            // FloorLampLabel
+            // 
+            this.FloorLampLabel.AutoSize = true;
+            this.FloorLampLabel.Location = new System.Drawing.Point(8, 165);
+            this.FloorLampLabel.Name = "FloorLampLabel";
+            this.FloorLampLabel.Size = new System.Drawing.Size(95, 13);
+            this.FloorLampLabel.TabIndex = 19;
+            this.FloorLampLabel.Text = "Enable Floor Lamp";
+            // 
+            // FloorLampCheckBox
+            // 
+            this.FloorLampCheckBox.AutoSize = true;
+            this.FloorLampCheckBox.Location = new System.Drawing.Point(218, 164);
+            this.FloorLampCheckBox.Name = "FloorLampCheckBox";
+            this.FloorLampCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.FloorLampCheckBox.TabIndex = 20;
+            this.FloorLampCheckBox.UseVisualStyleBackColor = true;
+            this.FloorLampCheckBox.CheckedChanged += new System.EventHandler(this.FloorLampCheckBox_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(264, 241);
+            this.ClientSize = new System.Drawing.Size(264, 251);
+            this.Controls.Add(this.FloorLampCheckBox);
+            this.Controls.Add(this.FloorLampLabel);
             this.Controls.Add(this.ApplyButton);
             this.Controls.Add(this.SizeComboBox);
             this.Controls.Add(this.SizeLabel);
@@ -244,8 +267,6 @@ namespace LampPluginUI
             this.Controls.Add(this.BodyHeightTextBox);
             this.Controls.Add(this.BodyDiameterTextBox);
             this.Controls.Add(this.LampBodyLabel);
-            this.MaximumSize = new System.Drawing.Size(280, 280);
-            this.MinimumSize = new System.Drawing.Size(280, 280);
             this.Name = "MainForm";
             this.Text = "Lamp Plugin";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -275,6 +296,8 @@ namespace LampPluginUI
         private System.Windows.Forms.Label SizeLabel;
         private System.Windows.Forms.ComboBox SizeComboBox;
         private System.Windows.Forms.Button ApplyButton;
+        private System.Windows.Forms.Label FloorLampLabel;
+        private System.Windows.Forms.CheckBox FloorLampCheckBox;
     }
 }
 

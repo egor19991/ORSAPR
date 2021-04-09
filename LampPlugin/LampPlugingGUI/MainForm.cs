@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using ModelParameters;
-using LampBuilder;
+using ModelBuilder;
 
 namespace LampPluginUI
 {
@@ -23,7 +23,7 @@ namespace LampPluginUI
         /// <summary>
         /// Поле для хранения данных о билдере
         /// </summary>
-        private LampBuilder.LampBuilder _build = new LampBuilder.LampBuilder();
+        private LampBuilder _build = new LampBuilder();
 
         /// <summary>
         /// Лист параметров
@@ -296,6 +296,14 @@ namespace LampPluginUI
         private void BuildButton_Click(object sender, EventArgs e)
         {
             _build.BuildLamp(_lamp);
+        }
+
+        private void FloorLampCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FloorLampCheckBox.Checked)
+            {
+                _lamp.EnableFloorLamp = true;
+            }
         }
     }
 }

@@ -5,13 +5,18 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LampPlugingGUI", "LampPlugingGUI\LampPlugingGUI.csproj", "{4F658D8C-1565-4920-B203-A65BE06F8482}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LampBuilder", "LampBuilder\LampBuilder.csproj", "{65C489B5-3056-4F06-841F-982813B5FC1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelBuilder", "LampBuilder\ModelBuilder.csproj", "{65C489B5-3056-4F06-841F-982813B5FC1E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas3DConnector", "Kompas3DConnector\Kompas3DConnector.csproj", "{E07F809A-9795-4C9B-8EEA-38DACA30BF45}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LampPlugin.UnitTest", "UnitTestLampParameters\LampPlugin.UnitTest.csproj", "{A1CA09EB-2DE4-4D17-950D-11D602ECEA81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelParameters", "LampParameters\ModelParameters.csproj", "{518770BA-B8E4-4C6F-A442-7B2F25883E09}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4AA017F2-DB25-44BA-A8F2-60CFC583F343}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

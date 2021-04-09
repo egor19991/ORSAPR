@@ -44,6 +44,11 @@ namespace ModelParameters
         public Parameter SocketPlatformDiameter { get; set; }
         
         /// <summary>
+        /// Свойство которое задает построение торшера 
+        /// </summary>
+        public bool EnableFloorLamp { get; set; }
+
+        /// <summary>
         /// Константа, хранящая диаметр отверстия
         /// на площадке под патрон для саморезов
         /// </summary>
