@@ -92,6 +92,10 @@
       <Project>{518770ba-b8e4-4c6f-a442-7b2f25883e09}</Project>
       <Name>ModelParameters</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StressTest\StressTest.csproj">
+      <Project>{1881afe9-8744-4849-b31a-8f899f617f9f}</Project>
+      <Name>StressTest</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -68,21 +68,24 @@ namespace ModelBuilder
         /// <param name="diameterSocketPlatform">диаметер окружности, к которой происходит присоедиенение креплений</param>
         /// <param name="line">количество линий</param>
         /// <param name="heightSocketPlatform">высота площадки под патрон</param>
-        public void CreateFloorLamp( double diameter, double heightPlane, double diameterSocketPlatform,
+        private void CreateFloorLamp( double diameter, double heightPlane, double diameterSocketPlatform,
             int line, double heightSocketPlatform)
         {
+            double scale = 1.4;
             //Окружность для крепления
-            double diameterBase = diameter * 1.4;
+            double diameterBase = diameter * scale;
             var sketchDef1 = CreateSketch(heightPlane); 
             sketchDef1 = CreateCircle(0,0, diameterBase, sketchDef1);
 
             //Линии для соединения площадки под патрон и окружности
             ksDocument2D document2D = (ksDocument2D) sketchDef1.BeginEdit();
+            scale = 0.991;
             for (int i = 1; i <= line; i++)
             {
                 double rad = (360 / line * i) * (Math.PI / 180.0);
-                var x1 = diameterSocketPlatform / 2 * Math.Cos(rad) * 0.991;
-                var y1 = diameterSocketPlatform / 2 * Math.Sin(rad) * 0.991;
+                
+                var x1 = diameterSocketPlatform / 2 * Math.Cos(rad) * scale;
+                var y1 = diameterSocketPlatform / 2 * Math.Sin(rad) * scale;
                 var x2 = diameterBase / 2 * Math.Cos(rad);
                 var y2 = diameterBase / 2 * Math.Sin(rad);
                 document2D.ksLineSeg(x1, y1, x2, y2, 1);
@@ -96,7 +99,8 @@ namespace ModelBuilder
             sketchDef2.EndEdit();
 
             //Верхняя окружность для торшера
-            var sketchDef3 = CreateSketch((heightPlane + heightSocketPlatform) * 1.33);
+            scale = 1.33;
+            var sketchDef3 = CreateSketch((heightPlane + heightSocketPlatform) * scale);
             sketchDef3 = CreateCircle(0 ,0,diameterBase*0.8, sketchDef3);
             sketchDef3.EndEdit();
 
@@ -113,13 +117,6 @@ namespace ModelBuilder
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="height"></param>
-        /// <param name="diameter"></param>
-        /// <param name="heightPlane">Выстоа плоскости</param>
-
-        /// <summary>
         /// Метод для создания окружности
         /// </summary>
         /// <param name="xc">координата центра окружности x</param>
@@ -127,7 +124,7 @@ namespace ModelBuilder
         /// <param name="diameter">Диаметер окружности</param>
         /// <param name="sketchDef">Скетч</param>
         /// <returns></returns>
-        public ksSketchDefinition CreateCircle( double xc, double yc, double diameter, ksSketchDefinition sketchDef)
+        private ksSketchDefinition CreateCircle( double xc, double yc, double diameter, ksSketchDefinition sketchDef)
         {
             ksDocument2D document2D = (ksDocument2D)sketchDef.BeginEdit();
             var rad = diameter / 2;
@@ -186,7 +183,7 @@ namespace ModelBuilder
         /// <param name="diameter">Диаметр окружности</param>
         /// <param name="depth">Глубина отверстия</param>
         /// <param name="heightPlane">Расстояние от начала плоскости</param>
-        public void CreateHole(double xc, double yc, double diameter, double depth, double heightPlane)
+        private void CreateHole(double xc, double yc, double diameter, double depth, double heightPlane)
         {
             var sketchDef = CreateSketch(heightPlane);
 
@@ -201,7 +198,7 @@ namespace ModelBuilder
         /// </summary>
         /// <param name="heightPlane">Высота плоскости</param>
         /// <returns>Эскиз</returns>
-        public ksSketchDefinition CreateSketch(double heightPlane)
+        private ksSketchDefinition CreateSketch(double heightPlane)
         {
             ksEntity currentPlane = (ksEntity)KompasConnector
                 .Instance.KompasPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
@@ -236,11 +233,10 @@ namespace ModelBuilder
         /// <param name="depth">Глубина выреза</param>
         /// <param name="sketchDef">Эскиз</param>
         ///  <param name="forward">Направление выдавливания</param>
-        public void CutExtrusion(double depth, bool forward, ksSketchDefinition sketchDef)
+        private void CutExtrusion(double depth, bool forward, ksSketchDefinition sketchDef)
         {
             var iBaseExtrusionEntity1 = (ksEntity)KompasConnector
                 .Instance.KompasPart.NewEntity((short)ksObj3dTypeEnum.o3d_cutExtrusion);
-            //TODO: Duplication
             //интерфейс свойств базовой операции выдавливания
             var iBaseExtrusionDef1 = (ksCutExtrusionDefinition)iBaseExtrusionEntity1.GetDefinition();
             //толщина выдавливания
@@ -258,11 +254,10 @@ namespace ModelBuilder
         /// <param name="sketchDef">Эскиз</param>
         /// <param name="forward">Направление выдавливания</param>
         /// <param name="thin">тонкая стенка</param>
-        public void BossExtrusion(double height, ksSketchDefinition sketchDef, bool forward, bool thin)
+        private void BossExtrusion(double height, ksSketchDefinition sketchDef, bool forward, bool thin)
         {
             var iBaseExtrusionEntity = (ksEntity)KompasConnector.Instance.
                 KompasPart.NewEntity((short)ksObj3dTypeEnum.o3d_bossExtrusion);
-            //TODO: Duplication
             // интерфейс свойств базовой операции выдавливания
             var iBaseExtrusionDef = (ksBossExtrusionDefinition)iBaseExtrusionEntity.GetDefinition();
             //толщина выдавливания

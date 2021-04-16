@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 using ModelParameters;
 using ModelBuilder;
+using StressTest;
 
 namespace LampPluginUI
 {
+    /// <summary>
+    /// Класс основной формы
+    /// </summary>
     public partial class MainForm : Form
     {
         /// <summary>
@@ -131,13 +137,9 @@ namespace LampPluginUI
                 "Default value"
             };
 
-           // SizeComboBox.Items.AddRange( CollectionConverter sizeParameters );
+           
            SizeComboBox.Items.AddRange(_sizeParameters.ToArray());
-            //foreach (var parameter in sizeParameters)
-            //{
-            //    SizeComboBox.Items.Add(parameter);
-            //}
-            SizeComboBox.SelectedItem = "Default value";
+           SizeComboBox.SelectedItem = "Default value";
             _lamp.DefaultValue();
             UpdateFormFields();
             SetLimits();
@@ -158,16 +160,19 @@ namespace LampPluginUI
                 {
                     currentAction.Invoke(_lamp, currentTextBox.Text);
                     currentTextBox.BackColor = Color.White;
-                    if (Validate())
+                    if (ValidateTextBox())
                     {
                         BuildButton.Enabled = true;
                     }
                 }
                 catch (ArgumentException exception)
                 {
-                    currentTextBox.BackColor = Color.LightCoral;
-                    MessageBox.Show(exception.Message);
-                    BuildButton.Enabled = false;
+                    if (currentTextBox.BackColor != Color.LightCoral)
+                    {
+                        currentTextBox.BackColor = Color.LightCoral;
+                        MessageBox.Show(exception.Message);
+                        BuildButton.Enabled = false;
+                    }
                 }
             }
         }
@@ -176,7 +181,7 @@ namespace LampPluginUI
         /// Метод для проверки на соответствие сохраненных и введенных параметров
         /// </summary>
         /// <returns></returns>
-        private bool Validate()
+        private bool ValidateTextBox()
         {
             var smallestUpperBound = Math.Min(_textBoxList.Count, _parameters.Count);
             for (var index = 0; index < smallestUpperBound; index++)
@@ -275,6 +280,7 @@ namespace LampPluginUI
             UpdateFormFields();
             WhiteColorTextBox();
             BuildButton.Enabled = true;
+            //_build.BuildLamp(_lamp);
         }
 
         /// <summary>
@@ -295,14 +301,26 @@ namespace LampPluginUI
         /// <param name="e"></param>
         private void BuildButton_Click(object sender, EventArgs e)
         {
+            //LoadTest load = new LoadTest();
+            //load.RunTest();
+
             _build.BuildLamp(_lamp);
         }
 
+        /// <summary>
+        /// Метод для проверки нужно ли строить торшер
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FloorLampCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (FloorLampCheckBox.Checked)
             {
                 _lamp.EnableFloorLamp = true;
+            }
+            else
+            {
+                _lamp.EnableFloorLamp = false;
             }
         }
     }

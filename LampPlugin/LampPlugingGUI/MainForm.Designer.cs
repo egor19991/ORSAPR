@@ -267,6 +267,8 @@ namespace LampPluginUI
             this.Controls.Add(this.BodyHeightTextBox);
             this.Controls.Add(this.BodyDiameterTextBox);
             this.Controls.Add(this.LampBodyLabel);
+            this.MaximumSize = new System.Drawing.Size(280, 290);
+            this.MinimumSize = new System.Drawing.Size(280, 290);
             this.Name = "MainForm";
             this.Text = "Lamp Plugin";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);

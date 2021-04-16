@@ -3,7 +3,7 @@
 namespace ModelParameters
 {
     /// <summary>
-    /// Класс работы с параметрами
+    /// Класс параметра
     /// </summary>
     public class Parameter
     {

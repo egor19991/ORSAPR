@@ -9,7 +9,7 @@ namespace UnitTestLampParameters
 {
      //TODO: RSDN
     [TestFixture]
-    class LampParametersTests
+    public class LampParametersTests
     {
         /// <summary>
         /// Словарь для хранения сведения о параметров лампы
@@ -88,28 +88,26 @@ namespace UnitTestLampParameters
             }
         }
 
-        [TestCase(TestName = "Позитивный метод для MinValue, производится ввод и " +
-                             "считывание параметров")]
-        public void MinValue_GoodLampParameters_MinimumValueEqualValue()
+        [TestCase(TestName = "Позитивный метод для EnableFloorLamp, производится ввод и считывание " +
+                             "параметра")]
+        public void EnableFloorLamp_GoodFloorLamp_ReturnSameFloorLamp()
         {
+            // Setup
             var lamp = new LampParameters();
-            var parameters = InitializeParameters(lamp);
-            lamp.MinValue();
-            foreach (var currentParameter in parameters)
-            {
-                // Setup
-                var expectedValue = currentParameter.MinimumValue;
+            bool sourceFloorLamp = true;
 
-                // Act
-                var actualValue = currentParameter.Value;
+            // Act
+            var expectedFloorLamp = sourceFloorLamp;
+            lamp.EnableFloorLamp = sourceFloorLamp;
+            var actualFloorLamp = lamp.EnableFloorLamp;
 
-                // Assert
-                NUnit.Framework.Assert.AreEqual(expectedValue, actualValue);
-            }
+            // Assert
+            NUnit.Framework.Assert.AreEqual(expectedFloorLamp, actualFloorLamp);
+            
         }
 
-        [TestCase(TestName = "Позитивный метод для MaxValue, производится ввод и считывание п" +
-                             "араметров")]
+        [TestCase(TestName = "Позитивный метод для MaxValue, производится ввод и считывание " +
+                             "параметров")]
         public void MaxValue_GoodLampParameters_MaximumValueEqualValue()
         {
             // Setup
@@ -120,6 +118,27 @@ namespace UnitTestLampParameters
             {
 
                 var expectedValue = currentParameter.MaximumValue;
+
+                // Act
+                var actualValue = currentParameter.Value;
+
+                // Assert
+                NUnit.Framework.Assert.AreEqual(expectedValue, actualValue);
+            }
+        }
+
+        [TestCase(TestName = "Позитивный метод для MinValue, производится ввод и считывание " +
+                             "параметров")]
+        public void MinValue_GoodLampParameters_MinimumValueEqualValue()
+        {
+            // Setup
+            var lamp = new LampParameters();
+            var parameters = InitializeParameters(lamp);
+            lamp.MinValue();
+            foreach (var currentParameter in parameters)
+            {
+
+                var expectedValue = currentParameter.MinimumValue;
 
                 // Act
                 var actualValue = currentParameter.Value;

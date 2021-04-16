@@ -155,6 +155,7 @@ namespace ModelParameters
                 "SocketPlatform Height", 2,6, 4);
             this.TubeHeight = new Parameter("Tube Height",
                 150, 200, 200);
+            this.EnableFloorLamp = false;
             _parameters = new List<Parameter>
             {
                 BodyDiameter,
