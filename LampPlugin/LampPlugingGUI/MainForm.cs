@@ -154,25 +154,25 @@ namespace LampPluginUI
         {
             var currentTextBox = (TextBox)sender;
             var currentAction = _textBoxDictionary[currentTextBox];
-            if (!String.IsNullOrEmpty(currentTextBox.Text))
+            
+            if (String.IsNullOrEmpty(currentTextBox.Text)) return;
+            
+            try
             {
-                try
+                currentAction.Invoke(_lamp, currentTextBox.Text);
+                currentTextBox.BackColor = Color.White;
+                if (ValidateTextBox())
                 {
-                    currentAction.Invoke(_lamp, currentTextBox.Text);
-                    currentTextBox.BackColor = Color.White;
-                    if (ValidateTextBox())
-                    {
-                        BuildButton.Enabled = true;
-                    }
+                    BuildButton.Enabled = true;
                 }
-                catch (ArgumentException exception)
+            }
+            catch (ArgumentException exception)
+            {
+                if (currentTextBox.BackColor != Color.LightCoral)
                 {
-                    if (currentTextBox.BackColor != Color.LightCoral)
-                    {
-                        currentTextBox.BackColor = Color.LightCoral;
-                        MessageBox.Show(exception.Message);
-                        BuildButton.Enabled = false;
-                    }
+                    currentTextBox.BackColor = Color.LightCoral;
+                    MessageBox.Show(exception.Message);
+                    BuildButton.Enabled = false;
                 }
             }
         }
@@ -186,7 +186,7 @@ namespace LampPluginUI
             var smallestUpperBound = Math.Min(_textBoxList.Count, _parameters.Count);
             for (var index = 0; index < smallestUpperBound; index++)
             {
-                if (_textBoxList[index].Text.ToString() != _parameters[index].Value.ToString())
+                if (_textBoxList[index].Text != _parameters[index].Value.ToString())
                 {
                     return false;
                 }
@@ -210,12 +210,12 @@ namespace LampPluginUI
                 }
                 return;
             }
-            if (!(Char.IsDigit(e.KeyChar)))
+
+            if (Char.IsDigit(e.KeyChar)) return;
+
+            if ((e.KeyChar != (char)Keys.Back))
             {
-                if ((e.KeyChar != (char)Keys.Back))
-                {
-                    e.Handled = true;
-                }
+                e.Handled = true;
             }
         }
 
@@ -314,14 +314,7 @@ namespace LampPluginUI
         /// <param name="e"></param>
         private void FloorLampCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (FloorLampCheckBox.Checked)
-            {
-                _lamp.EnableFloorLamp = true;
-            }
-            else
-            {
-                _lamp.EnableFloorLamp = false;
-            }
+            _lamp.EnableFloorLamp = FloorLampCheckBox.Checked;
         }
     }
 }

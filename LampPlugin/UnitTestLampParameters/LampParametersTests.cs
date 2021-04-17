@@ -7,7 +7,6 @@ using ModelParameters;
 
 namespace UnitTestLampParameters
 {
-     //TODO: RSDN
     [TestFixture]
     public class LampParametersTests
     {
