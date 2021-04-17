@@ -168,6 +168,7 @@ namespace ModelParameters
         /// </summary>
         public Parameter() : this("", 1, 15, 5) {}
 
+
         /// <summary>
         /// Конструктор
         /// </summary>

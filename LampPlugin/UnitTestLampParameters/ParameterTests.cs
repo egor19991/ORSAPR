@@ -77,6 +77,44 @@ namespace UnitTestLampParameters
             );
         }
 
+        [TestCase( TestName = "Негативный тест на присваивание значения параметра при" +
+                                      " незаданном минимальном ограничении")]
+        public void Value_EmptyMaxParameter_ThrowsException()
+        {
+            // Setup
+            var parameter = new Parameter("Test Parameter");
+            var sourceValue = 5;
+            parameter.MinimumValue = 2;
+
+            // Assert
+            NUnit.Framework.Assert.Throws<ArgumentException>
+            (() =>
+                {
+                    // Act
+                    parameter.Value = sourceValue;
+                }
+            );
+        }
+
+        [TestCase(TestName = "Негативный тест на присваивание значения параметра при" +
+                             " незаданном минимальном ограничении")]
+        public void Value_EmptyMinParameter_ThrowsException()
+        {
+            // Setup
+            var parameter = new Parameter("Test Parameter");
+            var sourceValue = 5;
+            parameter.MaximumValue = 10;
+
+            // Assert
+            NUnit.Framework.Assert.Throws<ArgumentException>
+            (() =>
+                {
+                    // Act
+                    parameter.Value = sourceValue;
+                }
+            );
+        }
+
         [TestCase(0, 50, TestName = "Позитивный тест, для присваивания " +
                                     "и получения максимально значения, когда минимальный параметер " +
                                     "не определен ")]
@@ -228,6 +266,44 @@ namespace UnitTestLampParameters
                 // Act
                 parameter.DefaultValue = sourceDefaultValue;
             }
+            );
+        }
+
+        [TestCase(TestName = "Негативный тест на присваивание значения  параметрапо умолчанию" +
+                             " при незаданном минимальном ограничении")]
+        public void DefaultValue_EmptyMaxParameter_ThrowsException()
+        {
+            // Setup
+            var parameter = new Parameter("Test Parameter");
+            var sourceValue = 5;
+            parameter.MinimumValue = 2;
+
+            // Assert
+            NUnit.Framework.Assert.Throws<ArgumentException>
+            (() =>
+                {
+                    // Act
+                    parameter.DefaultValue = sourceValue;
+                }
+            );
+        }
+
+        [TestCase(TestName = "Негативный тест на присваивание значения параметра по умолчанию" +
+                             " при незаданном минимальном ограничении")]
+        public void DefaultValue_EmptyMinParameter_ThrowsException()
+        {
+            // Setup
+            var parameter = new Parameter("Test Parameter");
+            var sourceValue = 5;
+            parameter.MaximumValue = 10;
+
+            // Assert
+            NUnit.Framework.Assert.Throws<ArgumentException>
+            (() =>
+                {
+                    // Act
+                    parameter.DefaultValue = sourceValue;
+                }
             );
         }
     }
