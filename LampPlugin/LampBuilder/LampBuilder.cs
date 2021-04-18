@@ -34,16 +34,18 @@ namespace ModelBuilder
             CreateHole(0, 0, LampParameters.WightCable,
                 lamp.DepthHole, 0);
             CreateHole(0, LampParameters.DistanceHole / 2,
-                LampParameters.DiameterHole,
-                lamp.DepthHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
+                LampParameters.DiameterHole, lamp.DepthHole, 
+                lamp.BodyHeight.Value + lamp.TubeHeight.Value);
             CreateHole(0, -LampParameters.DistanceHole / 2,
                 LampParameters.DiameterHole, 
                 lamp.DepthHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
             if (lamp.EnableFloorLamp)
             {
                  //TODO: RSDN
-                CreateFloorLamp( lamp.BodyDiameter.Value, lamp.DepthHole - lamp.SocketPlatformHeight.Value,
-                    lamp.SocketPlatformDiameter.Value, 3, lamp.SocketPlatformHeight.Value);
+                CreateFloorLamp( lamp.BodyDiameter.Value, 
+                    lamp.DepthHole - lamp.SocketPlatformHeight.Value,
+                    lamp.SocketPlatformDiameter.Value, 3,
+                    lamp.SocketPlatformHeight.Value);
             }
         }
 
@@ -66,28 +68,29 @@ namespace ModelBuilder
         /// </summary>
         /// <param name="diameter">диаметер нижней окружности торшера</param>
         /// <param name="heightPlane">высота плоскости, с которой начинается построение</param>
-        /// <param name="diameterSocketPlatform">диаметер окружности, к которой происходит присоедиенение креплений</param>
+        /// <param name="diameterSocketPlatform">диаметер окружности, к которой происходит
+        /// присоедиенение креплений</param>
         /// <param name="line">количество линий</param>
         /// <param name="heightSocketPlatform">высота площадки под патрон</param>
         private void CreateFloorLamp( double diameter, double heightPlane, double diameterSocketPlatform,
             int line, double heightSocketPlatform)
         {
-            double scale = 1.4;
+            var baseScale = 1.4;
             //Окружность для крепления
-            double diameterBase = diameter * scale;
+            double diameterBase = diameter * baseScale;
             var sketchDef1 = CreateSketch(heightPlane); 
             sketchDef1 = CreateCircle(0,0, diameterBase, sketchDef1);
 
             //Линии для соединения площадки под патрон и окружности
             ksDocument2D document2D = (ksDocument2D) sketchDef1.BeginEdit();
             //TODO:
-            scale = 0.991;
+            var  lineScale = 0.991;
             for (int i = 1; i <= line; i++)
             {
                 double rad = (360 / line * i) * (Math.PI / 180.0);
                 
-                var x1 = diameterSocketPlatform / 2 * Math.Cos(rad) * scale;
-                var y1 = diameterSocketPlatform / 2 * Math.Sin(rad) * scale;
+                var x1 = diameterSocketPlatform / 2 * Math.Cos(rad) * lineScale;
+                var y1 = diameterSocketPlatform / 2 * Math.Sin(rad) * lineScale;
                 var x2 = diameterBase / 2 * Math.Cos(rad);
                 var y2 = diameterBase / 2 * Math.Sin(rad);
                 document2D.ksLineSeg(x1, y1, x2, y2, 1);
@@ -101,17 +104,19 @@ namespace ModelBuilder
             sketchDef2.EndEdit();
 
             //Верхняя окружность для торшера
-            scale = 1.33;
-            var sketchDef3 = CreateSketch((heightPlane + heightSocketPlatform) * scale);
+            var topScale = 1.33;
+            var sketchDef3 = CreateSketch((heightPlane + heightSocketPlatform) * topScale);
             sketchDef3 = CreateCircle(0 ,0,diameterBase*0.8, sketchDef3);
             sketchDef3.EndEdit();
 
              //TODO: RSDN
             //выдаливание нижней и верхней окружности
-            var loftElement = (ksEntity)KompasConnector.Instance.KompasPart.NewEntity((short)Obj3dType.o3d_baseLoft);
+            var loftElement = (ksEntity)KompasConnector.Instance.KompasPart.
+                NewEntity((short)Obj3dType.o3d_baseLoft);
             var baseLoftDefinition = (ksBaseLoftDefinition)loftElement.GetDefinition();
             baseLoftDefinition.SetLoftParam(false, true, true);
-            baseLoftDefinition.SetThinParam(true, (short)Direction_Type.dtNormal, 1, 1);
+            baseLoftDefinition.SetThinParam(true, (short)Direction_Type.dtNormal,
+                1, 1);
             var sketches = (ksEntityCollection)baseLoftDefinition.Sketchs();
             sketches.Clear();
             sketches.Add(sketchDef2);
@@ -126,9 +131,10 @@ namespace ModelBuilder
         /// <param name="yc">координата центра окружности y</param>
         /// <param name="diameter">Диаметер окружности</param>
         /// <param name="sketchDef">Скетч</param>
-        /// <returns></returns>
+        /// <returns>Возвращает эскиз с готовой окружностью</returns>
         ///  //TODO: RSDN
-        private ksSketchDefinition CreateCircle( double xc, double yc, double diameter, ksSketchDefinition sketchDef)
+        private ksSketchDefinition CreateCircle( double xc, double yc, double diameter, 
+            ksSketchDefinition sketchDef)
         {
             ksDocument2D document2D = (ksDocument2D)sketchDef.BeginEdit();
             var rad = diameter / 2;

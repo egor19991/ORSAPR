@@ -23,9 +23,11 @@ namespace Kompas3DConnector
             get
             {
                  //TODO: RSDN
-                if (_instance == null)
-                    _instance = new KompasConnector();
-                return _instance;
+                 if (_instance == null)
+                 {
+                     _instance = new KompasConnector();
+                 }
+                 return _instance;
             }
         }
 

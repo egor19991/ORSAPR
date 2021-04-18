@@ -280,7 +280,6 @@ namespace LampPluginUI
             UpdateFormFields();
             WhiteColorTextBox();
             BuildButton.Enabled = true;
-            //_build.BuildLamp(_lamp);
         }
 
         /// <summary>
