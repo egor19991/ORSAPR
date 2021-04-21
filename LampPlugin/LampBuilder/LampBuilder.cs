@@ -41,7 +41,6 @@ namespace ModelBuilder
                 lamp.DepthHole, lamp.BodyHeight.Value + lamp.TubeHeight.Value);
             if (lamp.EnableFloorLamp)
             {
-                 //TODO: RSDN
                 CreateFloorLamp( lamp.BodyDiameter.Value, 
                     lamp.DepthHole - lamp.SocketPlatformHeight.Value,
                     lamp.SocketPlatformDiameter.Value, 3,
@@ -83,7 +82,7 @@ namespace ModelBuilder
 
             //Линии для соединения площадки под патрон и окружности
             ksDocument2D document2D = (ksDocument2D) sketchDef1.BeginEdit();
-            //TODO:
+
             var  lineScale = 0.991;
             for (int i = 1; i <= line; i++)
             {
@@ -109,7 +108,6 @@ namespace ModelBuilder
             sketchDef3 = CreateCircle(0 ,0,diameterBase*0.8, sketchDef3);
             sketchDef3.EndEdit();
 
-             //TODO: RSDN
             //выдаливание нижней и верхней окружности
             var loftElement = (ksEntity)KompasConnector.Instance.KompasPart.
                 NewEntity((short)Obj3dType.o3d_baseLoft);
@@ -132,7 +130,6 @@ namespace ModelBuilder
         /// <param name="diameter">Диаметер окружности</param>
         /// <param name="sketchDef">Скетч</param>
         /// <returns>Возвращает эскиз с готовой окружностью</returns>
-        ///  //TODO: RSDN
         private ksSketchDefinition CreateCircle( double xc, double yc, double diameter, 
             ksSketchDefinition sketchDef)
         {
